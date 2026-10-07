@@ -8,7 +8,7 @@ San Francisco has more than a hundred neighborhoods, many only a few blocks wide
 |---|---|
 | Ring 1 | 1 Northport · 2 NoMa · 3 SoMa |
 | Ring 2 | 4 Pacific · 5 Ashbury · 6 The Valleys · 7 The Mission · 8 Potrero · 9 The Hills |
-| Ring 3 | 10 Federal · 11 The Richmond · 12 The Sunset · 13 Merced · 14 Southside · 15 Bayview |
+| Ring 3 | 10 Federal · 11 The Richmond · 12 The Sunset · 13 Oceanview · 14 Southside · 15 Bayview |
 
 Golden Gate Park belongs to the whole city and sits outside the numbering.
 
