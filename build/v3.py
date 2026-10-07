@@ -1,5 +1,5 @@
 # v3: Golden Gate Heights, Forest Hill and West Portal join the 9th; the 12th and 13th merge; renumber 14-16 -> 13-15.
-# The 9th's western edge south of Lawton follows 16th Avenue all the way to Sloat; east of Funston, Lawton is the line. Idempotent: always starts from arr_v5.json.
+# The 9th's western edge follows 17th Avenue down to Rivera, then 15th Avenue to Sloat; east of Funston, Lawton is the line. Idempotent: always starts from arr_v5.json.
 import json, math
 from shapely.geometry import shape, mapping
 from shapely.ops import unary_union, polylabel
@@ -25,7 +25,12 @@ l16=linemerge(l16) if l16.geom_type=='MultiLineString' else l16
 if l16.geom_type=='MultiLineString': l16=max(l16.geoms,key=lambda g:g.length)
 cs=list(l16.coords)
 if cs[0][1]<cs[-1][1]: cs=cs[::-1]                 # north -> south
-cs=[(cs[0][0],NLAT)]+cs+[(cs[-1][0],SLAT)]         # extend to the band edges
+# south of Rivera Street the line moves one block east to 15th Avenue
+RLAT=37.74692
+c15=sorted({(round(x,6),round(y,6)) for x_ in S if x_['streetname']=='15TH AVE' for x,y in x_['line']['coordinates'] if 37.7375<y<37.7469 and -122.4725<x<-122.4705},key=lambda p:-p[1])
+c17=sorted({(round(x,6),round(y,6)) for x_ in S if x_['streetname']=='17TH AVE' for x,y in x_['line']['coordinates'] if RLAT<y<NLAT+0.003},key=lambda p:-p[1])
+cs=c17+[(-122.47382,37.74687),(-122.47274,RLAT),(-122.47132,37.74698)]+c15     # 17th Ave north of Rivera, Rivera, 15th Ave south of Rivera
+cs=[p for p in cs if p[1]<=NLAT]; cs=[(cs[0][0],NLAT)]+cs+[(cs[-1][0],SLAT)]         # clip/extend to the band edges
 east=Polygon(cs+[(-122.40,SLAT),(-122.40,NLAT)]).buffer(0)
 west=Polygon(cs+[(-122.60,SLAT),(-122.60,NLAT)]).buffer(0)
 hills=clean(unary_union([hills,sunset.intersection(east)]).difference(west))
