@@ -371,7 +371,7 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
   </div></div>
   <div class="ctip" id="ctip" hidden></div>
   <details class="ctab"><summary>Show as a table</summary><div class="tblwrap"><table id="ctab"></table></div></details>
-  <p class="note2">Golden Gate Park belongs to the whole city and is not counted.</p>
+  <p class="note2">Golden Gate Park is counted in the 11th, The Richmond.</p>
 </section>
 
 <section class="sec" id="method">
@@ -379,11 +379,12 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
   <div class="notes">
     <div>
       <h3>Names and numbers</h3>
-      <p>As in Paris, the number carries the glory. Each arrondissement also has a short name, like Northport or The Valleys, but “the 7th” is the way to say it. Neighborhood names stay as they are; the arrondissement is the coarse address you give a friend.</p>
+      <p>As in Paris, the number carries the glory. Each arrondissement also has a short name, like Northport or The Valleys, but “the 7th” is the way to say it.</p>
+      <p>Neighborhood names stay as they are; the arrondissement is the coarse address you give a friend and the way to orient oneself in the city.</p>
     </div>
     <div>
       <h3>Named for the hills</h3>
-      <p>Where an arrondissement holds a prominent hill of its own, apart from the great heights at the center of the city, it takes that hill’s name: Pacific for Pacific Heights, Ashbury for Ashbury Heights, Potrero for Potrero Hill and Bayview for Bayview Hill. The central heights themselves, Twin Peaks, Mount Sutro and their neighbors, give the 9th its name, The Hills. A name taken from the land belongs to everyone who lives on it, so no single neighborhood is favored over the others.</p>
+      <p>Where an arrondissement holds a prominent hill of its own, apart from the great heights at the center of the city, it takes that hill’s name.</p>
       <p>The 1st is the one exception. It holds two celebrated hills, Telegraph Hill and Russian Hill, and in fairness to both it bears neither name: it is Northport.</p>
     </div>
     <div>
@@ -400,7 +401,7 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
     </div>
     <div>
       <h3>Land for everyone</h3>
-      <p>Golden Gate Park belongs to the whole city and sits outside the numbering. Every other piece of land, from the Presidio to Lake Merced, belongs to an arrondissement.</p>
+      <p>Every piece of land in the city, from the Presidio to Lake Merced, belongs to an arrondissement. Golden Gate Park, the city’s great common, is part of the 11th, The Richmond, which it borders along its whole length.</p>
     </div>
   </div>
 </section>
@@ -426,7 +427,7 @@ const ringById={};D.rings.forEach(r=>ringById[r.id]=r);
 const nbKey=n=>n.name+'|'+n.arr;
 const nbBy={};D.nb.forEach((n,i)=>{n.i=i;nbBy[nbKey(n)]=n});
 const ordN=a=>`${a.n}${ord(a.n)}`;
-const LONG={downtown:'North of Market',soma:'South of Market',hills:'Twin Peaks, Mount Sutro & Golden Gate Heights',richmond:'Inner & Outer Richmond'};
+const LONG={downtown:'North of Market',soma:'South of Market',hills:'Twin Peaks, Mount Sutro & Golden Gate Heights',richmond:'Richmond & Golden Gate Park'};
 D.arr.forEach(a=>{if(!a.long||a.long===a.name||a.long===a.name.replace(/^The /,''))a.long=LONG[a.id]||''});
 
 // ---- map layers
@@ -438,12 +439,12 @@ el('path',{d:D.water,class:'water'},world);
 const gArr=el('g',{},world);
 D.arr.forEach(a=>{const p=el('path',{d:a.d,class:'arr','data-k':'arr','data-id':a.id,style:`fill:${a.hex}`},gArr);
   el('title',{},p).textContent=`${ordN(a)} · ${a.name}`;});
-el('path',{d:D.ggp.d,class:'ggp'},world);
+if(!D.ggp.inarr)el('path',{d:D.ggp.d,class:'ggp'},world);
 const gSt=el('g',{},world);
 ['local','minor','major','hwy'].forEach(k=>{if(D.streets[k])el('path',{d:D.streets[k],class:'st '+k},gSt)});
 const gNb=el('g',{style:'display:none'},world);
 D.nb.forEach(n=>{const p=el('path',{d:n.d,class:'nbl','data-k':'nb','data-id':nbKey(n)},gNb);el('title',{},p).textContent=n.name});
-el('path',{d:D.ggp.d,class:'bnd ggpb'},world);
+if(!D.ggp.inarr)el('path',{d:D.ggp.d,class:'bnd ggpb'},world);
 D.arr.forEach(a=>el('path',{d:a.d,class:'bnd'},world));
 const gRing=el('g',{style:'display:none'},world);
 D.rings.forEach(r=>{const p=el('path',{d:r.d,class:'rng','data-k':'ring','data-id':r.id},gRing);el('title',{},p).textContent=`${r.label} · ${r.name}`});

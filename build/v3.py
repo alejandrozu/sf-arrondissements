@@ -1,4 +1,4 @@
-# v3: Golden Gate Heights, Forest Hill and West Portal join the 9th; the 12th and 13th merge; renumber 14-16 -> 13-15.
+# v3: Golden Gate Park joins the 11th; Golden Gate Heights, Forest Hill and West Portal join the 9th; the 12th and 13th merge; renumber 14-16 -> 13-15.
 # The 9th's western edge follows 17th Avenue down to Rivera, then 15th Avenue to Sloat; in the north the line is Lawton, then 7th Avenue up to Golden Gate Park. Idempotent: always starts from arr_v5.json.
 import json, math
 from shapely.geometry import shape, mapping
@@ -59,6 +59,8 @@ E7=Polygon([(c7[0][0],37.7570)]+c7+[(c7[-1][0],37.7720),(-122.4400,37.7720),(-12
 json.dump(mapping(E7),open('v3_e7.json','w'))
 hills=clean(unary_union([hills,sunset.intersection(E7)])); sunset=clean(sunset.difference(hills))
 A['hills']=hills; A['sunset']=sunset; del A['parkside']
+# Golden Gate Park joins the 11th
+A['richmond']=clean(unary_union([A['richmond'],A['ggp']])); del A['ggp']
 # give any leftover slivers to whoever borders them most -- check coverage
 old=unary_union([shape(v) for k,v in json.load(open('arr_v5.json')).items()])
 new=unary_union(list(A.values()))
@@ -69,14 +71,16 @@ d['arr']=[a for a in d['arr'] if a['id']!='parkside']
 RENUM={'lakemerced':13,'excelsior':14,'bayview':15}
 for a in d['arr']:
     if a['id'] in RENUM: a['n']=RENUM[a['id']]
-    if a['id'] in ('hills','sunset'):
+    if a['id'] in ('hills','sunset','richmond'):
         g=A[a['id']]; big=max(getattr(g,'geoms',[g]),key=lambda p:p.area); lab=polylabel(tp(big),tolerance=0.5)
         area=proj(g).area/1e6
-        a.update(d=poly_d(g,0.2),km2=round(area,2),mi2=round(area/2.58999,2),pop=popof(g),bounds=boundary_streets(g),lx=round(lab.x,1),ly=round(lab.y,1))
+        a.update(d=poly_d(g,0.2),km2=round(area,2),mi2=round(area/2.58999,2),pop=popof(g),bounds=boundary_streets(g))
+        if a['id']!='richmond': a.update(lx=round(lab.x,1),ly=round(lab.y,1))
         print(a['id'],a['mi2'],a['pop'],a['bounds'])
     g=A[a['id']]
     a['neigh']=[k2 for k2,g2 in A.items() if k2!=a['id'] and k2!='ggp' and g.buffer(0.00005).intersection(g2.boundary).length*88000>60]
 d['arr'].sort(key=lambda a:a['n'])
+d['ggp']['inarr']='richmond'
 # boundary street labels (same rules as gen.py)
 labs=[]; keys=list(A.keys())
 for i in range(len(keys)):
