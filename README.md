@@ -22,7 +22,7 @@ build/                everything used to make it
   gaz.py,             neighborhood gazetteer: splits, renames, custom polygons
   gaz_build.py        and floating labels                                        -> gaz.json, floats.json
   gaz_apply.py        merges neighborhoods, rings and populations into mapdata.json
-  v3.py               revision: Sunset and Parkside merge; the 9th gains Golden Gate Heights, Forest Hill and West Portal, bounded on the west by 17th Ave (north of Rivera) and 15th Ave (south of Rivera), and on the north by Lawton St, 7th Ave, Kirkham St, 5th Ave and Judah St (reads arr_v5.json)
+  v3.py               revision: Sunset and Parkside merge; the 9th gains Golden Gate Heights, Forest Hill and West Portal, bounded on the west by 17th Ave (north of Rivera) and 15th Ave (south of Rivera), and on the north by Lawton St, 7th Ave and Judah St (reads arr_v5.json)
   stickers.py         estimate of border-crossing stickers per arrondissement    -> sticker_points.json
   template.html       page template (HTML, CSS, JS)
   assemble.py         template.html + mapdata.json -> ../index.html
