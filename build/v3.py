@@ -1,5 +1,5 @@
 # v3: Golden Gate Heights, Forest Hill and West Portal join the 9th; the 12th and 13th merge; renumber 14-16 -> 13-15.
-# The 9th's western edge follows 17th Avenue down to Rivera, then 15th Avenue to Sloat; east of Funston, Lawton is the line. Idempotent: always starts from arr_v5.json.
+# The 9th's western edge follows 17th Avenue down to Rivera, then 15th Avenue to Sloat; in the north the line is Lawton, 7th Avenue, Kirkham, 5th Avenue, then Judah. Idempotent: always starts from arr_v5.json.
 import json, math
 from shapely.geometry import shape, mapping
 from shapely.ops import unary_union, polylabel
@@ -36,15 +36,23 @@ west=Polygon(cs+[(-122.60,SLAT),(-122.60,NLAT)]).buffer(0)
 hills=clean(unary_union([hills,sunset.intersection(east)]).difference(west))
 sunset=clean(unary_union([sunset,A['hills'].intersection(west),mv.intersection(west)]).difference(hills))
 # east of Funston Avenue, Lawton Street divides the 9th from the 12th (up to 7th Avenue)
-FX,X7=-122.47024,-122.46378
+FX,X7=-122.47459,-122.46378   # Lawton from 17th Ave (the 9th's west edge) to 7th Ave
 law=unary_union([LineString(x['line']['coordinates']) for x in S if x['streetname']=='LAWTON ST']).intersection(Polygon([(FX,37.755),(X7,37.755),(X7,37.761),(FX,37.761)]))
 law=linemerge(law) if law.geom_type=='MultiLineString' else law
 if law.geom_type=='MultiLineString': law=max(law.geoms,key=lambda g:g.length)
 lc=sorted(law.coords)                                   # west -> east
-lc=[(FX,lc[0][1])]+lc+[(X7,lc[-1][1])]
-north=Polygon(lc+[(X7,37.7612),(FX,37.7612)]).buffer(0)
-moved=hills.intersection(north)
+# Lawton jogs at 16th Avenue: the block from 17th to 16th runs along the lower piece of Lawton
+lw=sorted({(round(x,6),round(y,6)) for x_ in S if x_['streetname']=='LAWTON ST' for x,y in x_['line']['coordinates'] if -122.4750<x<-122.4736 and y<37.7590})
+lc=[(-122.47500,37.75806)]+[p for p in lw if p[0]>-122.47459]+[p for p in lc if p[0]>=-122.47360]
+lc=lc+[(X7,lc[-1][1])]
+north=Polygon(lc+[(X7,37.7612),(lc[0][0],37.7612)]).buffer(0)
+moved=hills.intersection(north); old_hills=unary_union([hills,mv])
 hills=clean(hills.difference(north)); sunset=clean(unary_union([sunset,moved]).difference(hills))
+# then 7th Avenue north to Kirkham, Kirkham east to 5th Avenue, 5th Avenue north to Judah, and Judah (Parnassus) east to the old border
+R1=Polygon([(-122.46391,37.76041),(-122.46404,37.76227),(-122.46297,37.76232),(-122.4619,37.76236),(-122.46177,37.7605),(-122.46284,37.76045)]).buffer(0)   # 7th-5th, Kirkham-Judah -> 12th
+R3=Polygon([(-122.46177,37.7605),(-122.4619,37.76236),(-122.46084,37.76263),(-122.4603,37.76278),(-122.4603,37.7600),(-122.46177,37.7600)]).buffer(0)          # east of 5th, south of Judah -> 9th
+R2=Polygon([(-122.46378,37.75854),(-122.46391,37.76041),(-122.46284,37.76045),(-122.46177,37.7605),(-122.46177,37.7585)]).buffer(0)   # 7th-5th, Lawton-Kirkham -> 9th
+hills=clean(unary_union([hills,sunset.intersection(R3),sunset.intersection(R2)]).difference(R1)); sunset=clean(unary_union([sunset,R1.intersection(old_hills)]).difference(hills))
 A['hills']=hills; A['sunset']=sunset; del A['parkside']
 # give any leftover slivers to whoever borders them most -- check coverage
 old=unary_union([shape(v) for k,v in json.load(open('arr_v5.json')).items()])
