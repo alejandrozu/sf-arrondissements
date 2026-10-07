@@ -660,6 +660,9 @@ const goMap=()=>$('map').scrollIntoView({behavior:'smooth',block:'start'});
   D.rings.forEach(r=>{const d=PATHS[r.id];if(!d)return;el('path',{d,class:'sw1'},m);const p=el('path',{d,class:'sw2','marker-end':'url(#ah)'},m);
     const L=p.getTotalLength(),S=[];for(let s=0;s<=L;s+=4){const q=p.getPointAtLength(s);S.push([q.x,q.y])}
     r.members.map(i=>byId[i]).filter(a=>a.id!=='hills').forEach(a=>{let b=S[0],bd=1e9;S.forEach(q=>{const dd=(q[0]-a.lx)**2+(q[1]-a.ly)**2;if(dd<bd){bd=dd;b=q}});pos[a.id]=b})});
+  // schematic alignment: the 6th sits at Ring 2's bend, as far west as the 4th and 5th; the 14th lines up under the 7th
+  if(pos.castro&&pos.westernaddition)pos.castro=[pos.westernaddition[0],600];
+  if(pos.excelsior&&pos.mission)pos.excelsior=[pos.mission[0],850];
   D.arr.forEach(a=>{const [x,y]=pos[a.id]||[a.lx,a.ly];const g=el('g',{class:'mk',transform:`translate(${x.toFixed(1)} ${y.toFixed(1)})`},m);
     el('circle',{r:R+5,fill:'#fff'},g);el('circle',{r:R,fill:'var(--plaque)',stroke:a.hex,'stroke-width':6},g);
     el('text',{y:1},g).textContent=a.n});
