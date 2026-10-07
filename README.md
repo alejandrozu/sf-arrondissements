@@ -1,14 +1,14 @@
 # Les Arrondissements de San Francisco
 
-San Francisco has more than a hundred neighborhoods, many only a few blocks wide. This project adds one layer above them: **16 numbered arrondissements**, inspired by those of Paris, bounded by the big avenues everyone already knows and organized into three rings that fan out from the center.
+San Francisco has more than a hundred neighborhoods, many only a few blocks wide. This project adds one layer above them: **15 numbered arrondissements**, inspired by those of Paris, bounded by the big avenues everyone already knows and organized into three rings that fan out from the center.
 
 **Open `index.html`** for the interactive map. It is a single self-contained page: pan and zoom the city, switch between neighborhoods, boundary streets and rings, search any neighborhood, and compare the arrondissements by area and population.
 
 | Ring | Arrondissements |
 |---|---|
-| Ring 1 | 1 Northside · 2 NoMa · 3 SoMa |
-| Ring 2 | 4 Pacific · 5 Western · 6 The Valleys · 7 Mission · 8 Sunrise · 9 The Hills |
-| Ring 3 | 10 Federal · 11 Richmond · 12 Sunset · 13 Parkside · 14 Merced · 15 Southside · 16 Bayview |
+| Ring 1 | 1 North Port · 2 NoMa · 3 SoMa |
+| Ring 2 | 4 Pacific · 5 Western · 6 The Valleys · 7 The Mission · 8 The Sunrise · 9 The Hills |
+| Ring 3 | 10 Federal · 11 The Richmond · 12 The Sunset · 13 Merced · 14 Southside · 15 Bayview |
 
 Golden Gate Park belongs to the whole city and sits outside the numbering.
 
@@ -22,6 +22,7 @@ build/                everything used to make it
   gaz.py,             neighborhood gazetteer: splits, renames, custom polygons
   gaz_build.py        and floating labels                                        -> gaz.json, floats.json
   gaz_apply.py        merges neighborhoods, rings and populations into mapdata.json
+  v3.py               2026 revision: Golden Gate Heights, Forest Hill and West Portal join the 9th; Sunset and Parkside merge
   stickers.py         estimate of border-crossing stickers per arrondissement    -> sticker_points.json
   template.html       page template (HTML, CSS, JS)
   assemble.py         template.html + mapdata.json -> ../index.html
