@@ -1,0 +1,695 @@
+<title>Arrondissements of San Francisco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: signage-led atlas. Header lede, map with a sticky plaque panel, the rings with the index, then the method notes. */
+:root{
+  --bg:#edf0f2; --paper:#f9fafb; --ink:#16202a; --muted:#59646f; --rule:#cfd6dc;
+  --water:#c9d9e3; --land:#fbfbfa; --park:#d7e6cf; --street:#c3c9ce; --street-major:#9ba3aa; --hwy:#8a7f73;
+  --border:#1d2731; --plaque:#5c6777; --plaque-ink:#ffffff; --focus:#16202a;
+  --r1:#4b5665; --r2:#7f8b99; --r3:#bcc4cd;
+  --fill-op:.42;
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1318; --paper:#151c23; --ink:#e7ecf0; --muted:#9aa6b1; --rule:#2a343e;
+  --water:#0f1f2b; --land:#1b222a; --park:#22332a; --street:#2f3943; --street-major:#4a5560; --hwy:#7d6f60;
+  --border:#e3e9ee; --plaque:#5d6979; --plaque-ink:#ffffff; --focus:#e7ecf0;
+  --r1:#d3dae1; --r2:#97a3b0; --r3:#525e6b;
+  --fill-op:.55; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1318; --paper:#151c23; --ink:#e7ecf0; --muted:#9aa6b1; --rule:#2a343e;
+  --water:#0f1f2b; --land:#1b222a; --park:#22332a; --street:#2f3943; --street-major:#4a5560; --hwy:#7d6f60;
+  --border:#e3e9ee; --plaque:#5d6979; --plaque-ink:#ffffff; --focus:#e7ecf0;
+  --r1:#d3dae1; --r2:#97a3b0; --r3:#525e6b;
+  --fill-op:.55; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--f-body);padding-inline:clamp(16px,3vw,40px);padding-block:0 64px}
+.wrap{max-width:1320px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;text-wrap:balance;margin:0;letter-spacing:.01em}
+.eyebrow{font:600 .78rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+header.top{padding-block:22px 28px;display:flex;flex-direction:column;gap:22px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:10px 24px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:12px}
+.nav ul{display:flex;gap:4px 20px;flex-wrap:wrap;list-style:none;margin:0;padding:0}
+.nav a{font:600 .82rem/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+.nav a:hover{border-color:var(--ink)}
+header.top h1{font-size:clamp(2.6rem,7vw,5.6rem);line-height:.9;text-transform:uppercase}
+header.top h1 span{color:var(--muted)}
+@media (min-width:1100px){header.top h1 span{display:inline}}
+@media (max-width:1099px){header.top h1 span{display:block}}
+.intro{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 40px}
+.intro h3{font-size:1.1rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+.intro p{margin:0;max-width:60ch}
+@media (max-width:860px){.intro{grid-template-columns:minmax(0,1fr)}}
+.sig{margin:0;font:600 clamp(1.25rem,2.4vw,1.7rem)/1.2 var(--f-display);letter-spacing:.01em;border-left:5px solid var(--plaque);padding:2px 0 2px 14px;max-width:46ch;text-wrap:balance}
+.kfig{display:flex;flex-wrap:wrap;gap:12px 36px;list-style:none;margin:0;padding:14px 0 0;border-top:1px solid var(--rule)}
+.kfig li{display:flex;flex-direction:column;gap:2px}
+.kfig b{font:700 1.9rem/1 var(--f-display);font-variant-numeric:tabular-nums}
+.kfig span{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:560px){.kfig{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 12px}.kfig b{font-size:1.5rem}}
+
+/* Atlas */
+.atlas{display:flex;flex-direction:column;gap:10px;scroll-margin-top:12px}
+.toolbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.modes{display:flex;gap:0;border:1px solid var(--rule);border-radius:5px;overflow:hidden;background:var(--paper)}
+.modes .btn{border:0;border-radius:0;border-right:1px solid var(--rule)}
+.modes .btn:last-child{border-right:0}
+.stage{position:relative}
+.mapbox{position:relative;background:var(--water);border:1px solid var(--rule);border-radius:8px;overflow:hidden;width:100%;height:clamp(560px,84vh,940px);touch-action:none;user-select:none;-webkit-user-select:none}
+@media (max-width:900px){.mapbox{height:auto;aspect-ratio:1/1;max-height:86vh}}
+.mapbox svg{display:block;width:100%;height:100%;cursor:grab}
+.mapbox svg.dragging{cursor:grabbing}
+.land{fill:var(--land)} .park{fill:var(--park)} .water{fill:var(--water)}
+.st{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.st.local{stroke:var(--street);stroke-width:.5}
+.st.minor{stroke:var(--street-major);stroke-width:.8}
+.st.major{stroke:var(--street-major);stroke-width:1.3}
+.st.hwy{stroke:var(--hwy);stroke-width:1.6}
+.arr{fill-opacity:var(--fill-op);stroke:none;cursor:pointer;transition:fill-opacity .15s}
+.arr:hover{fill-opacity:calc(var(--fill-op) + .2)}
+.m-ring .arr{fill-opacity:calc(var(--fill-op) - .12)}
+.ggp{fill:var(--park);stroke:none}
+.bnd{fill:none;stroke:var(--border);stroke-width:2.2;vector-effect:non-scaling-stroke;stroke-linejoin:round;pointer-events:none}
+.bnd.ggpb{stroke:var(--muted);stroke-width:1.1;stroke-dasharray:5 4}
+.m-ring .bnd{stroke-width:1.2;stroke-opacity:.7}
+.nbl{fill:transparent;stroke:var(--muted);stroke-width:.8;stroke-dasharray:3 3;vector-effect:non-scaling-stroke;pointer-events:none}
+.m-nb .nbl{pointer-events:all;cursor:pointer}
+.m-nb .nbl:hover{fill:var(--ink);fill-opacity:.08}
+.rng{fill:transparent;stroke:var(--border);stroke-width:4.5;vector-effect:non-scaling-stroke;stroke-linejoin:round;pointer-events:none}
+.m-ring .rng{pointer-events:all;cursor:pointer}
+.m-ring .rng:hover{fill:var(--ink);fill-opacity:.06}
+.selo{fill:none;stroke:#000;stroke-width:5.2;vector-effect:non-scaling-stroke;stroke-linejoin:round;pointer-events:none}
+.sel{fill:none;stroke:#fff;stroke-width:3.8;vector-effect:non-scaling-stroke;stroke-linejoin:round;pointer-events:none}
+.flt{font:italic 500 9.5px var(--f-body);fill:var(--ink);opacity:.8;text-anchor:middle;paint-order:stroke;stroke:var(--land);stroke-width:3px;pointer-events:none}
+.fdot{fill:var(--ink);opacity:.7}
+.nbt{font:500 10px var(--f-body);fill:var(--muted);text-anchor:middle;paint-order:stroke;stroke:var(--land);stroke-width:3px;pointer-events:none}
+.stl{font:600 10.5px var(--f-display);letter-spacing:.06em;text-transform:uppercase;fill:var(--ink);text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:var(--land);stroke-width:3.5px;pointer-events:none}
+.num{cursor:pointer}
+.num circle{fill:var(--plaque)}
+.num text{font:700 14px var(--f-display);fill:var(--plaque-ink);text-anchor:middle;dominant-baseline:central}
+.num text tspan{font-size:8.5px}
+.num .nm{font:600 11px var(--f-display);letter-spacing:.05em;text-transform:uppercase;fill:var(--ink);paint-order:stroke;stroke:var(--land);stroke-width:3.5px}
+.rl rect{fill:var(--ink)}
+.rl text{font:700 11px var(--f-display);letter-spacing:.12em;text-transform:uppercase;fill:var(--bg);text-anchor:middle;dominant-baseline:central}
+.rl{pointer-events:none}
+.ggpl{font:italic 500 11px var(--f-body);fill:var(--muted);text-anchor:middle;paint-order:stroke;stroke:var(--park);stroke-width:3px;pointer-events:none}
+.ctl{position:absolute;display:flex;gap:6px;flex-wrap:wrap}
+.ctl.tl{left:10px;top:10px;flex-direction:column}
+.btn{font:600 .82rem/1 var(--f-body);background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:8px 11px;cursor:pointer;min-height:34px}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.btn.sq{width:36px;height:36px;padding:0;font-size:1.1rem}
+.btn:focus-visible,.search:focus-visible,.chip:focus-visible,.card:focus-visible,.abadge:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.search{font:500 .9rem var(--f-body);background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:8px 10px;min-height:34px;flex:1 1 180px;max-width:300px;min-width:0}
+.scale{position:absolute;left:12px;bottom:12px;font:500 .7rem var(--f-mono);color:var(--ink);display:flex;flex-direction:column;gap:3px}
+.scale i{display:block;height:5px;border:1.5px solid var(--ink);border-top:0}
+.hint{position:absolute;left:var(--hx,50%);transform:translateX(-50%);top:12px;font:500 .78rem var(--f-body);background:var(--ink);color:var(--paper);padding:6px 10px;border-radius:4px;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
+.hint.on{opacity:.92}
+
+/* Panel */
+.panel{min-width:0}
+@media (min-width:901px){.panel{position:absolute;top:12px;right:12px;width:370px;max-height:calc(100% - 24px);overflow:auto;overscroll-behavior:contain;background:color-mix(in srgb,var(--paper) 95%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid var(--rule);border-radius:10px;padding:16px;box-shadow:0 10px 30px -18px rgba(10,30,60,.55)}}
+@media (max-width:900px){.panel{margin-top:16px}}
+.view{display:flex;flex-direction:column;gap:18px}
+.view[hidden]{display:none}
+/* Signs: 2:1, everything sized in container units so all sixteen share one lettering size */
+.plaque,.card .bn{container-type:inline-size;aspect-ratio:2/1;width:100%;display:flex;background:var(--plaque);color:var(--plaque-ink);border-radius:9px;padding:0}
+.plaque{box-shadow:0 1px 0 rgba(0,0,0,.25),0 8px 22px -14px rgba(10,30,60,.6)}
+.plaque .in,.card .bn>span{flex:1;min-width:0;margin:2.6cqw;border:4cqw solid #fff;box-shadow:0 0 0 .8cqw #fff,inset 0 0 0 .8cqw #fff;border-radius:1.6cqw;display:flex;align-items:center;justify-content:center;gap:calc(var(--s)*.14cqw);padding:0 1.5cqw;overflow:hidden}
+.plaque .no,.card .bn .n{font:700 calc(var(--s)*1cqw)/.78 var(--f-display);white-space:nowrap;letter-spacing:-.01em;flex:none}
+.plaque .no sup,.card .bn .n sup{font-size:.4em;vertical-align:top;position:relative;top:.12em;margin-left:.02em}
+.tx{display:flex;flex-direction:column;align-items:flex-start;flex:none}
+.plaque .nm,.card .bn .t{font:700 calc(var(--s)*.46cqw)/.92 var(--f-display);text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.plaque .ar,.card .bn .r{font:600 calc(var(--s)*.17cqw)/1.25 var(--f-body);letter-spacing:.18em;text-transform:uppercase;opacity:.85;white-space:nowrap;margin-top:.3em}
+:root{--s:25}
+.sub2{margin:-8px 0 0;font:600 .8rem/1.3 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.blurb{margin:0;max-width:60ch}
+.note{margin:-6px 0 0;font-size:.82rem;line-height:1.45;color:var(--muted);max-width:60ch}
+.colrow{margin:0;display:flex;gap:10px;align-items:flex-start;max-width:60ch}
+.sw{display:inline-block;flex:none;width:22px;height:22px;border-radius:4px;border:1px solid var(--rule)}
+.facts{display:flex;gap:18px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.facts div{display:flex;flex-direction:column;gap:2px}
+.facts b{font:500 1.1rem var(--f-mono)}
+.facts span{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.blk h3{font-size:1.05rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:0;list-style:none}
+.chip{font:500 .86rem/1.2 var(--f-body);border:1px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:999px;padding:5px 11px}
+.chip.street{font-family:var(--f-display);font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:.88rem;border-radius:3px;border-color:var(--ink)}
+.chip.micro{font-style:italic;color:var(--muted);border-style:dotted}
+.chip.nat{border-style:dashed;color:var(--muted)}
+.chip .an{font:700 .78rem var(--f-display);color:var(--muted);margin-left:4px}
+button.chip{cursor:pointer}
+button.chip:hover{border-color:var(--ink)}
+.nbh{font:700 2rem/1 var(--f-display);text-transform:uppercase;letter-spacing:.02em}
+.abadge{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:10px;background:var(--plaque);color:var(--plaque-ink);border-radius:6px;padding:4px 12px 4px 4px;cursor:pointer;align-self:flex-start}
+.abadge b{display:inline-block;min-width:40px;text-align:center;font:700 1.25rem/1 var(--f-display);border:3px solid #fff;border-radius:3px;padding:5px 4px 4px;margin:2px;box-shadow:0 0 0 1px #fff,inset 0 0 0 1px #fff}
+.abadge b sup{font-size:.5em;vertical-align:top}
+.abadge span{font:700 1rem/1.1 var(--f-display);text-transform:uppercase;letter-spacing:.04em}
+.abadge small{display:block;font:600 .66rem/1.2 var(--f-body);letter-spacing:.16em;opacity:.8}
+
+/* Sections */
+section.sec{margin-top:64px;border-top:2px solid var(--ink);padding-top:28px}
+section.sec>header{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;line-height:.95}
+.rings{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:28px 48px;align-items:start;margin-top:16px}
+@media (max-width:860px){.rings{grid-template-columns:minmax(0,1fr)}}
+.rside{position:sticky;top:14px;display:flex;flex-direction:column;gap:12px}
+@media (max-width:860px){.rside{position:static}}
+.rside p{margin:0;max-width:60ch}
+.mini{width:100%;max-width:300px;display:block;background:var(--water);border-radius:6px;border:1px solid var(--rule)}
+.mini .rt{stroke:var(--bg);stroke-width:1.2;vector-effect:non-scaling-stroke;cursor:pointer}
+.mini .rt:hover{opacity:.85}
+.mini .rt.r1{fill:var(--r1)}.mini .rt.r2{fill:var(--r2)}.mini .rt.r3{fill:var(--r3)}
+.mini .ab{fill:none;stroke:var(--bg);stroke-width:.6;stroke-opacity:.6;vector-effect:non-scaling-stroke;pointer-events:none}
+.mini text{font:700 46px var(--f-display);text-anchor:middle;dominant-baseline:central;pointer-events:none;paint-order:stroke;stroke-width:8px}
+.mini text.dk{fill:#fff;stroke:rgba(0,0,0,.35)}
+.mini text.lt{fill:#16202a;stroke:rgba(255,255,255,.5)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--muted);list-style:none;padding:0;margin:0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.rgroup+.rgroup{margin-top:34px}
+.rgroup>header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-bottom:6px}
+.rgroup h3{font-size:1.5rem;text-transform:uppercase;letter-spacing:.04em}
+.rgroup h3 small{font:600 .9rem var(--f-display);color:var(--muted);letter-spacing:.06em;margin-left:8px}
+.rgroup .rs{font:500 .8rem var(--f-mono);color:var(--muted)}
+.rgroup>p{margin:0 0 12px;max-width:70ch;color:var(--muted)}
+.idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;list-style:none;padding:0;margin:0}
+.card{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:3px;width:100%;height:100%;padding:10px 10px 12px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer}
+.card:hover{border-color:var(--ink)}
+.card .l,.card .s{padding-inline:4px}
+@media (max-width:560px){.idx{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.card{padding:7px 7px 9px}.card .s{font-size:.66rem}}
+.card .l{font-size:.78rem;color:var(--muted);line-height:1.3}
+.card .s{font:400 .74rem/1.4 var(--f-mono);color:var(--muted)}
+.secsub{margin:0 0 14px;max-width:72ch;color:var(--muted)}
+.clg{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;padding:0;margin:0 0 10px;font-size:.86rem;color:var(--ink)}
+.clg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+:root{--sa:#4f6b1f;--sp:#eb6834;--grid:#dde2e6;--base:#aeb7c0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sa:#7f9d36;--sp:#b84316;--grid:#253039;--base:#3d4954}}
+:root[data-theme="dark"]{--sa:#7f9d36;--sp:#b84316;--grid:#253039;--base:#3d4954}
+.ka{background:var(--sa)}.kp{background:var(--sp)}
+.kk,.col .bk{background:repeating-linear-gradient(135deg,var(--sa) 0 2px,color-mix(in srgb,var(--sa) 22%,var(--paper)) 2px 5px)}
+.kk{box-shadow:inset 0 0 0 1px var(--sa)}
+.cscroll{overflow-x:auto;padding-bottom:4px}
+.chart{min-width:680px;position:relative;padding-left:44px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:22px 14px 10px 54px}
+.plot{position:relative;height:300px;display:grid;grid-template-columns:repeat(16,minmax(0,1fr));align-items:end;border-bottom:1px solid var(--base)}
+.gl{position:absolute;left:0;right:0;height:0;border-top:1px solid var(--grid);pointer-events:none}
+.gl.mn{border-top:1px dotted color-mix(in srgb,var(--grid) 70%,var(--paper))}
+.gl span{position:absolute;right:calc(100% + 8px);top:-.6em;font:500 .72rem var(--f-mono);color:var(--muted);white-space:nowrap}
+.rsep{position:absolute;top:-14px;bottom:0;border-left:1px solid var(--base);pointer-events:none}
+.rlab{position:absolute;top:-18px;font:600 .68rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-left:6px;white-space:nowrap}
+.col{position:relative;height:100%;display:flex;align-items:flex-end;justify-content:center;gap:2px;cursor:pointer;outline:none}
+.col:hover,.col:focus-visible{background:color-mix(in srgb,var(--ink) 5%,transparent)}
+.col .stk{display:flex;flex-direction:column;justify-content:flex-end;height:100%;width:min(20px,36%)}
+.col i{display:block;width:100%;border-radius:4px 4px 0 0;flex:none}
+.col .bk{margin-bottom:2px;box-shadow:inset 0 0 0 1px var(--sa)}
+.col .bk+.ba{border-radius:0}
+.col .ba{background:var(--sa)}.col .bp{background:var(--sp)}
+.xax{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));padding-top:8px}
+.xl{display:flex;flex-direction:column;align-items:center;gap:4px;font:400 .66rem/1.25 var(--f-mono);color:var(--muted);text-align:center}
+.xl b{display:inline-block;min-width:34px;text-align:center;font:700 .95rem/1 var(--f-display);color:var(--plaque-ink);background:var(--plaque);border:2.5px solid #fff;border-radius:3px;padding:4px 3px 3px;box-shadow:0 0 0 1px #fff,inset 0 0 0 1px #fff;margin:2px}
+.xl b sup{font-size:.55em;vertical-align:top}
+.ctip{position:absolute;z-index:5;pointer-events:none;background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;font-size:.84rem;box-shadow:0 10px 26px -14px rgba(0,0,0,.5);min-width:210px}
+.ctip h4{margin:0 0 6px;font:700 1.1rem var(--f-display);letter-spacing:.02em}
+.ctip div{display:flex;justify-content:space-between;gap:16px;font-variant-numeric:tabular-nums}
+.ctip div span:first-child{display:flex;align-items:center;gap:6px;color:var(--muted)}
+.ctip div i{width:10px;height:10px;border-radius:2px;display:inline-block}
+#numbers{position:relative}
+.ctab{margin-top:14px}
+.ctab summary{cursor:pointer;font-weight:600;font-size:.9rem}
+.tblwrap{overflow-x:auto}
+.ctab table{border-collapse:collapse;width:100%;min-width:560px;margin-top:10px;font-size:.88rem;font-variant-numeric:tabular-nums}
+.ctab th{text-align:right;font:600 .72rem var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 10px;border-bottom:1px solid var(--ink)}
+.ctab th:first-child,.ctab td:first-child{text-align:left}
+.ctab td{text-align:right;padding:6px 10px;border-bottom:1px solid var(--rule)}
+.note2{margin:10px 0 0;font-size:.8rem;color:var(--muted)}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px 40px;margin-top:16px}
+.notes h3{font-size:1.3rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px}
+.notes p{margin:0;max-width:62ch}
+.notes p+p{margin-top:.6em}
+.foot{margin-top:48px;color:var(--muted);font-size:.84rem;max-width:80ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <nav class="nav" aria-label="Sections">
+    <span class="eyebrow">A proposal for the city · draft 14</span>
+    <ul><li><a href="#map">Map</a></li><li><a href="#rings">The 16</a></li><li><a href="#numbers">By the numbers</a></li><li><a href="#method">How it works</a></li></ul>
+  </nav>
+  <h1>Les Arrondissements <span>de San Francisco</span></h1>
+  <div class="intro">
+    <div>
+      <h3>The idea</h3>
+      <p>San Francisco has more than a hundred neighborhoods, many only a few blocks wide, plus countless cultural districts and regions. Nobody can keep them all in their head. The arrondissements, inspired by those of Paris, add one layer above them: easy-to-manage districts bounded by the big avenues everyone already knows.</p>
+    </div>
+    <div>
+      <h3>The rings</h3>
+      <p>The arrondissements are organized into rings, a fan that sweeps north, then south, then east. There are three rings, and they grow larger as they move away from the center. San Francisco is far less dense than Paris, so its arrondissements are bigger.</p>
+    </div>
+    <div>
+      <h3>Your neighborhoods</h3>
+      <p>The neighborhoods have been adjusted to this new layout and mapped in detail. But you are what makes the city’s neighborhoods great, so your ideas for more neighborhoods and more labels are always welcome.</p>
+    </div>
+  </div>
+  <p class="sig">Each arrondissement has its own color and name, but they are best referred to by number.</p>
+  <ul class="kfig" id="kfig"></ul>
+</header>
+
+<main class="atlas" id="map">
+  <div class="toolbar">
+    <input class="search" id="q" list="nblist" placeholder="Find a neighborhood…" autocomplete="off" aria-label="Find a neighborhood or arrondissement">
+    <datalist id="nblist"></datalist>
+    <div class="modes" role="group" aria-label="Map layer">
+      <button class="btn" data-mode="nb" aria-pressed="false">Neighborhoods</button>
+      <button class="btn" data-mode="st" aria-pressed="false">Boundary streets</button>
+      <button class="btn" data-mode="ring" aria-pressed="false">Rings</button>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="mapbox" id="mapbox">
+      <svg id="svg" role="img" aria-label="Map of San Francisco divided into arrondissements"></svg>
+      <div class="ctl tl">
+        <button class="btn sq" id="zin" aria-label="Zoom in">+</button>
+        <button class="btn sq" id="zout" aria-label="Zoom out">−</button>
+        <button class="btn sq" id="zrst" aria-label="Show whole city">⤢</button>
+      </div>
+      <div class="scale" aria-hidden="true"><span id="scl">1 km</span><i id="sbar"></i></div>
+      <div class="hint" id="hint"></div>
+    </div>
+  <aside class="panel" id="panel" aria-live="polite">
+    <!-- Arrondissement -->
+    <div class="view" id="vArr">
+      <div class="plaque" id="plq"><div class="in" id="plqIn">
+        <div class="no" id="pNo"></div>
+        <div class="tx"><div class="nm" id="pNm"></div><div class="ar" id="pAr"></div></div>
+      </div></div>
+      <p class="sub2" id="pLong"></p>
+      <p class="blurb" id="pBl"></p>
+      <div class="facts">
+        <div><b id="pMi"></b><span>sq mi</span></div>
+        <div><b id="pKm"></b><span>km²</span></div>
+        <div><b id="pPop"></b><span>residents</span></div>
+        <div><b id="pNn"></b><span>neighborhoods</span></div>
+      </div>
+      <p class="note" id="pNote" hidden></p>
+      <div class="blk"><h3>Bounded by</h3><ul class="chips" id="pBd"></ul></div>
+      <div class="blk"><h3>Neighborhoods</h3><ul class="chips" id="pNb"></ul></div>
+      <div class="blk" id="microBlk"><h3>Also on the map</h3><ul class="chips" id="pMc"></ul></div>
+      <div class="blk"><h3>Next door</h3><ul class="chips" id="pNe"></ul></div>
+      <div class="blk"><h3>Color</h3><p class="colrow"><span class="sw" id="pSw"></span><span><b id="pCn"></b> <span id="pCr"></span></span></p></div>
+    </div>
+    <!-- Neighborhood -->
+    <div class="view" id="vNb" hidden>
+      <div>
+        <div class="eyebrow">Neighborhood</div>
+        <div class="nbh" id="nNm" style="margin-top:8px"></div>
+      </div>
+      <button class="abadge" id="nAr"></button>
+      <div class="facts">
+        <div><b id="nAc"></b><span>acres</span></div>
+        <div><b id="nHa"></b><span>hectares</span></div>
+        <div><b id="nPop"></b><span>residents</span></div>
+      </div>
+      <p class="note" id="nNote" hidden></p>
+      <div class="blk" id="nFlB"><h3>Also on the map here</h3><ul class="chips" id="nFl"></ul></div>
+      <div class="blk"><h3>Next door</h3><ul class="chips" id="nNe"></ul></div>
+    </div>
+    <!-- Ring -->
+    <div class="view" id="vRing" hidden>
+      <div class="plaque"><div class="in" style="border-color:#c9d1d9">
+        <div class="no" id="rNo"></div>
+        <div class="tx"><div class="nm" id="rNm"></div><div class="ar">Ring</div></div>
+      </div></div>
+      <p class="blurb" id="rBl"></p>
+      <div class="facts">
+        <div><b id="rMi"></b><span>sq mi</span></div>
+        <div><b id="rKm"></b><span>km²</span></div>
+        <div><b id="rPop"></b><span>residents</span></div>
+        <div><b id="rNa"></b><span>arrondissements</span></div>
+      </div>
+      <div class="blk"><h3>Arrondissements</h3><ul class="chips" id="rMem"></ul></div>
+    </div>
+  </aside>
+  </div>
+</main>
+
+<section class="sec" id="rings">
+  <header>
+    <h2>The 16 arrondissements</h2>
+    <span class="eyebrow">Three rings</span>
+  </header>
+  <div class="rings">
+    <div class="rside">
+      <svg class="mini" id="mini" role="img" aria-label="Diagram of the rings"></svg>
+      <ul class="legend" id="legend"></ul>
+      <p>The numbers follow a fan, as the Paris arrondissements follow a snail. Each ring starts in the north and sweeps south, then east. The second ring closes in the middle of the city with The Hills, the 9th.</p>
+    </div>
+    <div id="groups"></div>
+  </div>
+</section>
+
+<section class="sec" id="numbers">
+  <header>
+    <h2>By the numbers</h2>
+    <span class="eyebrow">Share of the city, 1st to 16th</span>
+  </header>
+  <p class="secsub">Each pair compares an arrondissement’s share of the city’s land with its share of the city’s residents. When the residents bar is taller than the area bar, the arrondissement is denser than the city average.</p>
+  <ul class="clg"><li><i class="ka"></i>Area (sq mi)</li><li><i class="kk"></i>Citywide parkland in the 14th</li><li><i class="kp"></i>Residents</li></ul>
+  <div class="cscroll"><div class="chart" id="chart">
+    <div class="plot" id="plot"></div>
+    <div class="xax" id="xax"></div>
+  </div></div>
+  <div class="ctip" id="ctip" hidden></div>
+  <details class="ctab"><summary>Show as a table</summary><div class="tblwrap"><table id="ctab"></table></div></details>
+  <p class="note2">The striped part of the 14th is Lake Merced, Fort Funston, the golf courses and the Zoo: land that belongs to the whole city. Golden Gate Park is not counted.</p>
+</section>
+
+<section class="sec" id="method">
+  <header><h2>How it works</h2></header>
+  <div class="notes">
+    <div>
+      <h3>Names and numbers</h3>
+      <p>As in Paris, the number carries the glory. Each arrondissement also has a short name, like Northside or The Valleys, but “the 7th” is the way to say it. Neighborhood names stay as they are; the arrondissement is the coarse address you give a friend.</p>
+    </div>
+    <div>
+      <h3>The lines</h3>
+      <p>Boundaries follow big, memorable streets: Market, Van Ness, Geary, Broadway, Masonic, Fulton and Lincoln, 19th Avenue, Sunset Boulevard, Portola, Cesar Chavez, Mission Street, US-101 and I-280. Where the city ends, the water and the county line do the work.</p>
+    </div>
+    <div>
+      <h3>Neighborhoods</h3>
+      <p>The city’s neighborhood maps were redrawn to fit inside the arrondissements. Where a border cut a neighborhood in two, each side got its own name. Smaller places, like cultural districts and micro-neighborhoods, float on the map as labels without borders.</p>
+    </div>
+    <div>
+      <h3>Colors</h3>
+      <p>Sixteen colors: the twelve hues of the color wheel plus brown, viridian, aubergine and black. Each is tied to something the place is known for.</p>
+    </div>
+    <div>
+      <h3>Land for everyone</h3>
+      <p>Golden Gate Park belongs to the whole city and sits outside the numbering. Lake Merced, Fort Funston, the golf courses and the Zoo are inside the 14th to keep its borders simple, but they are left out of its area.</p>
+    </div>
+  </div>
+</section>
+
+<p class="foot">Areas exclude open water. Street centerlines and neighborhood boundaries: DataSF (City and County of San Francisco). Population: 2020 Census, counted by block. Parks and water: OpenStreetMap contributors. Boundaries are a draft for discussion and carry no official status.</p>
+</div>
+
+<script type="application/json" id="data">__DATA__</script>
+<script>
+(function(){
+const D=JSON.parse(document.getElementById('data').textContent);
+const NS='http://www.w3.org/2000/svg';
+const svg=document.getElementById('svg');
+const VBW=D.vb[0], VBH=D.vb[1];
+svg.setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
+svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+const el=(t,a={},p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e};
+const $=id=>document.getElementById(id);
+const ord=n=>n===1?'er':'e';
+const fmt=n=>n==null?'—':Math.round(n).toLocaleString('en-US');
+const byId={};D.arr.forEach(a=>byId[a.id]=a);
+const ringById={};D.rings.forEach(r=>ringById[r.id]=r);
+const nbKey=n=>n.name+'|'+n.arr;
+const nbBy={};D.nb.forEach((n,i)=>{n.i=i;nbBy[nbKey(n)]=n});
+const ordN=a=>`${a.n}${ord(a.n)}`;
+const LONG={downtown:'North of Market',soma:'South of Market',hills:'Twin Peaks, Mount Sutro & Glen Canyon',richmond:'Inner & Outer Richmond',sunset:'The Sunset north of Ortega',parkside:'Parkside & West Portal'};
+D.arr.forEach(a=>{if(!a.long||a.long===a.name)a.long=LONG[a.id]||''});
+
+// ---- map layers
+const world=el('g',{},svg);
+el('rect',{x:-2000,y:-2000,width:5000,height:5000,class:'water'},world);
+el('path',{d:D.land,class:'land'},world);
+el('path',{d:D.parks,class:'park'},world);
+el('path',{d:D.water,class:'water'},world);
+const gArr=el('g',{},world);
+D.arr.forEach(a=>{const p=el('path',{d:a.d,class:'arr','data-k':'arr','data-id':a.id,style:`fill:${a.hex}`},gArr);
+  el('title',{},p).textContent=`${ordN(a)} · ${a.name}`;});
+el('path',{d:D.ggp.d,class:'ggp'},world);
+const gSt=el('g',{},world);
+['local','minor','major','hwy'].forEach(k=>{if(D.streets[k])el('path',{d:D.streets[k],class:'st '+k},gSt)});
+const gNb=el('g',{style:'display:none'},world);
+D.nb.forEach(n=>{const p=el('path',{d:n.d,class:'nbl','data-k':'nb','data-id':nbKey(n)},gNb);el('title',{},p).textContent=n.name});
+el('path',{d:D.ggp.d,class:'bnd ggpb'},world);
+D.arr.forEach(a=>el('path',{d:a.d,class:'bnd'},world));
+const gRing=el('g',{style:'display:none'},world);
+D.rings.forEach(r=>{const p=el('path',{d:r.d,class:'rng','data-k':'ring','data-id':r.id},gRing);el('title',{},p).textContent=`${r.label} · ${r.name}`});
+const selOut=el('path',{class:'selo',d:''},world);
+const selPath=el('path',{class:'sel',d:''},world);
+const setSel=d=>{selOut.setAttribute('d',d);selPath.setAttribute('d',d)};
+// labels (screen-scaled)
+const gLab=el('g',{},world);
+const labels=[];
+const gNbT=el('g',{style:'display:none'},gLab);
+D.nb.forEach(n=>{const g=el('g',{},gNbT);el('text',{class:'nbt'},g).textContent=n.name;labels.push({g,x:n.x,y:n.y,a:0,kind:'nb'})});
+(D.float||[]).forEach(n=>{const g=el('g',{},gNbT);el('circle',{r:2.2,class:'fdot'},g);const tt=el('text',{class:'flt',y:-5},g);tt.textContent=n.name;labels.push({g,x:n.x,y:n.y,a:0,kind:'fl',tt})});
+const gStL=el('g',{style:'display:none'},gLab);
+D.labels.forEach(l=>{const g=el('g',{},gStL);el('text',{class:'stl'},g).textContent=l[0];labels.push({g,x:l[1],y:l[2],a:l[3]})});
+{const g=el('g',{},gLab);el('text',{class:'ggpl'},g).textContent='Golden Gate Park';labels.push({g,x:D.ggp.lx,y:D.ggp.ly,a:-2})}
+const gNum=el('g',{},gLab);
+const nameLabels=[];const markers=[];
+D.arr.forEach(a=>{const g=el('g',{class:'num','data-k':'arr','data-id':a.id},gNum);
+  el('circle',{r:16,style:'fill:#fff'},g);el('circle',{r:13.5,style:`stroke:${a.hex};stroke-width:3.5`},g);el('circle',{r:11.35,style:'fill:none;stroke:#fff;stroke-width:.8'},g);
+  const t=el('text',{y:0.5},g);t.textContent=a.n;el('tspan',{dy:-5},t).textContent=ord(a.n);
+  const nm=el('text',{class:'nm',y:27,'text-anchor':'middle'},g);nm.textContent=a.name;nameLabels.push(nm);
+  labels.push({g,x:a.lx,y:a.ly,a:0});markers.push({g,x:a.lx,y:a.ly});});
+const gRingL=el('g',{style:'display:none'},gLab);
+D.rings.forEach(r=>{const g=el('g',{class:'rl'},gRingL);const w=r.label.length*7.6+18;
+  el('rect',{x:-w/2,y:-48,width:w,height:20,rx:3},g);el('text',{y:-38},g).textContent=r.label;labels.push({g,x:r.lx,y:r.ly,a:0})});
+
+// ---- view state
+let k=1,tx=0,ty=0,touched=false;const K_MIN=0.6,K_MAX=10;
+const svgRect=()=>svg.getBoundingClientRect();
+const unitsPerPx=()=>{const r=svgRect();return Math.max(VBW/r.width,VBH/r.height)};
+function clampView(){k=Math.max(K_MIN,Math.min(K_MAX,k));
+  tx=Math.min(VBW*0.8,Math.max(-VBW*k+VBW*0.2-offU(),tx));ty=Math.min(VBH*0.8,Math.max(-VBH*k+VBH*0.2,ty))}
+const panelEl=document.getElementById('panel');
+const docked=()=>matchMedia('(min-width:901px)').matches;
+const offPx=()=>docked()?panelEl.offsetWidth+24:0;
+const offU=()=>offPx()*unitsPerPx();
+function home(){const r=svgRect(),upp=unitsPerPx(),off=offPx();const avail=(r.width-off-24)*upp;
+  k=Math.min(1,avail/VBW,(r.height-24)*upp/VBH);tx=VBW/2*(1-k)-off/2*upp;ty=VBH/2*(1-k);apply()}
+let mode='st';
+function apply(){
+  document.getElementById('mapbox').style.setProperty('--hx',`calc(50% - ${offPx()/2}px)`);
+  world.setAttribute('transform',`translate(${tx} ${ty}) scale(${k})`);
+  const u=unitsPerPx()/k;const sw=svgRect().width;const s=u*Math.max(0.72,Math.min(1,sw/720));
+  labels.forEach(L=>L.g.setAttribute('transform',`translate(${L.x} ${L.y}) rotate(${L.a}) scale(${s})`));
+  gStL.style.display=(mode==='st'&&k>=1.6)?'':'none';
+  gNbT.style.display=(mode==='nb'&&k>=2.2)?'':'none';
+  nameLabels.forEach(t=>t.style.display=(k>=1.5&&mode!=='nb'||k>=3)?'':'none');
+  if(gNbT.style.display!=='none')declutter(s);
+  const pxPerM=0.0708/u;let m=1000;for(const o of [100,200,500,1000,2000,5000]){if(o*pxPerM>=70){m=o;break}}
+  $('sbar').style.width=(m*pxPerM).toFixed(0)+'px';$('scl').textContent=m>=1000?(m/1000)+' km':m+' m';
+}
+// keep neighborhood and floating labels off the arrondissement markers
+function declutter(s){
+  const pad=2*s;
+  const M=markers.map(m=>{const b=m.g.getBBox();return{x0:m.x+b.x*s-pad,x1:m.x+(b.x+b.width)*s+pad,y0:m.y+b.y*s-pad,y1:m.y+(b.y+b.height)*s+pad}});
+  const hit=r=>M.find(m=>r.x0<m.x1&&r.x1>m.x0&&r.y0<m.y1&&r.y1>m.y0);
+  const NB=[];const hitNB=r=>NB.some(m=>r.x0<m.x1&&r.x1>m.x0&&r.y0<m.y1&&r.y1>m.y0);
+  [...labels.filter(L=>L.kind==='nb'),...labels.filter(L=>L.kind==='fl')].forEach(L=>{
+    L.g.style.visibility='';
+    if(L.kind==='fl')L.tt.setAttribute('y',-5);
+    const base=`translate(${L.x} ${L.y}) rotate(0) scale(${s})`;L.g.setAttribute('transform',base);
+    const bb=L.g.getBBox();if(!bb.width)return;
+    const R=dy=>({x0:L.x+bb.x*s,x1:L.x+(bb.x+bb.width)*s,y0:L.y+bb.y*s+dy,y1:L.y+(bb.y+bb.height)*s+dy});
+    if(L.kind==='fl'){const r1=R(0);if(!hit(r1)&&!hitNB(r1))return;
+      L.tt.setAttribute('y',13);const b2=L.g.getBBox();
+      const r2={x0:L.x+b2.x*s,x1:L.x+(b2.x+b2.width)*s,y0:L.y+b2.y*s,y1:L.y+(b2.y+b2.height)*s};
+      if(!hit(r2)&&!hitNB(r2))return;
+      if(!hit(r1)){L.tt.setAttribute('y',-5);return}
+      if(!hit(r2))return;
+      L.tt.setAttribute('y',-5);L.g.style.visibility='hidden';return}
+    let m=hit(R(0));if(!m){NB.push(R(0));return}
+    const r0=R(0);const opts=[m.y1-r0.y0+pad,m.y0-r0.y1-pad].sort((a,b)=>Math.abs(a)-Math.abs(b));
+    for(const dy of opts){if(!hit(R(dy))){L.g.setAttribute('transform',`translate(${L.x} ${L.y+dy}) rotate(0) scale(${s})`);NB.push(R(dy));return}}
+    L.g.style.visibility='hidden';
+  });
+}
+function toWorld(cx,cy){const r=svgRect();const upp=unitsPerPx();const ox=(r.width*upp-VBW)/2,oy=(r.height*upp-VBH)/2;return[(cx-r.left)*upp-ox,(cy-r.top)*upp-oy]}
+function zoomAt(f,cx,cy){const[vx,vy]=toWorld(cx,cy);const nk=Math.max(K_MIN,Math.min(K_MAX,k*f));tx=vx-(vx-tx)*(nk/k);ty=vy-(vy-ty)*(nk/k);k=nk;clampView();apply()}
+svg.addEventListener('wheel',e=>{e.preventDefault();touched=true;zoomAt(Math.exp(-e.deltaY*0.0018),e.clientX,e.clientY)},{passive:false});
+const ptrs=new Map();let moved=0,lastDist=0,downTarget=null;
+svg.addEventListener('pointerdown',e=>{svg.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,[e.clientX,e.clientY]);moved=0;downTarget=e.target;touched=true;
+  if(ptrs.size===2){const[a,b]=[...ptrs.values()];lastDist=Math.hypot(a[0]-b[0],a[1]-b[1])}svg.classList.add('dragging')});
+svg.addEventListener('pointermove',e=>{if(!ptrs.has(e.pointerId))return;const prev=ptrs.get(e.pointerId);const cur=[e.clientX,e.clientY];ptrs.set(e.pointerId,cur);
+  if(ptrs.size===1){const upp=unitsPerPx();tx+=(cur[0]-prev[0])*upp;ty+=(cur[1]-prev[1])*upp;moved+=Math.abs(cur[0]-prev[0])+Math.abs(cur[1]-prev[1]);clampView();apply()}
+  else if(ptrs.size===2){const[a,b]=[...ptrs.values()];const d=Math.hypot(a[0]-b[0],a[1]-b[1]);if(lastDist)zoomAt(d/lastDist,(a[0]+b[0])/2,(a[1]+b[1])/2);lastDist=d;moved+=10}});
+function up(e){if(!ptrs.has(e.pointerId))return;ptrs.delete(e.pointerId);if(ptrs.size<2)lastDist=0;svg.classList.remove('dragging');
+  if(ptrs.size===0&&moved<6){const t=downTarget&&downTarget.closest('[data-k]');if(!t)return;const kd=t.getAttribute('data-k'),id=t.getAttribute('data-id');
+    if(kd==='arr')selectArr(id,false);else if(kd==='nb')selectNb(id,false);else if(kd==='ring')selectRing(id,false)}}
+svg.addEventListener('pointerup',up);svg.addEventListener('pointercancel',up);
+const midX=()=>{const r=svgRect();return r.left+(r.width-offPx())/2};
+$('zin').onclick=()=>{touched=true;const r=svgRect();zoomAt(1.5,midX(),r.top+r.height/2)};
+$('zout').onclick=()=>{touched=true;const r=svgRect();zoomAt(1/1.5,midX(),r.top+r.height/2)};
+$('zrst').onclick=()=>{touched=false;home()};
+window.addEventListener('resize',()=>{if(!touched)home();else apply()});
+let ht;function hint(s){const h=$('hint');h.textContent=s;h.classList.add('on');clearTimeout(ht);ht=setTimeout(()=>h.classList.remove('on'),2400)}
+
+// ---- modes (exclusive; none allowed)
+const modeBtns=[...document.querySelectorAll('.modes .btn')];
+function setMode(m,quiet){mode=m;
+  modeBtns.forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m));
+  svg.classList.toggle('m-nb',m==='nb');svg.classList.toggle('m-ring',m==='ring');
+  gNb.style.display=m==='nb'?'':'none';gRing.style.display=m==='ring'?'':'none';gRingL.style.display=m==='ring'?'':'none';
+  apply();
+  if(m==='ring')selectRing(cur.arr?byId[cur.arr].ring:'r1',false);
+  else if(cur.view!=='arr')selectArr(cur.arr,false);
+  if(!quiet){if(m==='nb')hint(k<2.2?'Tap a neighborhood · zoom in to read names':'Tap a neighborhood');
+    else if(m==='st'&&k<1.6)hint('Zoom in to read street names')}
+  try{localStorage.setItem('sfarr-mode',m)}catch(e){}
+}
+modeBtns.forEach(b=>b.onclick=()=>setMode(mode===b.dataset.mode?'none':b.dataset.mode));
+
+// ---- panel
+function bbox(d){const n=d.match(/-?\d+(\.\d+)?/g).map(Number);let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(let i=0;i<n.length;i+=2){x0=Math.min(x0,n[i]);x1=Math.max(x1,n[i]);y0=Math.min(y0,n[i+1]);y1=Math.max(y1,n[i+1])}return[x0,y0,x1,y1]}
+function focusOn(d,kmax){touched=true;const[x0,y0,x1,y1]=bbox(d);const w=Math.max(x1-x0,1),h=Math.max(y1-y0,1);
+  const r=svgRect(),upp=unitsPerPx(),off=offPx();const aw=(r.width-off)*upp,ah=r.height*upp;
+  k=Math.max(1,Math.min(kmax||5,0.7*Math.min(aw/w,ah/h)));
+  tx=(VBW/2-off*upp/2)-(x0+w/2)*k;ty=VBH/2-(y0+h/2)*k;clampView();apply()}
+const natural=new Set(['The Bay','Pacific Ocean','Golden Gate','County line','Presidio boundary','McLaren Park','Mission Creek','Islais Creek','Waterfront','Parnassus Heights edge']);
+function chip(text,cls){const li=document.createElement('li');const s=document.createElement('span');s.className='chip '+(cls||'');s.textContent=text;li.appendChild(s);return li}
+function bchip(text,fn,suffix){const li=document.createElement('li');const b=document.createElement('button');b.className='chip';b.textContent=text;
+  if(suffix){const s=document.createElement('span');s.className='an';s.textContent=suffix;b.appendChild(s)}b.onclick=fn;li.appendChild(b);return li}
+const cur={view:'arr',arr:'northbeach'};
+function show(v){['vArr','vNb','vRing'].forEach(x=>$(x).hidden=x!==v)}
+function selectArr(id,zoom){const a=byId[id];if(!a)return;cur.view='arr';cur.arr=id;show('vArr');
+  setSel(a.d);
+  $('pNo').innerHTML=`${a.n}<sup>${ord(a.n)}</sup>`;
+  $('plqIn').style.borderColor=a.hex;
+  $('pNm').textContent=a.name;$('pAr').textContent=a.ringlab;
+  $('pLong').textContent=a.long&&a.long!==a.name?a.long:'';$('pLong').hidden=!(a.long&&a.long!==a.name);
+  $('pBl').textContent=a.blurb;
+  $('pKm').textContent=a.netkm2?a.netkm2.toFixed(1)+'*':a.km2.toFixed(1);
+  $('pMi').textContent=a.netmi2?a.netmi2.toFixed(2)+'*':a.mi2.toFixed(2);
+  const nt=$('pNote');nt.hidden=!a.netmi2;
+  if(a.netmi2)nt.textContent=`* Excludes ${a.openmi2.toFixed(2)} sq mi (${a.openkm2} km²) of public land that belongs to the whole city: Lake Merced, Fort Funston, the golf courses and the Zoo. Total area ${a.mi2.toFixed(2)} sq mi (${a.km2.toFixed(1)} km²).`;
+  $('pSw').style.background=a.hex;$('pCn').textContent=a.cn+'.';$('pCr').textContent=a.why;
+  $('pNn').textContent=a.nb.length;$('pPop').textContent=fmt(a.pop);
+  $('pBd').replaceChildren(...a.bounds.map(b=>chip(b,natural.has(b)?'nat':'street')));
+  $('pNb').replaceChildren(...a.nb.map(n=>bchip(n,()=>{if(mode!=='nb')setMode('nb',true);selectNb(n+'|'+a.id,true)})));
+  $('pMc').replaceChildren(...(a.micro||[]).map(n=>chip(n,'micro')));$('microBlk').hidden=!(a.micro&&a.micro.length);
+  $('pNe').replaceChildren(...a.neigh.map(i=>byId[i]).filter(Boolean).sort((x,y)=>x.n-y.n).map(b=>bchip(`${ordN(b)} · ${b.name}`,()=>selectArr(b.id,true))));
+  if(zoom)focusOn(a.d);
+  try{localStorage.setItem('sfarr-sel3',id)}catch(e){}
+}
+function selectNb(key,zoom){const n=nbBy[key];if(!n)return;
+  if(n.arr==='ggp'){hint('Golden Gate Park sits outside the numbering');return}
+  const a=byId[n.arr];cur.view='nb';cur.arr=a.id;show('vNb');
+  setSel(n.d);
+  $('nNm').textContent=n.name;
+  $('nAr').innerHTML=`<b style="border-color:${a.hex}">${a.n}<sup>${ord(a.n)}</sup></b><span></span>`;
+  const sp=$('nAr').querySelector('span');sp.textContent=a.name;const sm=document.createElement('small');sm.textContent='Arrondissement · '+a.ringlab;sp.appendChild(sm);
+  $('nAr').onclick=()=>selectArr(a.id,true);
+  $('nAc').textContent=fmt(n.acres);$('nHa').textContent=fmt(n.ha);$('nPop').textContent=fmt(n.pop);
+  const notes=[];if(n.split)notes.push(n.split.replace(/\((\d+)e\)/,(m,d)=>`(${d}${ord(+d)})`)+'.');if(n.aka&&n.aka.length)notes.push('Also called '+n.aka.join(', ')+'.');
+  $('nNote').textContent=notes.join(' ');$('nNote').hidden=!notes.length;
+  $('nFl').replaceChildren(...(n.fl||[]).map(f=>chip(f,'micro')));$('nFlB').hidden=!(n.fl&&n.fl.length);
+  $('nNe').replaceChildren(...(n.nbr||[]).map(k2=>nbBy[k2]).filter(m=>m&&m.arr!=='ggp').map(m=>bchip(m.name,()=>selectNb(nbKey(m),false),m.arr!==n.arr?ordN(byId[m.arr]):'')));
+  if(zoom)focusOn(n.d,7);
+}
+const RB={r1:'Northside, NoMa and SoMa: the dense core around downtown and the foot of the Bay Bridge, where the city began.',
+  r2:'Wraps the center from the Marina in the north to Mission Bay in the east, then closes with The Hills in the middle of the city: Pacific, Western, The Valleys, Mission, Sunrise and The Hills.',
+  r3:'The largest arrondissements, sweeping from the Presidio and the islands through the west and south of the city to Bayview.'};
+function selectRing(id,zoom){const r=ringById[id];if(!r)return;cur.view='ring';show('vRing');
+  setSel(r.d);
+  $('rNo').textContent=r.label.replace('Ring ','');$('rNm').textContent=r.name.replace(/^The /,'').replace(/ ring$/,'');$('rBl').textContent=RB[id];
+  $('rMi').textContent=r.sqmi.toFixed(2);$('rKm').textContent=r.km2.toFixed(1);$('rPop').textContent=fmt(r.pop);$('rNa').textContent=r.members.length;
+  $('rMem').replaceChildren(...r.members.map(i=>byId[i]).map(b=>bchip(`${ordN(b)} · ${b.name}`,()=>selectArr(b.id,true))));
+  if(zoom)focusOn(r.d);
+}
+
+// ---- search
+const dl=$('nblist');const seen=new Set();
+const opt=v=>{if(seen.has(v))return;seen.add(v);const o=document.createElement('option');o.value=v;dl.appendChild(o)};
+[...D.nb].filter(n=>n.arr!=='ggp').sort((a,b)=>a.name.localeCompare(b.name)).forEach(n=>opt(n.name));
+(D.float||[]).forEach(n=>opt(n.name));D.arr.forEach(a=>opt(a.name));
+const q=$('q');
+function runSearch(){const v=q.value.trim().toLowerCase();if(!v)return;
+  const num=v.match(/^(\d{1,2})\s*(er|e|st|nd|rd|th)?$/);
+  const a=num?D.arr.find(x=>x.n===+num[1]):D.arr.find(x=>x.name.toLowerCase()===v||(x.long||'').toLowerCase()===v);
+  if(a){if(mode==='ring'||mode==='nb')setMode('none',true);selectArr(a.id,true);return}
+  const L=s=>s.toLowerCase();
+  const n=D.nb.find(x=>L(x.name)===v)||D.nb.find(x=>L(x.name).startsWith(v))||D.nb.find(x=>L(x.name).includes(v))||D.nb.find(x=>(x.aka||[]).some(s=>L(s).includes(v)));
+  const fl=(D.float||[]).find(x=>L(x.name)===v)||(!n&&(D.float||[]).find(x=>L(x.name).includes(v)));
+  if(fl&&fl.arr){if(mode==='ring'||mode==='nb')setMode('none',true);selectArr(fl.arr,true);hint(`${fl.name} is in the ${ordN(byId[fl.arr])}`);return}
+  if(n){if(n.arr==='ggp'){hint('Golden Gate Park sits outside the numbering');return}
+    if(mode!=='nb')setMode('nb',true);selectNb(nbKey(n),true);hint(`${n.name} is in the ${ordN(byId[n.arr])}`);return}
+  hint('No neighborhood by that name')}
+q.addEventListener('change',runSearch);q.addEventListener('keydown',e=>{if(e.key==='Enter')runSearch()});
+
+// ---- rings section: mini map, legend, grouped index
+const goMap=()=>$('map').scrollIntoView({behavior:'smooth',block:'start'});
+(function(){const m=$('mini');m.setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
+  el('path',{d:D.land,fill:'var(--rule)'},m);
+  D.rings.forEach(r=>{const p=el('path',{d:r.d,class:'rt '+r.id},m);el('title',{},p).textContent=r.label;
+    p.addEventListener('click',()=>{setMode('ring',true);selectRing(r.id,false);goMap()})});
+  D.arr.forEach(a=>el('path',{d:a.d,class:'ab'},m));
+  const dark=matchMedia('(prefers-color-scheme: dark)').matches;
+  D.arr.forEach(a=>{const lightFill=dark?(a.ring==='r1'||a.ring==='r2'):(a.ring==='r3');
+    el('text',{x:a.lx,y:a.ly,class:lightFill?'lt':'dk'},m).textContent=a.n});
+  $('legend').replaceChildren(...D.rings.map(r=>{const li=document.createElement('li');li.innerHTML=`<i style="background:var(--${r.id})"></i>`;li.append(r.label+' · '+r.name);return li}));
+  const G=$('groups');
+  D.rings.forEach(r=>{const sec=document.createElement('div');sec.className='rgroup';
+    sec.innerHTML=`<header><h3></h3><span class="rs"></span></header><p></p><ul class="idx"></ul>`;
+    const h=sec.querySelector('h3');h.textContent=r.label;const sm=document.createElement('small');sm.textContent=r.name;h.appendChild(sm);
+    sec.querySelector('.rs').textContent=`${r.sqmi.toFixed(2)} sq mi · ${r.km2.toFixed(1)} km² · ${fmt(r.pop)} residents`;
+    sec.querySelector('p').textContent=RB[r.id];
+    const ul=sec.querySelector('ul');
+    r.members.map(i=>byId[i]).forEach(a=>{const li=document.createElement('li');const b=document.createElement('button');b.className='card';
+      b.innerHTML=`<span class="bn"><span style="border-color:${a.hex}"><span class="n">${a.n}<sup>${ord(a.n)}</sup></span><span class="tx"><span class="t"></span><span class="r">${a.ringlab}</span></span></span></span><span class="l"></span><span class="s"></span>`;
+      b.querySelector('.t').textContent=a.name;
+      b.querySelector('.l').textContent=a.long;
+      b.querySelector('.s').textContent=`${a.netmi2?a.netmi2.toFixed(2)+'*':a.mi2.toFixed(2)} sq mi · ${fmt(a.pop)} res.`;
+      b.onclick=()=>{if(mode==='ring'||mode==='nb')setMode('none',true);selectArr(a.id,true);goMap()};
+      li.appendChild(b);ul.appendChild(li)});
+    G.appendChild(sec)});
+})();
+
+// ---- key figures
+(function(){const area=D.arr.reduce((s,a)=>s+(a.netmi2||a.mi2),0),pop=D.arr.reduce((s,a)=>s+a.pop,0);
+  const nbs=new Set(D.nb.filter(n=>n.arr!=='ggp').map(n=>n.name)).size;
+  const F=[[16,'arrondissements'],[3,'rings'],[nbs,'neighborhoods'],[(D.float||[]).length,'floating labels'],[fmt(pop),'residents'],[area.toFixed(1),'sq mi numbered']];
+  $('kfig').replaceChildren(...F.map(([v,l])=>{const li=document.createElement('li');li.innerHTML='<b></b><span></span>';li.querySelector('b').textContent=v;li.querySelector('span').textContent=l;return li}));
+})();
+
+// ---- chart: share of city area vs share of residents
+(function(){const A=[...D.arr].sort((x,y)=>x.n-y.n);
+  const net=a=>a.netmi2||a.mi2, park=a=>a.netmi2?(a.mi2-a.netmi2):0;
+  const TA=A.reduce((s,a)=>s+a.mi2,0),TP=A.reduce((s,a)=>s+a.pop,0);
+  const rows=A.map(a=>({a,sa:net(a)/TA*100,sk:park(a)/TA*100,sp:a.pop/TP*100,dens:a.pop/net(a)}));
+  const max=Math.ceil(Math.max(...rows.map(r=>Math.max(r.sa+r.sk,r.sp)))/2)*2;
+  const plot=$('plot'),xax=$('xax'),tip=$('ctip');
+  for(let i=1;i<=max*2;i++){const v=i/2;const major=v%2===0;const g=document.createElement('div');g.className='gl'+(major?'':' mn');g.style.bottom=(v/max*100)+'%';if(major)g.innerHTML=`<span>${v}%</span>`;plot.appendChild(g)}
+  const zero=document.createElement('div');zero.className='gl';zero.style.bottom='0';zero.style.borderTop='0';zero.innerHTML='<span>0%</span>';plot.appendChild(zero);
+  [[0,'Ring 1'],[3,'Ring 2'],[9,'Ring 3']].forEach(([i,l])=>{const p=i/16*100;if(i){const s=document.createElement('div');s.className='rsep';s.style.left=p+'%';plot.appendChild(s)}
+    const lb=document.createElement('div');lb.className='rlab';lb.style.left=p+'%';lb.textContent=l;plot.appendChild(lb)});
+  const pct=v=>v.toFixed(1)+'%';const h=v=>(v/max*100)+'%';
+  rows.forEach(r=>{const c=document.createElement('div');c.className='col';c.tabIndex=0;c.setAttribute('role','button');
+    c.setAttribute('aria-label',`${ordN(r.a)} ${r.a.name}: ${pct(r.sa)} of the city's area${r.sk?` plus ${pct(r.sk)} citywide parkland`:''}, ${pct(r.sp)} of its residents`);
+    c.innerHTML=`<span class="stk">${r.sk?`<i class="bk" style="height:${h(r.sk)}"></i>`:''}<i class="ba" style="height:${h(r.sa)}"></i></span><span class="stk"><i class="bp" style="height:${h(r.sp)}"></i></span>`;
+    const showTip=()=>{tip.innerHTML=`<h4></h4><div><span><i class="ka"></i>Area</span><span>${net(r.a).toFixed(2)} sq mi · ${pct(r.sa)}</span></div>`+
+        (r.sk?`<div><span><i class="kk"></i>Citywide parkland</span><span>${park(r.a).toFixed(2)} sq mi · ${pct(r.sk)}</span></div>`:'')+
+        `<div><span><i class="kp"></i>Residents</span><span>${fmt(r.a.pop)} · ${pct(r.sp)}</span></div><div><span>Density</span><span>${fmt(r.dens)} per sq mi</span></div>`;
+      tip.querySelector('h4').textContent=`${ordN(r.a)} · ${r.a.name}`;tip.hidden=false;
+      const sec=$('numbers').getBoundingClientRect(),cr=c.getBoundingClientRect();
+      let x=cr.right-sec.left+6;if(x+tip.offsetWidth>sec.width)x=cr.left-sec.left-tip.offsetWidth-6;x=Math.max(0,x);
+      tip.style.left=x+'px';tip.style.top=(cr.top-sec.top)+'px'};
+    c.addEventListener('mouseenter',showTip);c.addEventListener('focus',showTip);
+    c.addEventListener('mouseleave',()=>tip.hidden=true);c.addEventListener('blur',()=>tip.hidden=true);
+    const go=()=>{if(mode==='ring'||mode==='nb')setMode('none',true);selectArr(r.a.id,true);goMap()};
+    c.addEventListener('click',go);c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}});
+    plot.appendChild(c);
+    const x=document.createElement('div');x.className='xl';
+    x.innerHTML=`<b style="border-color:${r.a.hex}">${r.a.n}<sup>${ord(r.a.n)}</sup></b>`;
+    xax.appendChild(x)});
+  const tb=$('ctab');tb.innerHTML='<thead><tr><th>Arrondissement</th><th>Area (sq mi)</th><th>% of city</th><th>Residents</th><th>% of city</th><th>Per sq mi</th></tr></thead><tbody></tbody>';
+  rows.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td></td><td>${net(r.a).toFixed(2)}${r.sk?` + ${park(r.a).toFixed(2)} park`:''}</td><td>${pct(r.sa)}${r.sk?` + ${pct(r.sk)}`:''}</td><td>${fmt(r.a.pop)}</td><td>${pct(r.sp)}</td><td>${fmt(r.dens)}</td>`;tr.firstChild.textContent=`${ordN(r.a)} · ${r.a.name}`;tb.tBodies[0].appendChild(tr)});
+})();
+
+// ---- start
+let start='northbeach',m0='st';
+try{const s=localStorage.getItem('sfarr-sel3');if(s&&byId[s])start=s;const mm=localStorage.getItem('sfarr-mode');if(mm&&['nb','st','ring','none'].includes(mm))m0=mm}catch(e){}
+cur.arr=start;selectArr(start,false);setMode(m0,true);home();
+})();
+</script>

@@ -1,0 +1,1887 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.4 2390de5a",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-02T13:38:36Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 140982556,
+  "lat": 37.7885406,
+  "lon": -122.4869164,
+  "tags": {
+    "ele": "26",
+    "gnis:feature_id": "1655550",
+    "name": "Seacliff",
+    "place": "neighbourhood",
+    "wikidata": "Q427116"
+  }
+},
+{
+  "type": "node",
+  "id": 140982569,
+  "lat": 37.7806432,
+  "lon": -122.4725964,
+  "tags": {
+    "ele": "52",
+    "gnis:feature_id": "1659508",
+    "name": "Richmond District",
+    "name:en": "Richmond District",
+    "name:ko": "리치몬드 디스트릭트",
+    "name:zh": "列治文区",
+    "place": "suburb",
+    "population": "59297",
+    "wikidata": "Q4395003",
+    "wikipedia": "en:Richmond District, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 140982615,
+  "lat": 37.8029843,
+  "lon": -122.4374715,
+  "tags": {
+    "ele": "7",
+    "gnis:feature_id": "1659062",
+    "name": "Marina District",
+    "name:en": "Marina District",
+    "name:ko": "마리나 디스트릭트",
+    "name:zh": "马里纳区",
+    "place": "quarter",
+    "wikidata": "Q933336"
+  }
+},
+{
+  "type": "node",
+  "id": 140982670,
+  "lat": 37.7700280,
+  "lon": -122.4469820,
+  "tags": {
+    "alt_name": "Haight/Ashbury",
+    "gnis:feature_id": "1655404",
+    "name": "Haight-Ashbury",
+    "name:en": "Haight-Ashbury",
+    "name:ko": "헤이트-애쉬버리",
+    "name:pronunciation": "ˌheɪt ˈæʃbɛɹi",
+    "name:zh": "海特-黑什伯里区",
+    "place": "quarter",
+    "wikidata": "Q1027700",
+    "wikipedia": "en:Haight-Ashbury"
+  }
+},
+{
+  "type": "node",
+  "id": 140982692,
+  "lat": 37.7093777,
+  "lon": -122.4385868,
+  "tags": {
+    "ele": "130",
+    "gnis:feature_id": "256021",
+    "name": "Crocker-Amazon",
+    "place": "quarter",
+    "wikidata": "Q5187311",
+    "wikipedia": "en:Crocker-Amazon, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 140982723,
+  "lat": 37.7882277,
+  "lon": -122.4609190,
+  "tags": {
+    "ele": "76",
+    "gnis:feature_id": "1655501",
+    "name": "Presidio Terrace",
+    "name:ko": "프리시디오 테라스",
+    "place": "neighbourhood",
+    "wikidata": "Q7241541",
+    "wikimedia_commons": "Category:Presidio Terrace",
+    "wikipedia": "en:Presidio Terrace"
+  }
+},
+{
+  "type": "node",
+  "id": 140982758,
+  "lat": 37.7927171,
+  "lon": -122.4356445,
+  "tags": {
+    "ele": "82",
+    "gnis:feature_id": "1655485",
+    "name": "Pacific Heights",
+    "name:ko": "퍼시픽 하이츠",
+    "place": "quarter",
+    "wikidata": "Q1546101",
+    "wikipedia": "en:Pacific Heights, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 140982847,
+  "lat": 37.7340974,
+  "lon": -122.3913596,
+  "tags": {
+    "ele": "24",
+    "gnis:feature_id": "1658010",
+    "name": "Bayview District",
+    "name:ko": "베이뷰 디스트릭트",
+    "name:zh": "灣景區",
+    "name:zh-Hans": "湾景区",
+    "name:zh-Hant": "灣景區",
+    "place": "suburb",
+    "wikidata": "Q122546029"
+  }
+},
+{
+  "type": "node",
+  "id": 140982995,
+  "lat": 37.7795590,
+  "lon": -122.4298100,
+  "tags": {
+    "ele": "79",
+    "gnis:feature_id": "1660151",
+    "name": "Western Addition",
+    "name:ko": "웨스턴 애디션",
+    "name:zh": "西增区",
+    "place": "suburb",
+    "wikidata": "Q7987437",
+    "wikimedia_commons": "Category:Western Addition, San Francisco",
+    "wikipedia": "en:Western Addition, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 140983005,
+  "lat": 37.7596520,
+  "lon": -122.3980262,
+  "tags": {
+    "alt_name": "Potrero District",
+    "ele": "62",
+    "gnis:feature_id": "1659428",
+    "name": "Potrero Hill",
+    "name:ko": "포트레로 힐",
+    "place": "quarter",
+    "wikidata": "Q3400108",
+    "wikipedia": "en:Potrero Hill"
+  }
+},
+{
+  "type": "node",
+  "id": 140983070,
+  "lat": 37.7855789,
+  "lon": -122.4298089,
+  "tags": {
+    "alt_name": "Nihonmachi",
+    "ele": "46",
+    "gnis:feature_id": "1655436",
+    "name": "Japantown",
+    "name:zh": "日本城",
+    "place": "neighbourhood",
+    "wikidata": "Q6159207"
+  }
+},
+{
+  "type": "node",
+  "id": 140983101,
+  "lat": 37.7219320,
+  "lon": -122.4559529,
+  "tags": {
+    "gnis:feature_id": "1658824",
+    "name": "Ingleside",
+    "place": "quarter",
+    "wikidata": "Q124309053",
+    "wikimedia_commons": "Category:Ingleside, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 140983115,
+  "lat": 37.7346534,
+  "lon": -122.4680272,
+  "tags": {
+    "ele": "105",
+    "gnis:feature_id": "1655521",
+    "name": "Saint Francis Wood",
+    "place": "neighbourhood",
+    "wikidata": "Q7588003"
+  }
+},
+{
+  "type": "node",
+  "id": 140983158,
+  "lat": 37.7599300,
+  "lon": -122.4191376,
+  "tags": {
+    "ele": "14",
+    "gnis:feature_id": "1659145",
+    "name": "Mission",
+    "name:ko": "미션 디스트릭트",
+    "name:zh": "教会区",
+    "place": "suburb",
+    "wikidata": "Q7469"
+  }
+},
+{
+  "type": "node",
+  "id": 140983204,
+  "lat": 37.8011749,
+  "lon": -122.4090021,
+  "tags": {
+    "ele": "5",
+    "gnis:feature_id": "1659245",
+    "name": "North Beach",
+    "name:ko": "노스 비치",
+    "name:zh": "北滩区",
+    "place": "quarter",
+    "wikidata": "Q2000502",
+    "wikipedia": "en:North Beach, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 140983243,
+  "lat": 37.7063208,
+  "lon": -122.4133047,
+  "tags": {
+    "ele": "14",
+    "gnis:feature_id": "1658008",
+    "name": "Bayshore",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 140983295,
+  "lat": 37.7474307,
+  "lon": -122.4635825,
+  "tags": {
+    "ele": "182",
+    "gnis:feature_id": "1655385",
+    "name": "Forest Hill",
+    "name:ko": "포레스트 힐",
+    "place": "neighbourhood",
+    "wikidata": "Q3077158"
+  }
+},
+{
+  "type": "node",
+  "id": 140983304,
+  "lat": 37.7846516,
+  "lon": -122.4566383,
+  "tags": {
+    "ele": "66",
+    "elevation": "62",
+    "gnis:feature_id": "1655428",
+    "name": "Jordan Park",
+    "name:ko": "조던 파크",
+    "place": "neighbourhood",
+    "wikidata": "Q125297233"
+  }
+},
+{
+  "type": "node",
+  "id": 140983336,
+  "lat": 37.7535418,
+  "lon": -122.4952495,
+  "tags": {
+    "ele": "52",
+    "gnis:feature_id": "1659926",
+    "name": "Sunset District",
+    "name:en": "Sunset District",
+    "name:ko": "선셋 디스트릭트",
+    "name:zh": "日落区",
+    "name:zh-Hant": "日落區",
+    "place": "suburb",
+    "wikidata": "Q3067574",
+    "wikipedia": "en:Sunset District, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 409001600,
+  "lat": 37.7515906,
+  "lon": -122.4320814,
+  "tags": {
+    "name": "Noe Valley",
+    "name:ko": "노 밸리",
+    "name:zh": "诺伊谷",
+    "place": "quarter",
+    "wikidata": "Q3342640"
+  }
+},
+{
+  "type": "node",
+  "id": 1229745499,
+  "lat": 37.7606977,
+  "lon": -122.3892016,
+  "tags": {
+    "alt_name": "Dogpatch Historic District",
+    "name": "Dogpatch",
+    "name:ko": "도그패치",
+    "place": "neighbourhood",
+    "wikidata": "Q5288411",
+    "wikipedia": "en:Dogpatch, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 1281059717,
+  "lat": 37.7798139,
+  "lon": -122.3911499,
+  "tags": {
+    "name": "South Beach",
+    "name:ko": "사우스 비치",
+    "name:zh": "南滩区",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 1281064683,
+  "lat": 37.7614500,
+  "lon": -122.4676432,
+  "tags": {
+    "name": "Inner Sunset",
+    "name:en": "Inner Sunset",
+    "name:ko": "이너 선셋",
+    "name:zh": "内日落区",
+    "place": "quarter"
+  }
+},
+{
+  "type": "node",
+  "id": 1281064684,
+  "lat": 37.7808925,
+  "lon": -122.4009518,
+  "tags": {
+    "alt_name": "SoMa",
+    "name": "South of Market",
+    "name:ko": "사우스 오브 마켓",
+    "name:zh": "索玛区",
+    "old_name": "South of the Slot",
+    "place": "neighbourhood",
+    "wikidata": "Q1507644",
+    "wikipedia": "en:South of Market, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 1680264818,
+  "lat": 37.7887511,
+  "lon": -122.4530266,
+  "tags": {
+    "name": "Presidio Heights",
+    "name:ko": "프리시디오 하이츠",
+    "name:zh": "普雷西迪奥高地",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 1680267840,
+  "lat": 37.7857666,
+  "lon": -122.4389042,
+  "tags": {
+    "name": "Lower Pacific Heights",
+    "name:ko": "로워 퍼시픽 하이츠",
+    "name:zh": "下太平洋高地",
+    "place": "neighbourhood",
+    "wikidata": "Q6693691"
+  }
+},
+{
+  "type": "node",
+  "id": 1680428423,
+  "lat": 37.7768823,
+  "lon": -122.4423502,
+  "tags": {
+    "alt_name": "NoPa",
+    "name": "North of Panhandle",
+    "name:ko": "노스 오브 팬핸들",
+    "name:zh": "北潘汉德尔区",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 1680446980,
+  "lat": 37.7972616,
+  "lon": -122.4362477,
+  "tags": {
+    "name": "Cow Hollow",
+    "name:zh": "牛谷区",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 1680468587,
+  "lat": 37.8000729,
+  "lon": -122.4170940,
+  "tags": {
+    "name": "Russian Hill",
+    "name:ko": "러시안 힐",
+    "name:zh": "俄罗斯山",
+    "place": "neighbourhood",
+    "wikidata": "Q339055",
+    "wikipedia": "en:Russian Hill, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 1680475626,
+  "lat": 37.8007850,
+  "lon": -122.4040908,
+  "tags": {
+    "name": "Telegraph Hill",
+    "name:ko": "텔레그래프 힐",
+    "name:zh": "电报山",
+    "place": "neighbourhood",
+    "wikidata": "Q1283754"
+  }
+},
+{
+  "type": "node",
+  "id": 1680475636,
+  "lat": 37.7944792,
+  "lon": -122.4155921,
+  "tags": {
+    "name": "Nob Hill",
+    "name:ko": "놉 힐",
+    "name:zh": "诺布山区",
+    "place": "quarter",
+    "wikidata": "Q7466"
+  }
+},
+{
+  "type": "node",
+  "id": 1680493097,
+  "lat": 37.7936467,
+  "lon": -122.3989378,
+  "tags": {
+    "name": "Financial District",
+    "name:ko": "파이낸셜 디스트릭트",
+    "name:zh": "金融区",
+    "place": "quarter",
+    "wikidata": "Q599301"
+  }
+},
+{
+  "type": "node",
+  "id": 2094547197,
+  "lat": 37.7658133,
+  "lon": -122.4499624,
+  "tags": {
+    "name": "Cole Valley",
+    "name:ko": "콜 밸리",
+    "name:zh": "科尔谷区",
+    "place": "neighbourhood",
+    "wikidata": "Q5142696"
+  }
+},
+{
+  "type": "node",
+  "id": 2094547200,
+  "lat": 37.7403434,
+  "lon": -122.4663665,
+  "tags": {
+    "name": "West Portal",
+    "name:ko": "웨스트 포탈",
+    "place": "neighbourhood",
+    "wikidata": "Q7986279"
+  }
+},
+{
+  "type": "node",
+  "id": 2094662089,
+  "lat": 37.7707742,
+  "lon": -122.3911712,
+  "tags": {
+    "name": "Mission Bay",
+    "name:ko": "미션 베이",
+    "name:zh": "米慎湾",
+    "place": "quarter",
+    "wikidata": "Q6878535",
+    "wikipedia": "en:Mission Bay, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 2297131599,
+  "lat": 37.7768086,
+  "lon": -122.4084365,
+  "tags": {
+    "name": "West SoMa",
+    "name:ko": "웨스트 소마",
+    "name:zh": "西索玛",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 3111994564,
+  "lat": 37.7608561,
+  "lon": -122.4349570,
+  "tags": {
+    "alt_name": "The Castro",
+    "name": "Castro District",
+    "name:en": "Castro District",
+    "name:ko": "카스트로 디스트릭트",
+    "name:zh": "卡斯楚区",
+    "place": "quarter",
+    "wikidata": "Q956169",
+    "wikipedia": "en:Castro District, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 3639535348,
+  "lat": 37.7943011,
+  "lon": -122.4063757,
+  "tags": {
+    "ele": "29",
+    "name": "Chinatown",
+    "name:ko": "차이나타운",
+    "name:zh": "中国城",
+    "place": "quarter",
+    "population": "9648",
+    "population:date": "2013",
+    "wikidata": "Q1073644"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282233,
+  "lat": 37.7808364,
+  "lon": -122.4431489,
+  "tags": {
+    "name": "Anza Vista",
+    "name:ko": "안자 비스타",
+    "place": "neighbourhood",
+    "wikidata": "Q2857899",
+    "wikipedia": "en:Anza Vista, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282235,
+  "lat": 37.7410008,
+  "lon": -122.4142136,
+  "tags": {
+    "name": "Bernal Heights",
+    "name:ko": "버널 하이츠",
+    "place": "quarter",
+    "wikidata": "Q3343204",
+    "wikipedia": "en:Bernal Heights, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282236,
+  "lat": 37.7795939,
+  "lon": -122.4167938,
+  "tags": {
+    "name": "Civic Center",
+    "name:ko": "시빅 센터",
+    "place": "quarter",
+    "wikidata": "Q267874",
+    "wikipedia": "en:Civic Center, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282237,
+  "lat": 37.7671382,
+  "lon": -122.4322300,
+  "tags": {
+    "name": "Duboce Triangle",
+    "name:ko": "두보스 트라이앵글",
+    "name:pronunciation": "dʊˈboʊz ˈtɹaɪˌæŋɡəl",
+    "place": "neighbourhood",
+    "wikidata": "Q5311050",
+    "wikipedia": "en:Duboce Triangle, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282239,
+  "lat": 37.7217943,
+  "lon": -122.4353815,
+  "tags": {
+    "name": "Excelsior",
+    "place": "quarter",
+    "wikidata": "Q3061804",
+    "wikipedia": "en:Excelsior District, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282240,
+  "lat": 37.7342810,
+  "lon": -122.4344696,
+  "tags": {
+    "name": "Glen Park",
+    "place": "quarter",
+    "wikidata": "Q965932",
+    "wikipedia": "en:Glen Park, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282244,
+  "lat": 37.7766853,
+  "lon": -122.4229361,
+  "tags": {
+    "name": "Hayes Valley",
+    "place": "neighbourhood",
+    "wikidata": "Q3128858",
+    "wikipedia": "en:Hayes Valley, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282245,
+  "lat": 37.7267715,
+  "lon": -122.3715718,
+  "tags": {
+    "name": "Hunters Point",
+    "name:ko": "헌터즈 포인트",
+    "place": "neighbourhood",
+    "wikidata": "Q2892361"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282247,
+  "lat": 37.7136512,
+  "lon": -122.4574830,
+  "tags": {
+    "alt_name": "Oceanview",
+    "name": "Ocean View",
+    "place": "neighbourhood",
+    "wikidata": "Q7076102",
+    "wikipedia": "en:Oceanview, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282248,
+  "lat": 37.7263790,
+  "lon": -122.4085514,
+  "tags": {
+    "name": "Portola",
+    "place": "quarter"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282250,
+  "lat": 37.7842493,
+  "lon": -122.4139933,
+  "tags": {
+    "name": "Tenderloin",
+    "name:ko": "텐더로인",
+    "place": "quarter",
+    "wikidata": "Q7464",
+    "wikimedia_commons": "Category:Tenderloin, San Francisco",
+    "wikipedia": "en:Tenderloin, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282251,
+  "lat": 37.7875138,
+  "lon": -122.4071590,
+  "tags": {
+    "alt_name": "Downtown",
+    "name": "Union Square",
+    "place": "neighbourhood",
+    "wikidata": "Q527972"
+  }
+},
+{
+  "type": "node",
+  "id": 4609282253,
+  "lat": 37.7121319,
+  "lon": -122.4097128,
+  "tags": {
+    "name": "Visitacion Valley",
+    "name:en": "Visitacion Valley",
+    "name:en:pronunciation": "ˌvɪzɪˈteɪʃən ˈvæli",
+    "name:es": "Valle Visitación",
+    "name:pronunciation": "ˌvɪzɪˈteɪʃən ˈvæli",
+    "name:zh": "訪谷區",
+    "place": "quarter",
+    "wikidata": "Q7936299",
+    "wikipedia": "en:Visitacion Valley, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 5458228244,
+  "lat": 37.7539179,
+  "lon": -122.3968649,
+  "tags": {
+    "name": "Potrero Terrace",
+    "name:ko": "포트레로 테라스",
+    "place": "neighbourhood",
+    "website": "http://www.sf-ha.org/potrero-terrace.html"
+  }
+},
+{
+  "type": "node",
+  "id": 5458251423,
+  "lat": 37.7330885,
+  "lon": -122.4243889,
+  "tags": {
+    "name": "St. Mary's Park",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 5684909797,
+  "lat": 37.7338538,
+  "lon": -122.4000282,
+  "tags": {
+    "name": "Silver Terrace",
+    "name:ko": "실버 테라스",
+    "place": "neighbourhood",
+    "wikidata": "Q55449987"
+  }
+},
+{
+  "type": "node",
+  "id": 6356958471,
+  "lat": 37.7614544,
+  "lon": -122.3854586,
+  "tags": {
+    "historic": "nieghborhood",
+    "name": "Pier 70",
+    "place": "neighbourhood",
+    "wikidata": "Q7191708",
+    "wikipedia": "en:Pier 70, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 8386071500,
+  "lat": 37.7861470,
+  "lon": -122.3924078,
+  "tags": {
+    "name": "Rincon Hill",
+    "name:ko": "링콘 힐",
+    "place": "neighbourhood",
+    "wikidata": "Q7334615",
+    "wikipedia": "en:Rincon Hill, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 9900902252,
+  "lat": 37.7542725,
+  "lon": -122.4589455,
+  "tags": {
+    "name": "Forest Knolls",
+    "name:ko": "포레스트 놀즈",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 10139016054,
+  "lat": 37.7884163,
+  "lon": -122.4152020,
+  "tags": {
+    "alt_name": "Tendernob;Upper Tenderloin",
+    "name": "Lower Nob Hill",
+    "place": "neighbourhood",
+    "wikidata": "Q7699632",
+    "wikipedia": "en:Lower Nob Hill Apartment Hotel District"
+  }
+},
+{
+  "type": "node",
+  "id": 11283438662,
+  "lat": 37.8081325,
+  "lon": -122.4165913,
+  "tags": {
+    "name": "Fisherman's Wharf",
+    "name:ko": "피셔맨스 워프",
+    "place": "neighbourhood",
+    "tourism": "attraction",
+    "website": "https://fishermanswharf.org/",
+    "wikidata": "Q1324280",
+    "wikimedia_commons": "Category:Fisherman's Wharf, San Francisco",
+    "wikipedia": "en:Fisherman's Wharf, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199249,
+  "lat": 37.7317099,
+  "lon": -122.4685667,
+  "tags": {
+    "name": "Balboa Terrace",
+    "place": "neighbourhood",
+    "wikidata": "Q56145892",
+    "wikipedia": "en:Balboa Terrace, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199250,
+  "lat": 37.7246230,
+  "lon": -122.4681517,
+  "tags": {
+    "name": "Ingleside Terraces",
+    "place": "neighbourhood",
+    "wikidata": "Q6032653",
+    "wikipedia": "en:Ingleside Terraces, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199251,
+  "lat": 37.7541496,
+  "lon": -122.5061507,
+  "tags": {
+    "name": "Outer Sunset",
+    "name:ko": "아우터 선셋",
+    "place": "quarter"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199252,
+  "lat": 37.7753252,
+  "lon": -122.4977862,
+  "tags": {
+    "name": "Outer Richmond",
+    "name:ko": "아우터 리치몬드",
+    "place": "quarter"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199253,
+  "lat": 37.7786189,
+  "lon": -122.4641875,
+  "tags": {
+    "name": "Inner Richmond",
+    "name:ko": "이너 리치몬드",
+    "place": "quarter"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199254,
+  "lat": 37.7423750,
+  "lon": -122.4874401,
+  "tags": {
+    "name": "Parkside",
+    "name:ko": "파크사이드",
+    "place": "neighbourhood",
+    "wikidata": "Q7138699",
+    "wikipedia": "en:Parkside, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199255,
+  "lat": 37.7422856,
+  "lon": -122.4392078,
+  "tags": {
+    "name": "Diamond Heights",
+    "name:ko": "다이아몬드 하이츠",
+    "place": "neighbourhood",
+    "wikidata": "Q3026094",
+    "wikipedia": "en:Diamond Heights, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199256,
+  "lat": 37.7830487,
+  "lon": -122.4329060,
+  "tags": {
+    "alt_name": "The Fillmore",
+    "name": "Fillmore District",
+    "name:ko": "필모어 디스트릭트",
+    "place": "neighbourhood",
+    "wikidata": "Q1414197",
+    "wikipedia": "en:Fillmore District, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199257,
+  "lat": 37.7545947,
+  "lon": -122.4709039,
+  "tags": {
+    "name": "Golden Gate Heights",
+    "name:ko": "골든 게이트 하이츠",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199258,
+  "lat": 37.7842020,
+  "lon": -122.4510402,
+  "tags": {
+    "name": "Laurel Heights",
+    "name:ko": "라우렐 하이츠",
+    "place": "neighbourhood",
+    "wikidata": "Q16937192",
+    "wikipedia": "en:Laurel Heights, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199259,
+  "lat": 37.7116955,
+  "lon": -122.3991239,
+  "tags": {
+    "name": "Little Hollywood",
+    "name:ko": "리틀 할리우드",
+    "place": "neighbourhood",
+    "wikidata": "Q55621068",
+    "wikipedia": "en:Little Hollywood, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199260,
+  "lat": 37.7837955,
+  "lon": -122.4175879,
+  "tags": {
+    "name": "Little Saigon",
+    "name:ko": "리틀 사이곤",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199261,
+  "lat": 37.7511678,
+  "lon": -122.4521931,
+  "tags": {
+    "name": "Midtown Terrace",
+    "name:ko": "미드타운 테라스",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199262,
+  "lat": 37.7138354,
+  "lon": -122.4480354,
+  "tags": {
+    "name": "Outer Mission",
+    "place": "neighbourhood",
+    "wikidata": "Q7111991",
+    "wikipedia": "en:Outer Mission, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199263,
+  "lat": 37.7315849,
+  "lon": -122.4408912,
+  "tags": {
+    "name": "Sunnyside",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199264,
+  "lat": 37.7282840,
+  "lon": -122.4639656,
+  "tags": {
+    "name": "Mount Davidson Manor",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11903199265,
+  "lat": 37.7275825,
+  "lon": -122.4582279,
+  "tags": {
+    "name": "Westwood Park",
+    "place": "neighbourhood",
+    "wikidata": "Q7989906",
+    "wikipedia": "en:Westwood Park, San Francisco"
+  }
+},
+{
+  "type": "node",
+  "id": 11909029771,
+  "lat": 37.7908077,
+  "lon": -122.4207753,
+  "tags": {
+    "name": "Polk Gulch",
+    "name:ko": "폴크 걸치",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11909104175,
+  "lat": 37.7053956,
+  "lon": -122.4619287,
+  "tags": {
+    "name": "Top of the Hill",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "way",
+  "id": 339045939,
+  "bounds": {
+    "minlat": 37.7129963,
+    "minlon": -122.4850386,
+    "maxlat": 37.7213103,
+    "maxlon": -122.4716753
+  },
+  "geometry": [
+    { "lat": 37.7209963, "lon": -122.4849964 },
+    { "lat": 37.7209768, "lon": -122.4848998 },
+    { "lat": 37.7210535, "lon": -122.4848705 },
+    { "lat": 37.7211304, "lon": -122.4847997 },
+    { "lat": 37.7211982, "lon": -122.4847366 },
+    { "lat": 37.7212378, "lon": -122.4846275 },
+    { "lat": 37.7212728, "lon": -122.4845287 },
+    { "lat": 37.7213073, "lon": -122.4844284 },
+    { "lat": 37.7213046, "lon": -122.4843238 },
+    { "lat": 37.7212701, "lon": -122.4832447 },
+    { "lat": 37.7212898, "lon": -122.4831497 },
+    { "lat": 37.7213103, "lon": -122.4830531 },
+    { "lat": 37.7211509, "lon": -122.4828520 },
+    { "lat": 37.7211145, "lon": -122.4828982 },
+    { "lat": 37.7210740, "lon": -122.4829151 },
+    { "lat": 37.7205498, "lon": -122.4829442 },
+    { "lat": 37.7205254, "lon": -122.4829376 },
+    { "lat": 37.7205024, "lon": -122.4829128 },
+    { "lat": 37.7204920, "lon": -122.4828812 },
+    { "lat": 37.7204574, "lon": -122.4814142 },
+    { "lat": 37.7204538, "lon": -122.4811291 },
+    { "lat": 37.7204543, "lon": -122.4810576 },
+    { "lat": 37.7204554, "lon": -122.4810038 },
+    { "lat": 37.7204685, "lon": -122.4809858 },
+    { "lat": 37.7205564, "lon": -122.4808645 },
+    { "lat": 37.7205808, "lon": -122.4807965 },
+    { "lat": 37.7197409, "lon": -122.4798204 },
+    { "lat": 37.7197167, "lon": -122.4796093 },
+    { "lat": 37.7200987, "lon": -122.4791063 },
+    { "lat": 37.7201343, "lon": -122.4790480 },
+    { "lat": 37.7201559, "lon": -122.4789878 },
+    { "lat": 37.7201698, "lon": -122.4789110 },
+    { "lat": 37.7201718, "lon": -122.4788432 },
+    { "lat": 37.7201306, "lon": -122.4773236 },
+    { "lat": 37.7201281, "lon": -122.4772323 },
+    { "lat": 37.7201297, "lon": -122.4772124 },
+    { "lat": 37.7201339, "lon": -122.4771928 },
+    { "lat": 37.7201402, "lon": -122.4771786 },
+    { "lat": 37.7201496, "lon": -122.4771658 },
+    { "lat": 37.7201574, "lon": -122.4771573 },
+    { "lat": 37.7201459, "lon": -122.4770267 },
+    { "lat": 37.7201347, "lon": -122.4770158 },
+    { "lat": 37.7201270, "lon": -122.4770002 },
+    { "lat": 37.7201242, "lon": -122.4769798 },
+    { "lat": 37.7201010, "lon": -122.4762220 },
+    { "lat": 37.7201015, "lon": -122.4762101 },
+    { "lat": 37.7201062, "lon": -122.4761951 },
+    { "lat": 37.7201135, "lon": -122.4761842 },
+    { "lat": 37.7201245, "lon": -122.4761753 },
+    { "lat": 37.7201342, "lon": -122.4761723 },
+    { "lat": 37.7201551, "lon": -122.4761704 },
+    { "lat": 37.7206855, "lon": -122.4761422 },
+    { "lat": 37.7206970, "lon": -122.4761429 },
+    { "lat": 37.7207085, "lon": -122.4761476 },
+    { "lat": 37.7207165, "lon": -122.4761545 },
+    { "lat": 37.7207222, "lon": -122.4761624 },
+    { "lat": 37.7208782, "lon": -122.4761825 },
+    { "lat": 37.7208878, "lon": -122.4760290 },
+    { "lat": 37.7208961, "lon": -122.4759471 },
+    { "lat": 37.7209048, "lon": -122.4758921 },
+    { "lat": 37.7209216, "lon": -122.4757958 },
+    { "lat": 37.7209460, "lon": -122.4756985 },
+    { "lat": 37.7209706, "lon": -122.4756105 },
+    { "lat": 37.7210127, "lon": -122.4755147 },
+    { "lat": 37.7210257, "lon": -122.4755086 },
+    { "lat": 37.7210507, "lon": -122.4754693 },
+    { "lat": 37.7207532, "lon": -122.4754702 },
+    { "lat": 37.7205357, "lon": -122.4754876 },
+    { "lat": 37.7203428, "lon": -122.4754961 },
+    { "lat": 37.7202249, "lon": -122.4754863 },
+    { "lat": 37.7199703, "lon": -122.4754514 },
+    { "lat": 37.7198814, "lon": -122.4754076 },
+    { "lat": 37.7197539, "lon": -122.4753227 },
+    { "lat": 37.7196425, "lon": -122.4752382 },
+    { "lat": 37.7195173, "lon": -122.4751255 },
+    { "lat": 37.7191712, "lon": -122.4747987 },
+    { "lat": 37.7189086, "lon": -122.4745506 },
+    { "lat": 37.7186852, "lon": -122.4743392 },
+    { "lat": 37.7182157, "lon": -122.4738971 },
+    { "lat": 37.7172206, "lon": -122.4729436 },
+    { "lat": 37.7171317, "lon": -122.4728608 },
+    { "lat": 37.7170510, "lon": -122.4728031 },
+    { "lat": 37.7169503, "lon": -122.4727616 },
+    { "lat": 37.7168132, "lon": -122.4727330 },
+    { "lat": 37.7167082, "lon": -122.4727075 },
+    { "lat": 37.7161716, "lon": -122.4725202 },
+    { "lat": 37.7153664, "lon": -122.4722198 },
+    { "lat": 37.7146299, "lon": -122.4719444 },
+    { "lat": 37.7145834, "lon": -122.4719291 },
+    { "lat": 37.7141081, "lon": -122.4717732 },
+    { "lat": 37.7140167, "lon": -122.4717513 },
+    { "lat": 37.7136676, "lon": -122.4716762 },
+    { "lat": 37.7135777, "lon": -122.4716753 },
+    { "lat": 37.7135021, "lon": -122.4716923 },
+    { "lat": 37.7134417, "lon": -122.4717272 },
+    { "lat": 37.7133878, "lon": -122.4717759 },
+    { "lat": 37.7130565, "lon": -122.4721912 },
+    { "lat": 37.7130205, "lon": -122.4722609 },
+    { "lat": 37.7129963, "lon": -122.4723311 },
+    { "lat": 37.7129984, "lon": -122.4723995 },
+    { "lat": 37.7131308, "lon": -122.4728644 },
+    { "lat": 37.7134991, "lon": -122.4738393 },
+    { "lat": 37.7136805, "lon": -122.4742467 },
+    { "lat": 37.7137825, "lon": -122.4741673 },
+    { "lat": 37.7138280, "lon": -122.4742494 },
+    { "lat": 37.7139066, "lon": -122.4741844 },
+    { "lat": 37.7141963, "lon": -122.4744286 },
+    { "lat": 37.7142686, "lon": -122.4743745 },
+    { "lat": 37.7143261, "lon": -122.4744172 },
+    { "lat": 37.7149369, "lon": -122.4739649 },
+    { "lat": 37.7156106, "lon": -122.4750474 },
+    { "lat": 37.7156273, "lon": -122.4751302 },
+    { "lat": 37.7157167, "lon": -122.4763732 },
+    { "lat": 37.7157446, "lon": -122.4763808 },
+    { "lat": 37.7157922, "lon": -122.4766361 },
+    { "lat": 37.7157077, "lon": -122.4774180 },
+    { "lat": 37.7154693, "lon": -122.4776523 },
+    { "lat": 37.7147389, "lon": -122.4775362 },
+    { "lat": 37.7146734, "lon": -122.4775257 },
+    { "lat": 37.7146453, "lon": -122.4787140 },
+    { "lat": 37.7146430, "lon": -122.4789566 },
+    { "lat": 37.7146452, "lon": -122.4791699 },
+    { "lat": 37.7146919, "lon": -122.4806211 },
+    { "lat": 37.7147406, "lon": -122.4821409 },
+    { "lat": 37.7147830, "lon": -122.4836228 },
+    { "lat": 37.7147851, "lon": -122.4836871 },
+    { "lat": 37.7148202, "lon": -122.4847680 },
+    { "lat": 37.7148283, "lon": -122.4848194 },
+    { "lat": 37.7148411, "lon": -122.4848730 },
+    { "lat": 37.7148658, "lon": -122.4849249 },
+    { "lat": 37.7148932, "lon": -122.4849620 },
+    { "lat": 37.7149315, "lon": -122.4849970 },
+    { "lat": 37.7149713, "lon": -122.4850184 },
+    { "lat": 37.7150267, "lon": -122.4850351 },
+    { "lat": 37.7150808, "lon": -122.4850386 },
+    { "lat": 37.7155934, "lon": -122.4850340 },
+    { "lat": 37.7160559, "lon": -122.4850232 },
+    { "lat": 37.7162499, "lon": -122.4850180 },
+    { "lat": 37.7165278, "lon": -122.4850106 },
+    { "lat": 37.7169395, "lon": -122.4849996 },
+    { "lat": 37.7171062, "lon": -122.4849951 },
+    { "lat": 37.7175295, "lon": -122.4849790 },
+    { "lat": 37.7186296, "lon": -122.4849682 },
+    { "lat": 37.7209963, "lon": -122.4849964 }
+  ],
+  "tags": {
+    "landuse": "residential",
+    "name": "Parkmerced",
+    "phone": "+1-877-243-5544",
+    "place": "neighbourhood",
+    "website": "https://www.parkmerced.com/",
+    "wikidata": "Q7138610"
+  }
+},
+{
+  "type": "way",
+  "id": 546541582,
+  "bounds": {
+    "minlat": 37.7690611,
+    "minlon": -122.4476350,
+    "maxlat": 37.7903241,
+    "maxlon": -122.4211067
+  },
+  "geometry": [
+    { "lat": 37.7872617, "lon": -122.4468097 },
+    { "lat": 37.7866356, "lon": -122.4466990 },
+    { "lat": 37.7861530, "lon": -122.4468990 },
+    { "lat": 37.7855246, "lon": -122.4474781 },
+    { "lat": 37.7854591, "lon": -122.4475168 },
+    { "lat": 37.7854076, "lon": -122.4475496 },
+    { "lat": 37.7853551, "lon": -122.4475838 },
+    { "lat": 37.7853047, "lon": -122.4476100 },
+    { "lat": 37.7852520, "lon": -122.4476272 },
+    { "lat": 37.7851945, "lon": -122.4476350 },
+    { "lat": 37.7851426, "lon": -122.4476329 },
+    { "lat": 37.7850954, "lon": -122.4476280 },
+    { "lat": 37.7850233, "lon": -122.4476165 },
+    { "lat": 37.7849057, "lon": -122.4475905 },
+    { "lat": 37.7848442, "lon": -122.4475749 },
+    { "lat": 37.7847531, "lon": -122.4475407 },
+    { "lat": 37.7846478, "lon": -122.4475099 },
+    { "lat": 37.7833791, "lon": -122.4472482 },
+    { "lat": 37.7827642, "lon": -122.4471420 },
+    { "lat": 37.7825282, "lon": -122.4472039 },
+    { "lat": 37.7824580, "lon": -122.4472328 },
+    { "lat": 37.7823949, "lon": -122.4472642 },
+    { "lat": 37.7823616, "lon": -122.4472809 },
+    { "lat": 37.7822355, "lon": -122.4473492 },
+    { "lat": 37.7821952, "lon": -122.4474234 },
+    { "lat": 37.7821469, "lon": -122.4474910 },
+    { "lat": 37.7820323, "lon": -122.4475385 },
+    { "lat": 37.7819025, "lon": -122.4475789 },
+    { "lat": 37.7818205, "lon": -122.4475954 },
+    { "lat": 37.7817289, "lon": -122.4476066 },
+    { "lat": 37.7816481, "lon": -122.4476137 },
+    { "lat": 37.7815685, "lon": -122.4476167 },
+    { "lat": 37.7814974, "lon": -122.4476174 },
+    { "lat": 37.7814198, "lon": -122.4476093 },
+    { "lat": 37.7813434, "lon": -122.4475998 },
+    { "lat": 37.7811812, "lon": -122.4475658 },
+    { "lat": 37.7809472, "lon": -122.4475613 },
+    { "lat": 37.7802859, "lon": -122.4474011 },
+    { "lat": 37.7800484, "lon": -122.4473555 },
+    { "lat": 37.7787741, "lon": -122.4470979 },
+    { "lat": 37.7786307, "lon": -122.4470623 },
+    { "lat": 37.7785265, "lon": -122.4470413 },
+    { "lat": 37.7777665, "lon": -122.4468878 },
+    { "lat": 37.7776740, "lon": -122.4468691 },
+    { "lat": 37.7775844, "lon": -122.4468510 },
+    { "lat": 37.7767430, "lon": -122.4466810 },
+    { "lat": 37.7758097, "lon": -122.4464925 },
+    { "lat": 37.7758272, "lon": -122.4463543 },
+    { "lat": 37.7759677, "lon": -122.4452473 },
+    { "lat": 37.7759733, "lon": -122.4452025 },
+    { "lat": 37.7760252, "lon": -122.4447938 },
+    { "lat": 37.7762221, "lon": -122.4432517 },
+    { "lat": 37.7762357, "lon": -122.4431449 },
+    { "lat": 37.7762470, "lon": -122.4430567 },
+    { "lat": 37.7764288, "lon": -122.4416327 },
+    { "lat": 37.7764448, "lon": -122.4415072 },
+    { "lat": 37.7764605, "lon": -122.4413835 },
+    { "lat": 37.7766406, "lon": -122.4399676 },
+    { "lat": 37.7766536, "lon": -122.4398652 },
+    { "lat": 37.7766655, "lon": -122.4397684 },
+    { "lat": 37.7767981, "lon": -122.4387283 },
+    { "lat": 37.7768482, "lon": -122.4383340 },
+    { "lat": 37.7768602, "lon": -122.4382406 },
+    { "lat": 37.7768720, "lon": -122.4381475 },
+    { "lat": 37.7759414, "lon": -122.4379600 },
+    { "lat": 37.7758565, "lon": -122.4379429 },
+    { "lat": 37.7750090, "lon": -122.4377720 },
+    { "lat": 37.7749279, "lon": -122.4377561 },
+    { "lat": 37.7740774, "lon": -122.4375842 },
+    { "lat": 37.7731517, "lon": -122.4373951 },
+    { "lat": 37.7730983, "lon": -122.4373858 },
+    { "lat": 37.7730723, "lon": -122.4373805 },
+    { "lat": 37.7722133, "lon": -122.4372065 },
+    { "lat": 37.7712812, "lon": -122.4370175 },
+    { "lat": 37.7703458, "lon": -122.4368259 },
+    { "lat": 37.7702286, "lon": -122.4368259 },
+    { "lat": 37.7701667, "lon": -122.4367032 },
+    { "lat": 37.7701041, "lon": -122.4365651 },
+    { "lat": 37.7700723, "lon": -122.4365074 },
+    { "lat": 37.7700342, "lon": -122.4364565 },
+    { "lat": 37.7699897, "lon": -122.4364063 },
+    { "lat": 37.7699409, "lon": -122.4363623 },
+    { "lat": 37.7698775, "lon": -122.4363124 },
+    { "lat": 37.7697584, "lon": -122.4362253 },
+    { "lat": 37.7696611, "lon": -122.4361559 },
+    { "lat": 37.7694983, "lon": -122.4360476 },
+    { "lat": 37.7694013, "lon": -122.4359857 },
+    { "lat": 37.7693525, "lon": -122.4359589 },
+    { "lat": 37.7691476, "lon": -122.4358514 },
+    { "lat": 37.7691039, "lon": -122.4358332 },
+    { "lat": 37.7690611, "lon": -122.4358192 },
+    { "lat": 37.7690945, "lon": -122.4352394 },
+    { "lat": 37.7690980, "lon": -122.4351793 },
+    { "lat": 37.7691132, "lon": -122.4349151 },
+    { "lat": 37.7691579, "lon": -122.4341395 },
+    { "lat": 37.7691722, "lon": -122.4338906 },
+    { "lat": 37.7691678, "lon": -122.4338484 },
+    { "lat": 37.7691560, "lon": -122.4338062 },
+    { "lat": 37.7691529, "lon": -122.4337583 },
+    { "lat": 37.7691669, "lon": -122.4337108 },
+    { "lat": 37.7691639, "lon": -122.4335905 },
+    { "lat": 37.7691713, "lon": -122.4334772 },
+    { "lat": 37.7691897, "lon": -122.4331962 },
+    { "lat": 37.7692152, "lon": -122.4329416 },
+    { "lat": 37.7692351, "lon": -122.4327424 },
+    { "lat": 37.7692522, "lon": -122.4324821 },
+    { "lat": 37.7693027, "lon": -122.4316822 },
+    { "lat": 37.7693089, "lon": -122.4315841 },
+    { "lat": 37.7693235, "lon": -122.4313650 },
+    { "lat": 37.7694012, "lon": -122.4302718 },
+    { "lat": 37.7694156, "lon": -122.4299181 },
+    { "lat": 37.7693701, "lon": -122.4298393 },
+    { "lat": 37.7693967, "lon": -122.4291260 },
+    { "lat": 37.7694049, "lon": -122.4290766 },
+    { "lat": 37.7694055, "lon": -122.4290655 },
+    { "lat": 37.7694083, "lon": -122.4290179 },
+    { "lat": 37.7694104, "lon": -122.4289858 },
+    { "lat": 37.7694177, "lon": -122.4288582 },
+    { "lat": 37.7695415, "lon": -122.4267109 },
+    { "lat": 37.7696185, "lon": -122.4264151 },
+    { "lat": 37.7696598, "lon": -122.4263689 },
+    { "lat": 37.7697203, "lon": -122.4263017 },
+    { "lat": 37.7697542, "lon": -122.4262632 },
+    { "lat": 37.7699524, "lon": -122.4260142 },
+    { "lat": 37.7699933, "lon": -122.4259556 },
+    { "lat": 37.7700853, "lon": -122.4258148 },
+    { "lat": 37.7701369, "lon": -122.4257411 },
+    { "lat": 37.7706570, "lon": -122.4250989 },
+    { "lat": 37.7707384, "lon": -122.4249998 },
+    { "lat": 37.7708001, "lon": -122.4249247 },
+    { "lat": 37.7709451, "lon": -122.4247554 },
+    { "lat": 37.7711128, "lon": -122.4245252 },
+    { "lat": 37.7711814, "lon": -122.4244497 },
+    { "lat": 37.7712677, "lon": -122.4243170 },
+    { "lat": 37.7713101, "lon": -122.4242554 },
+    { "lat": 37.7717490, "lon": -122.4237017 },
+    { "lat": 37.7718608, "lon": -122.4235592 },
+    { "lat": 37.7718771, "lon": -122.4235378 },
+    { "lat": 37.7719186, "lon": -122.4234846 },
+    { "lat": 37.7719860, "lon": -122.4234040 },
+    { "lat": 37.7720602, "lon": -122.4233172 },
+    { "lat": 37.7721566, "lon": -122.4232123 },
+    { "lat": 37.7723508, "lon": -122.4229727 },
+    { "lat": 37.7729726, "lon": -122.4221962 },
+    { "lat": 37.7732468, "lon": -122.4222510 },
+    { "lat": 37.7736260, "lon": -122.4223296 },
+    { "lat": 37.7740238, "lon": -122.4224122 },
+    { "lat": 37.7740952, "lon": -122.4224267 },
+    { "lat": 37.7741757, "lon": -122.4224430 },
+    { "lat": 37.7745618, "lon": -122.4225226 },
+    { "lat": 37.7750233, "lon": -122.4226174 },
+    { "lat": 37.7755033, "lon": -122.4227161 },
+    { "lat": 37.7759583, "lon": -122.4228096 },
+    { "lat": 37.7760354, "lon": -122.4228251 },
+    { "lat": 37.7764217, "lon": -122.4229028 },
+    { "lat": 37.7768154, "lon": -122.4229820 },
+    { "lat": 37.7768892, "lon": -122.4229968 },
+    { "lat": 37.7769653, "lon": -122.4230122 },
+    { "lat": 37.7773549, "lon": -122.4230909 },
+    { "lat": 37.7777598, "lon": -122.4231727 },
+    { "lat": 37.7778191, "lon": -122.4231847 },
+    { "lat": 37.7779056, "lon": -122.4232022 },
+    { "lat": 37.7781484, "lon": -122.4232489 },
+    { "lat": 37.7786811, "lon": -122.4233577 },
+    { "lat": 37.7787484, "lon": -122.4233714 },
+    { "lat": 37.7796841, "lon": -122.4235632 },
+    { "lat": 37.7797657, "lon": -122.4235795 },
+    { "lat": 37.7805384, "lon": -122.4237337 },
+    { "lat": 37.7806142, "lon": -122.4237488 },
+    { "lat": 37.7807031, "lon": -122.4237661 },
+    { "lat": 37.7810758, "lon": -122.4238421 },
+    { "lat": 37.7814748, "lon": -122.4239199 },
+    { "lat": 37.7815469, "lon": -122.4239348 },
+    { "lat": 37.7824790, "lon": -122.4241250 },
+    { "lat": 37.7834094, "lon": -122.4243124 },
+    { "lat": 37.7834227, "lon": -122.4242072 },
+    { "lat": 37.7834346, "lon": -122.4241141 },
+    { "lat": 37.7834719, "lon": -122.4238212 },
+    { "lat": 37.7835065, "lon": -122.4235490 },
+    { "lat": 37.7835316, "lon": -122.4233516 },
+    { "lat": 37.7836021, "lon": -122.4227874 },
+    { "lat": 37.7836174, "lon": -122.4226652 },
+    { "lat": 37.7836294, "lon": -122.4225709 },
+    { "lat": 37.7836784, "lon": -122.4221872 },
+    { "lat": 37.7838210, "lon": -122.4211067 },
+    { "lat": 37.7842872, "lon": -122.4211931 },
+    { "lat": 37.7847544, "lon": -122.4212875 },
+    { "lat": 37.7856857, "lon": -122.4214756 },
+    { "lat": 37.7866144, "lon": -122.4216633 },
+    { "lat": 37.7870805, "lon": -122.4217576 },
+    { "lat": 37.7875489, "lon": -122.4218520 },
+    { "lat": 37.7880135, "lon": -122.4219460 },
+    { "lat": 37.7884789, "lon": -122.4220400 },
+    { "lat": 37.7889389, "lon": -122.4221329 },
+    { "lat": 37.7894110, "lon": -122.4222283 },
+    { "lat": 37.7903241, "lon": -122.4224128 },
+    { "lat": 37.7901633, "lon": -122.4237512 },
+    { "lat": 37.7901486, "lon": -122.4238830 },
+    { "lat": 37.7901653, "lon": -122.4239912 },
+    { "lat": 37.7899559, "lon": -122.4256361 },
+    { "lat": 37.7897469, "lon": -122.4272800 },
+    { "lat": 37.7895373, "lon": -122.4289237 },
+    { "lat": 37.7893282, "lon": -122.4305663 },
+    { "lat": 37.7891189, "lon": -122.4322094 },
+    { "lat": 37.7890866, "lon": -122.4324728 },
+    { "lat": 37.7890165, "lon": -122.4330329 },
+    { "lat": 37.7889092, "lon": -122.4338567 },
+    { "lat": 37.7887914, "lon": -122.4347873 },
+    { "lat": 37.7887553, "lon": -122.4350723 },
+    { "lat": 37.7887012, "lon": -122.4355004 },
+    { "lat": 37.7886479, "lon": -122.4359198 },
+    { "lat": 37.7884924, "lon": -122.4371429 },
+    { "lat": 37.7882832, "lon": -122.4387890 },
+    { "lat": 37.7880752, "lon": -122.4404574 },
+    { "lat": 37.7878589, "lon": -122.4421261 },
+    { "lat": 37.7876496, "lon": -122.4437679 },
+    { "lat": 37.7874398, "lon": -122.4454130 },
+    { "lat": 37.7872617, "lon": -122.4468097 }
+  ],
+  "tags": {
+    "name": "Western Addition",
+    "place": "suburb"
+  }
+},
+{
+  "type": "way",
+  "id": 635461643,
+  "bounds": {
+    "minlat": 37.7316715,
+    "minlon": -122.4401573,
+    "maxlat": 37.7426223,
+    "maxlon": -122.4242794
+  },
+  "geometry": [
+    { "lat": 37.7412460, "lon": -122.4354350 },
+    { "lat": 37.7409206, "lon": -122.4354325 },
+    { "lat": 37.7405849, "lon": -122.4356321 },
+    { "lat": 37.7393355, "lon": -122.4363453 },
+    { "lat": 37.7388837, "lon": -122.4365602 },
+    { "lat": 37.7386144, "lon": -122.4367748 },
+    { "lat": 37.7384553, "lon": -122.4370668 },
+    { "lat": 37.7384002, "lon": -122.4371903 },
+    { "lat": 37.7383555, "lon": -122.4373687 },
+    { "lat": 37.7383439, "lon": -122.4375915 },
+    { "lat": 37.7383674, "lon": -122.4378632 },
+    { "lat": 37.7386885, "lon": -122.4394280 },
+    { "lat": 37.7386998, "lon": -122.4395431 },
+    { "lat": 37.7386924, "lon": -122.4396587 },
+    { "lat": 37.7386543, "lon": -122.4397780 },
+    { "lat": 37.7386044, "lon": -122.4398848 },
+    { "lat": 37.7385414, "lon": -122.4399659 },
+    { "lat": 37.7384570, "lon": -122.4400402 },
+    { "lat": 37.7383460, "lon": -122.4400957 },
+    { "lat": 37.7382617, "lon": -122.4401367 },
+    { "lat": 37.7381774, "lon": -122.4401566 },
+    { "lat": 37.7380976, "lon": -122.4401573 },
+    { "lat": 37.7380271, "lon": -122.4401406 },
+    { "lat": 37.7379581, "lon": -122.4401079 },
+    { "lat": 37.7378925, "lon": -122.4400596 },
+    { "lat": 37.7377432, "lon": -122.4399100 },
+    { "lat": 37.7376514, "lon": -122.4398377 },
+    { "lat": 37.7375588, "lon": -122.4397869 },
+    { "lat": 37.7374562, "lon": -122.4397548 },
+    { "lat": 37.7373500, "lon": -122.4397413 },
+    { "lat": 37.7371631, "lon": -122.4397262 },
+    { "lat": 37.7370395, "lon": -122.4397217 },
+    { "lat": 37.7368775, "lon": -122.4397216 },
+    { "lat": 37.7362747, "lon": -122.4397342 },
+    { "lat": 37.7357909, "lon": -122.4397477 },
+    { "lat": 37.7356645, "lon": -122.4397574 },
+    { "lat": 37.7355364, "lon": -122.4397730 },
+    { "lat": 37.7353995, "lon": -122.4397966 },
+    { "lat": 37.7352592, "lon": -122.4398335 },
+    { "lat": 37.7351279, "lon": -122.4398854 },
+    { "lat": 37.7348472, "lon": -122.4400175 },
+    { "lat": 37.7345583, "lon": -122.4401300 },
+    { "lat": 37.7341021, "lon": -122.4388341 },
+    { "lat": 37.7339782, "lon": -122.4382395 },
+    { "lat": 37.7333719, "lon": -122.4382124 },
+    { "lat": 37.7316715, "lon": -122.4375408 },
+    { "lat": 37.7316851, "lon": -122.4367203 },
+    { "lat": 37.7318516, "lon": -122.4362824 },
+    { "lat": 37.7322827, "lon": -122.4352423 },
+    { "lat": 37.7323765, "lon": -122.4350116 },
+    { "lat": 37.7325498, "lon": -122.4345851 },
+    { "lat": 37.7338312, "lon": -122.4312548 },
+    { "lat": 37.7348531, "lon": -122.4291302 },
+    { "lat": 37.7363871, "lon": -122.4268073 },
+    { "lat": 37.7375553, "lon": -122.4254797 },
+    { "lat": 37.7380334, "lon": -122.4250762 },
+    { "lat": 37.7386546, "lon": -122.4246923 },
+    { "lat": 37.7398586, "lon": -122.4242794 },
+    { "lat": 37.7398579, "lon": -122.4243781 },
+    { "lat": 37.7398569, "lon": -122.4245190 },
+    { "lat": 37.7396614, "lon": -122.4277854 },
+    { "lat": 37.7407530, "lon": -122.4298400 },
+    { "lat": 37.7402041, "lon": -122.4303547 },
+    { "lat": 37.7404934, "lon": -122.4309320 },
+    { "lat": 37.7409736, "lon": -122.4315504 },
+    { "lat": 37.7412453, "lon": -122.4317698 },
+    { "lat": 37.7413802, "lon": -122.4318759 },
+    { "lat": 37.7415217, "lon": -122.4319887 },
+    { "lat": 37.7417790, "lon": -122.4324271 },
+    { "lat": 37.7418990, "lon": -122.4327810 },
+    { "lat": 37.7419299, "lon": -122.4329694 },
+    { "lat": 37.7419030, "lon": -122.4332590 },
+    { "lat": 37.7418090, "lon": -122.4332920 },
+    { "lat": 37.7416150, "lon": -122.4339770 },
+    { "lat": 37.7415227, "lon": -122.4343216 },
+    { "lat": 37.7416032, "lon": -122.4343824 },
+    { "lat": 37.7426223, "lon": -122.4351515 },
+    { "lat": 37.7426118, "lon": -122.4355397 },
+    { "lat": 37.7422235, "lon": -122.4355093 },
+    { "lat": 37.7417507, "lon": -122.4355938 },
+    { "lat": 37.7412460, "lon": -122.4354350 }
+  ],
+  "tags": {
+    "name": "Glen Park",
+    "place": "quarter",
+    "wikidata": "Q965932",
+    "wikipedia": "en:Glen Park, San Francisco"
+  }
+},
+{
+  "type": "way",
+  "id": 635461859,
+  "bounds": {
+    "minlat": 37.7346884,
+    "minlon": -122.4230948,
+    "maxlat": 37.7487581,
+    "maxlon": -122.4049726
+  },
+  "geometry": [
+    { "lat": 37.7406475, "lon": -122.4230948 },
+    { "lat": 37.7393070, "lon": -122.4198180 },
+    { "lat": 37.7381143, "lon": -122.4205395 },
+    { "lat": 37.7380476, "lon": -122.4204848 },
+    { "lat": 37.7382140, "lon": -122.4200876 },
+    { "lat": 37.7382638, "lon": -122.4197925 },
+    { "lat": 37.7381885, "lon": -122.4193205 },
+    { "lat": 37.7379923, "lon": -122.4190201 },
+    { "lat": 37.7375883, "lon": -122.4188055 },
+    { "lat": 37.7372754, "lon": -122.4188001 },
+    { "lat": 37.7369466, "lon": -122.4189034 },
+    { "lat": 37.7365521, "lon": -122.4191998 },
+    { "lat": 37.7362381, "lon": -122.4197040 },
+    { "lat": 37.7361583, "lon": -122.4201563 },
+    { "lat": 37.7350751, "lon": -122.4202285 },
+    { "lat": 37.7348994, "lon": -122.4168213 },
+    { "lat": 37.7346884, "lon": -122.4118042 },
+    { "lat": 37.7369640, "lon": -122.4116190 },
+    { "lat": 37.7368465, "lon": -122.4091578 },
+    { "lat": 37.7377087, "lon": -122.4090782 },
+    { "lat": 37.7381519, "lon": -122.4090373 },
+    { "lat": 37.7388625, "lon": -122.4089717 },
+    { "lat": 37.7389207, "lon": -122.4089641 },
+    { "lat": 37.7396218, "lon": -122.4089015 },
+    { "lat": 37.7396887, "lon": -122.4088954 },
+    { "lat": 37.7405439, "lon": -122.4084125 },
+    { "lat": 37.7412297, "lon": -122.4083621 },
+    { "lat": 37.7418637, "lon": -122.4080082 },
+    { "lat": 37.7422932, "lon": -122.4074905 },
+    { "lat": 37.7423297, "lon": -122.4074074 },
+    { "lat": 37.7433449, "lon": -122.4066245 },
+    { "lat": 37.7450064, "lon": -122.4056078 },
+    { "lat": 37.7466481, "lon": -122.4051153 },
+    { "lat": 37.7472938, "lon": -122.4050209 },
+    { "lat": 37.7481211, "lon": -122.4049726 },
+    { "lat": 37.7487354, "lon": -122.4057380 },
+    { "lat": 37.7487581, "lon": -122.4069526 },
+    { "lat": 37.7483088, "lon": -122.4081622 },
+    { "lat": 37.7481189, "lon": -122.4182677 },
+    { "lat": 37.7423122, "lon": -122.4220187 },
+    { "lat": 37.7406475, "lon": -122.4230948 }
+  ],
+  "tags": {
+    "name": "Bernal Heights",
+    "place": "quarter",
+    "wikidata": "Q3343204",
+    "wikipedia": "en:Bernal Heights, San Francisco"
+  }
+},
+{
+  "type": "way",
+  "id": 689195738,
+  "bounds": {
+    "minlat": 37.7396614,
+    "minlon": -122.4449980,
+    "maxlat": 37.7566295,
+    "maxlon": -122.4240255
+  },
+  "geometry": [
+    { "lat": 37.7467251, "lon": -122.4443198 },
+    { "lat": 37.7466953, "lon": -122.4447647 },
+    { "lat": 37.7468310, "lon": -122.4449980 },
+    { "lat": 37.7469434, "lon": -122.4449739 },
+    { "lat": 37.7471085, "lon": -122.4444569 },
+    { "lat": 37.7472903, "lon": -122.4442219 },
+    { "lat": 37.7475541, "lon": -122.4440991 },
+    { "lat": 37.7483452, "lon": -122.4442007 },
+    { "lat": 37.7494601, "lon": -122.4434813 },
+    { "lat": 37.7519134, "lon": -122.4427912 },
+    { "lat": 37.7562295, "lon": -122.4410354 },
+    { "lat": 37.7564100, "lon": -122.4402622 },
+    { "lat": 37.7564116, "lon": -122.4402428 },
+    { "lat": 37.7564188, "lon": -122.4401537 },
+    { "lat": 37.7564680, "lon": -122.4390460 },
+    { "lat": 37.7555283, "lon": -122.4389272 },
+    { "lat": 37.7553371, "lon": -122.4389039 },
+    { "lat": 37.7555410, "lon": -122.4377690 },
+    { "lat": 37.7558977, "lon": -122.4378049 },
+    { "lat": 37.7559733, "lon": -122.4367704 },
+    { "lat": 37.7563657, "lon": -122.4301292 },
+    { "lat": 37.7563749, "lon": -122.4299987 },
+    { "lat": 37.7564881, "lon": -122.4280384 },
+    { "lat": 37.7565033, "lon": -122.4277904 },
+    { "lat": 37.7565541, "lon": -122.4269507 },
+    { "lat": 37.7566231, "lon": -122.4258090 },
+    { "lat": 37.7566295, "lon": -122.4257042 },
+    { "lat": 37.7565726, "lon": -122.4256987 },
+    { "lat": 37.7558318, "lon": -122.4256275 },
+    { "lat": 37.7405321, "lon": -122.4240255 },
+    { "lat": 37.7398586, "lon": -122.4242794 },
+    { "lat": 37.7396614, "lon": -122.4277854 },
+    { "lat": 37.7407530, "lon": -122.4298400 },
+    { "lat": 37.7402041, "lon": -122.4303547 },
+    { "lat": 37.7415217, "lon": -122.4319887 },
+    { "lat": 37.7418990, "lon": -122.4327810 },
+    { "lat": 37.7419299, "lon": -122.4329694 },
+    { "lat": 37.7419030, "lon": -122.4332590 },
+    { "lat": 37.7418090, "lon": -122.4332920 },
+    { "lat": 37.7415227, "lon": -122.4343216 },
+    { "lat": 37.7416032, "lon": -122.4343824 },
+    { "lat": 37.7426223, "lon": -122.4351515 },
+    { "lat": 37.7426118, "lon": -122.4355397 },
+    { "lat": 37.7422235, "lon": -122.4355093 },
+    { "lat": 37.7417507, "lon": -122.4355938 },
+    { "lat": 37.7418858, "lon": -122.4357998 },
+    { "lat": 37.7420511, "lon": -122.4358832 },
+    { "lat": 37.7422282, "lon": -122.4359858 },
+    { "lat": 37.7423680, "lon": -122.4360903 },
+    { "lat": 37.7424909, "lon": -122.4361913 },
+    { "lat": 37.7426159, "lon": -122.4363090 },
+    { "lat": 37.7427429, "lon": -122.4364403 },
+    { "lat": 37.7428879, "lon": -122.4366045 },
+    { "lat": 37.7431482, "lon": -122.4369817 },
+    { "lat": 37.7434775, "lon": -122.4374943 },
+    { "lat": 37.7437961, "lon": -122.4379957 },
+    { "lat": 37.7446085, "lon": -122.4393651 },
+    { "lat": 37.7448010, "lon": -122.4396587 },
+    { "lat": 37.7449593, "lon": -122.4398573 },
+    { "lat": 37.7450959, "lon": -122.4399857 },
+    { "lat": 37.7452691, "lon": -122.4401018 },
+    { "lat": 37.7454784, "lon": -122.4401794 },
+    { "lat": 37.7456119, "lon": -122.4402108 },
+    { "lat": 37.7457324, "lon": -122.4402236 },
+    { "lat": 37.7458819, "lon": -122.4402183 },
+    { "lat": 37.7464102, "lon": -122.4401577 },
+    { "lat": 37.7465177, "lon": -122.4401463 },
+    { "lat": 37.7466303, "lon": -122.4401614 },
+    { "lat": 37.7467643, "lon": -122.4402164 },
+    { "lat": 37.7469264, "lon": -122.4403338 },
+    { "lat": 37.7470511, "lon": -122.4404562 },
+    { "lat": 37.7471555, "lon": -122.4406609 },
+    { "lat": 37.7472192, "lon": -122.4409483 },
+    { "lat": 37.7472214, "lon": -122.4411789 },
+    { "lat": 37.7471704, "lon": -122.4413743 },
+    { "lat": 37.7466317, "lon": -122.4430319 },
+    { "lat": 37.7465639, "lon": -122.4432872 },
+    { "lat": 37.7465469, "lon": -122.4435151 },
+    { "lat": 37.7466063, "lon": -122.4437297 },
+    { "lat": 37.7467039, "lon": -122.4439121 },
+    { "lat": 37.7467463, "lon": -122.4441589 },
+    { "lat": 37.7467251, "lon": -122.4443198 }
+  ],
+  "tags": {
+    "name": "Noe Valley",
+    "place": "quarter",
+    "wikidata": "Q3342640"
+  }
+},
+{
+  "type": "way",
+  "id": 998479624,
+  "bounds": {
+    "minlat": 37.7823222,
+    "minlon": -122.4182422,
+    "maxlat": 37.7852306,
+    "maxlon": -122.4169332
+  },
+  "geometry": [
+    { "lat": 37.7851500, "lon": -122.4182422 },
+    { "lat": 37.7823222, "lon": -122.4176413 },
+    { "lat": 37.7824112, "lon": -122.4169332 },
+    { "lat": 37.7852306, "lon": -122.4175448 },
+    { "lat": 37.7851500, "lon": -122.4182422 }
+  ],
+  "tags": {
+    "name": "Little Saigon",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "way",
+  "id": 999293188,
+  "bounds": {
+    "minlat": 37.7703458,
+    "minlon": -122.4375842,
+    "maxlat": 37.7751341,
+    "maxlon": -122.4286467
+  },
+  "geometry": [
+    { "lat": 37.7740774, "lon": -122.4375842 },
+    { "lat": 37.7731517, "lon": -122.4373951 },
+    { "lat": 37.7703458, "lon": -122.4368259 },
+    { "lat": 37.7713687, "lon": -122.4286467 },
+    { "lat": 37.7751341, "lon": -122.4293870 },
+    { "lat": 37.7740774, "lon": -122.4375842 }
+  ],
+  "tags": {
+    "alt_name": "Haight–Fillmore",
+    "name": "Lower Haight",
+    "place": "neighbourhood",
+    "wikidata": "Q6693515",
+    "wikipedia": "en:Lower Haight, San Francisco"
+  }
+},
+{
+  "type": "way",
+  "id": 1430096242,
+  "bounds": {
+    "minlat": 37.7741808,
+    "minlon": -122.4315916,
+    "maxlat": 37.7787484,
+    "maxlon": -122.4226174
+  },
+  "geometry": [
+    { "lat": 37.7787484, "lon": -122.4233714 },
+    { "lat": 37.7750233, "lon": -122.4226174 },
+    { "lat": 37.7741808, "lon": -122.4292416 },
+    { "lat": 37.7751213, "lon": -122.4293832 },
+    { "lat": 37.7749120, "lon": -122.4310276 },
+    { "lat": 37.7777074, "lon": -122.4315916 },
+    { "lat": 37.7787484, "lon": -122.4233714 }
+  ],
+  "tags": {
+    "admin_level": "10",
+    "boundary": "administrative",
+    "name": "Hayes Valley",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "way",
+  "id": 1430097764,
+  "bounds": {
+    "minlat": 37.7730257,
+    "minlon": -122.4237488,
+    "maxlat": 37.7823992,
+    "maxlon": -122.4125861
+  },
+  "geometry": [
+    { "lat": 37.7730257, "lon": -122.4222411 },
+    { "lat": 37.7806142, "lon": -122.4237488 },
+    { "lat": 37.7810226, "lon": -122.4205419 },
+    { "lat": 37.7810296, "lon": -122.4204863 },
+    { "lat": 37.7819692, "lon": -122.4205971 },
+    { "lat": 37.7819758, "lon": -122.4205439 },
+    { "lat": 37.7823992, "lon": -122.4172503 },
+    { "lat": 37.7814671, "lon": -122.4170513 },
+    { "lat": 37.7818849, "lon": -122.4137704 },
+    { "lat": 37.7809443, "lon": -122.4136023 },
+    { "lat": 37.7809382, "lon": -122.4130736 },
+    { "lat": 37.7804427, "lon": -122.4125861 },
+    { "lat": 37.7730257, "lon": -122.4222411 }
+  ],
+  "tags": {
+    "admin_level": "10",
+    "boundary": "administrative",
+    "name": "Civic Center",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "way",
+  "id": 1430098041,
+  "bounds": {
+    "minlat": 37.7740658,
+    "minlon": -122.4384292,
+    "maxlat": 37.7786463,
+    "maxlon": -122.4310276
+  },
+  "geometry": [
+    { "lat": 37.7777945, "lon": -122.4384292 },
+    { "lat": 37.7786463, "lon": -122.4316958 },
+    { "lat": 37.7749120, "lon": -122.4310276 },
+    { "lat": 37.7740658, "lon": -122.4376756 },
+    { "lat": 37.7777945, "lon": -122.4384292 }
+  ],
+  "tags": {
+    "admin_level": "10",
+    "boundary": "administrative",
+    "name": "Alamo Square",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "way",
+  "id": 1446583438,
+  "bounds": {
+    "minlat": 37.7082483,
+    "minlon": -122.4227721,
+    "maxlat": 37.7215578,
+    "maxlon": -122.3951998
+  },
+  "geometry": [
+    { "lat": 37.7193449, "lon": -122.4088244 },
+    { "lat": 37.7215578, "lon": -122.4010206 },
+    { "lat": 37.7096320, "lon": -122.3951998 },
+    { "lat": 37.7102265, "lon": -122.4047464 },
+    { "lat": 37.7082483, "lon": -122.4062381 },
+    { "lat": 37.7092122, "lon": -122.4227721 },
+    { "lat": 37.7141645, "lon": -122.4218620 },
+    { "lat": 37.7125851, "lon": -122.4158403 },
+    { "lat": 37.7152688, "lon": -122.4158177 },
+    { "lat": 37.7193449, "lon": -122.4088244 }
+  ],
+  "tags": {
+    "admin_level": "10",
+    "boundary": "administrative",
+    "name": "Visitacion Valley",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "relation",
+  "id": 10967083,
+  "bounds": {
+    "minlat": 37.7901561,
+    "minlon": -122.4102750,
+    "maxlat": 37.7980200,
+    "maxlon": -122.4040590
+  },
+  "tags": {
+    "admin_level": "10",
+    "boundary": "administrative",
+    "name": "Chinatown",
+    "place": "neighbourhood",
+    "population": "34557",
+    "type": "boundary",
+    "wikidata": "Q1073644"
+  }
+},
+{
+  "type": "relation",
+  "id": 21356021,
+  "bounds": {
+    "minlat": 37.7688414,
+    "minlon": -122.4232870,
+    "maxlat": 37.7911186,
+    "maxlon": -122.3927311
+  },
+  "tags": {
+    "boundary": "place",
+    "name": "South of Market",
+    "place": "neighbourhood",
+    "type": "boundary"
+  }
+}
+
+  ]
+}
