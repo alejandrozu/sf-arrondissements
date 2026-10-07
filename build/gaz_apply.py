@@ -19,6 +19,8 @@ for o in G['nb']:
     if o['name'] in V3_MOVE: o['arr']='hills'
     o['arr']=V3_ARR.get(o['arr'],o['arr'])
     if o['arr'] in V3_NUM: o['n']=V3_NUM[o['arr']]
+for o in G['nb']:
+    if o['name']=='Oceanview' and o['arr']=='lakemerced': o['name']='Inner Oceanview'
 _new={o['name']:(o['arr'],int(o['n'])) for o in G['nb']}
 _spl=[]
 for r in G['splits']:
@@ -109,6 +111,7 @@ for a in d['arr']:
     if a['id']=='mission': a['blurb']='The Valencia Corridor, South Van Ness, the Food Processing District, Central Mission, Calle 24, Liberty Hill, the Mission Triangle, La Lengua, Bernal Heights, the Bernal Triangle, Peralta Heights, Holly Park and St. Mary\u2019s Park.'
     if a['id']=='missionbay': a['blurb']='Oracle Park, Mission Creek, Mission Bay, Showplace Square, Potrero Valley, Potrero Hill, Potrero Terrace, Dogpatch, Potrero Point and the Central Waterfront down to Islais Creek.'
     if a['id']=='bayview': a['blurb']='Everything east of US-101 south of Islais Creek: Inner Bayview, Bayview Hills, Bayview Valley, Bayview Heights, Hunters Point, India Basin, Amador Point, Islais Creek, Silver Terrace, the Produce Market, Bret Harte and Candlestick Point.'
+    if a['id']=='lakemerced': a['blurb']=a['blurb'].replace(' Oceanview,',' Inner Oceanview,').replace('Inner Inner','Inner')
     if a['id']=='hills': a['blurb']='Twin Peaks, Midtown Terrace, Clarendon Heights, Parnassus Heights with Mount Sutro and UCSF, Parnassus Piedmont east of 7th Avenue, Golden Gate Heights, Forest Hill and the Forest Hill Extension, Forest Knolls, West Portal, the west side of Diamond Heights, Glen Canyon, Miraloma Park, Sherwood Forest, St. Francis Wood, Monterey Heights, Westwood Highlands and Sunnyside north of Monterey Boulevard.'
     if a['id']=='sunset': a['blurb']='The whole Sunset and Parkside, from Golden Gate Park down to Sloat Boulevard and from the ocean to the hills: the Inner, Central and Outer Sunset, Inner and Outer Parkside, Parkside and Pine Lake Park.'
     if a['id']=='downtown': a['blurb']='North of Market: Union Square, the Financial District, the Embarcadero, Chinatown, Nob Hill, Lower Polk, the Tenderloin and Civic Center.'

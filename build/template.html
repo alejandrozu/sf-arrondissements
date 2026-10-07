@@ -153,19 +153,22 @@ button.chip:hover{border-color:var(--ink)}
 section.sec{margin-top:64px;border-top:2px solid var(--ink);padding-top:28px}
 section.sec>header{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:8px}
 section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;line-height:.95}
-.rings{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:28px 48px;align-items:start;margin-top:16px}
+.rings{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:28px 48px;align-items:start;margin-top:16px}
 @media (max-width:860px){.rings{grid-template-columns:minmax(0,1fr)}}
 .rside{position:sticky;top:14px;display:flex;flex-direction:column;gap:12px}
 @media (max-width:860px){.rside{position:static}}
 .rside p{margin:0;max-width:60ch}
-.mini{width:100%;max-width:300px;display:block;background:var(--water);border-radius:6px;border:1px solid var(--rule)}
+.mini{width:100%;max-width:380px;display:block;background:var(--water);border-radius:6px;border:1px solid var(--rule)}
 .mini .rt{stroke:var(--bg);stroke-width:1.2;vector-effect:non-scaling-stroke;cursor:pointer}
 .mini .rt:hover{opacity:.85}
 .mini .rt.r1{fill:var(--r1)}.mini .rt.r2{fill:var(--r2)}.mini .rt.r3{fill:var(--r3)}
 .mini .ab{fill:none;stroke:var(--bg);stroke-width:.6;stroke-opacity:.6;vector-effect:non-scaling-stroke;pointer-events:none}
-.mini text{font:700 46px var(--f-display);text-anchor:middle;dominant-baseline:central;pointer-events:none;paint-order:stroke;stroke-width:8px}
-.mini text.dk{fill:#fff;stroke:rgba(0,0,0,.35)}
-.mini text.lt{fill:#16202a;stroke:rgba(255,255,255,.5)}
+.mini .sw1{fill:none;stroke:#16202a;stroke-opacity:.85;stroke-width:16;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.mini .sw2{fill:none;stroke:#fff;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.mini .mk text{font:700 34px var(--f-display);fill:#fff;text-anchor:middle;dominant-baseline:central}
+.mini .mk{pointer-events:none}
+.orderkey{margin:0;padding:0;list-style:none;display:grid;gap:4px;font-size:.86rem}
+.orderkey b{font-family:var(--f-display);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-right:6px}
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--muted);list-style:none;padding:0;margin:0}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
 .rgroup+.rgroup{margin-top:34px}
@@ -343,7 +346,13 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
     <div class="rside">
       <svg class="mini" id="mini" role="img" aria-label="Diagram of the rings"></svg>
       <ul class="legend" id="legend"></ul>
-      <p>The numbers follow a fan, as the Paris arrondissements follow a snail. Each ring starts in the north and sweeps south, then east. The second ring closes in the middle of the city with The Hills, the 9th.</p>
+      <ul class="orderkey">
+        <li><b>Ring 1</b>1 → 3, north to south to east</li>
+        <li><b>Ring 2</b>4 → 8 the same way, then 9 at the center</li>
+        <li><b>Ring 3</b>10 → 15 the same way</li>
+      </ul>
+      <p>Every ring is numbered in the same direction: it starts in the north, sweeps south, and ends in the east. Once one ring is learned, the other two follow. The Hills, which rise in the middle of the city, close the second ring as the 9th.</p>
+      <p>The rings follow the city itself, which fans out southwest from the Embarcadero. The first ring is the most urban and has the smallest arrondissements; the second is still dense; the third is mostly residential and has the largest. Population density falls the same way, with the Hills and Federal as the exceptions. The lowest numbers therefore go to the busiest districts, much as the Paris arrondissements spiral outward from the Louvre.</p>
     </div>
     <div id="groups"></div>
   </div>
@@ -630,9 +639,21 @@ const goMap=()=>$('map').scrollIntoView({behavior:'smooth',block:'start'});
   D.rings.forEach(r=>{const p=el('path',{d:r.d,class:'rt '+r.id},m);el('title',{},p).textContent=r.label;
     p.addEventListener('click',()=>{setMode('ring',true);selectRing(r.id,false);goMap()})});
   D.arr.forEach(a=>el('path',{d:a.d,class:'ab'},m));
-  const dark=matchMedia('(prefers-color-scheme: dark)').matches;
-  D.arr.forEach(a=>{const lightFill=dark?(a.ring==='r1'||a.ring==='r2'):(a.ring==='r3');
-    el('text',{x:a.lx,y:a.ly,class:lightFill?'lt':'dk'},m).textContent=a.n});
+  // order diagram: one swoop per ring, north -> south -> east; the 9th sits in the middle
+  const defs=el('defs',{},m);const mk=el('marker',{id:'ah',viewBox:'0 0 10 10',refX:'5',refY:'5',markerWidth:'3.4',markerHeight:'3.4',orient:'auto'},defs);
+  el('path',{d:'M0,0L10,5L0,10z',fill:'#fff',stroke:'#16202a','stroke-width':'1.2'},mk);
+  const R=30;
+  const swoop=pts=>{const P=[pts[0],...pts,pts[pts.length-1]];let d='';const segs=[];
+    for(let i=1;i<P.length-2;i++){const p0=P[i-1],p1=P[i],p2=P[i+1],p3=P[i+2];
+      segs.push([p1,[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6],p2])}
+    const f=(a,b,dist)=>{const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1;return[a[0]+dx/L*dist,a[1]+dy/L*dist]};
+    segs[0][0]=f(segs[0][0],segs[0][1],R+6);const l=segs[segs.length-1];l[3]=f(l[3],l[2],R+20);
+    segs.forEach((s,i)=>{d+=(i?'':`M${s[0][0].toFixed(1)},${s[0][1].toFixed(1)}`)+`C${s[1].map(v=>v.toFixed(1))} ${s[2].map(v=>v.toFixed(1))} ${s[3].map(v=>v.toFixed(1))}`});return d};
+  D.rings.forEach(r=>{const pts=r.members.map(i=>byId[i]).filter(a=>a.id!=='hills').sort((x,y)=>x.n-y.n).map(a=>[a.lx,a.ly]);
+    if(pts.length<2)return;const d=swoop(pts);el('path',{d,class:'sw1'},m);el('path',{d,class:'sw2','marker-end':'url(#ah)'},m)});
+  D.arr.forEach(a=>{const g=el('g',{class:'mk',transform:`translate(${a.lx} ${a.ly})`},m);
+    el('circle',{r:R+5,fill:'#fff'},g);el('circle',{r:R,fill:'var(--plaque)',stroke:a.hex,'stroke-width':6},g);
+    el('text',{y:1},g).textContent=a.n});
   $('legend').replaceChildren(...D.rings.map(r=>{const li=document.createElement('li');li.innerHTML=`<i style="background:var(--${r.id})"></i>`;li.append(r.label+' · '+r.name);return li}));
   const G=$('groups');
   D.rings.forEach(r=>{const sec=document.createElement('div');sec.className='rgroup';
