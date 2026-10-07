@@ -119,7 +119,7 @@ from shapely.geometry import Point
 from shapely.ops import unary_union
 from shapely.strtree import STRtree
 from geo import proj
-SHORT={'northbeach':'Northport','downtown':'NoMa','soma':'SoMa','marina':'Pacific','westernaddition':'Ashbury','castro':'The Valleys','mission':'The Mission','missionbay':'Potrero','hills':'The Hills','presidio':'Federal','richmond':'The Richmond','sunset':'The Sunset','lakemerced':'Merced','excelsior':'Southside','bayview':'Bayview'}
+SHORT={'northbeach':'Northport','downtown':'NoMa','soma':'SoMa','marina':'Pacific','westernaddition':'Ashbury','castro':'The Valleys','mission':'The Mission','missionbay':'Potrero','hills':'The Hills','presidio':'Federal','richmond':'The Richmond','sunset':'The Sunset','lakemerced':'Oceanview','excelsior':'Southside','bayview':'Bayview'}
 LONGV3={'sunset':'Sunset & Parkside'}
 def ringof(n): return 'r1' if n<=3 else 'r2' if n<=9 else 'r3'
 RLAB={'r1':'Ring 1','r2':'Ring 2','rh':'Ring –','r3':'Ring 3'}
