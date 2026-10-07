@@ -6,11 +6,13 @@ San Francisco has more than a hundred neighborhoods, many only a few blocks wide
 
 | Ring | Arrondissements |
 |---|---|
-| Ring 1 | 1 North Port · 2 NoMa · 3 SoMa |
-| Ring 2 | 4 Pacific · 5 Western · 6 The Valleys · 7 The Mission · 8 The Sunrise · 9 The Hills |
+| Ring 1 | 1 Northport · 2 NoMa · 3 SoMa |
+| Ring 2 | 4 Pacific · 5 Ashbury · 6 The Valleys · 7 The Mission · 8 Potrero · 9 The Hills |
 | Ring 3 | 10 Federal · 11 The Richmond · 12 The Sunset · 13 Merced · 14 Southside · 15 Bayview |
 
 Golden Gate Park belongs to the whole city and sits outside the numbering.
+
+Arrondissements with a prominent hill of their own take that hill's name: Pacific, Ashbury, Potrero and Bayview. The central heights give the 9th its name, The Hills. The 1st holds two celebrated hills, Telegraph and Russian, and in fairness to both it is called Northport.
 
 ## Repository layout
 
