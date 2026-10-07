@@ -30,6 +30,23 @@ for r in G['splits']:
     if len(groups)<2: continue
     _spl.append({'orig':r['orig'],'sides':[{'n':nn,'names':nms,'pct':0,'sqmi':0} for nn,nms in sorted(groups.items())]})
 G['splits']=_spl
+# clip the 9th's and 12th's neighborhoods to the new borders (16th Avenue); leftover strips join the neighbor sharing the longest edge
+from shapely.geometry import mapping as _mp2
+from shapely.ops import unary_union as _uu
+from geo import proj as _pj2
+_AR3={k:shape(v) for k,v in json.load(open('arr.json')).items()}
+for _k in ('hills','sunset'):
+    _its=[o for o in G['nb'] if o['arr']==_k]
+    _gs={id(o):shape(o['g']).buffer(0).intersection(_AR3[_k]) for o in _its}
+    _left=_AR3[_k].difference(_uu(list(_gs.values())))
+    for _p in getattr(_left,'geoms',[_left]):
+        if _p.geom_type!='Polygon' or _p.area<1e-9: continue
+        _best=max(_its,key=lambda o:_p.buffer(2e-5).intersection(_gs[id(o)]).area)
+        _gs[id(_best)]=_uu([_gs[id(_best)],_p])
+    for o in _its:
+        _g=_gs[id(o)].buffer(1e-7).buffer(-1e-7)
+        _g=_uu([q for q in getattr(_g,'geoms',[_g]) if q.geom_type=='Polygon' and q.area>2e-8])
+        o['g']=_mp2(_g); o['sqmi']=round(_pj2(_g).area/2589988.11,3)
 LON0,LAT0=-122.5155,37.8335; K=math.cos(math.radians(37.765)); SC=1000/((-122.355-LON0)*K)
 def P(lon,lat): return ((lon-LON0)*K*SC,(LAT0-lat)*SC)
 def tp(g): return transform(lambda x,y,z=None:P(x,y),g)

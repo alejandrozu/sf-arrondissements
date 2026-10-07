@@ -1,9 +1,10 @@
 # v3: Golden Gate Heights, Forest Hill and West Portal join the 9th; the 12th and 13th merge; renumber 14-16 -> 13-15.
+# The 9th's western edge south of Lawton follows 16th Avenue all the way to Sloat; east of Funston, Lawton is the line. Idempotent: always starts from arr_v5.json.
 import json, math
 from shapely.geometry import shape, mapping
 from shapely.ops import unary_union, polylabel
 src=open('gen.py').read().split('# ---------- assemble')[0]
-exec(src)                                   # A, classify, boundary_streets, popof, poly_d, tp, P ...
+exec(src.replace("open('arr.json')","open('arr_v5.json')"))   # A (pre-v3), classify, boundary_streets, popof, poly_d, tp, P ...
 MOVE=['Golden Gate Heights','Forest Hill','West Portal']
 G=json.load(open('gaz.json'))
 mv=unary_union([shape(o['g']) for o in G['nb'] if o['name'] in MOVE])
@@ -14,6 +15,31 @@ def clean(g,minarea=2e-7):
     return unary_union(parts)
 hills=clean(unary_union([A['hills'],mv]))
 sunset=clean(unary_union([A['sunset'],A['parkside']]).difference(hills))
+# 16th Avenue as the western edge of the 9th, from Lawton down to Sloat
+from shapely.geometry import LineString, Polygon
+from shapely.ops import linemerge
+NLAT,SLAT=37.7593,37.7300
+seg=[LineString(x['line']['coordinates']) for x in S if x['streetname']=='16TH AVE']
+l16=unary_union(seg).intersection(Polygon([(-122.6,SLAT),(-122.3,SLAT),(-122.3,NLAT),(-122.6,NLAT)]))
+l16=linemerge(l16) if l16.geom_type=='MultiLineString' else l16
+if l16.geom_type=='MultiLineString': l16=max(l16.geoms,key=lambda g:g.length)
+cs=list(l16.coords)
+if cs[0][1]<cs[-1][1]: cs=cs[::-1]                 # north -> south
+cs=[(cs[0][0],NLAT)]+cs+[(cs[-1][0],SLAT)]         # extend to the band edges
+east=Polygon(cs+[(-122.40,SLAT),(-122.40,NLAT)]).buffer(0)
+west=Polygon(cs+[(-122.60,SLAT),(-122.60,NLAT)]).buffer(0)
+hills=clean(unary_union([hills,sunset.intersection(east)]).difference(west))
+sunset=clean(unary_union([sunset,A['hills'].intersection(west),mv.intersection(west)]).difference(hills))
+# east of Funston Avenue, Lawton Street divides the 9th from the 12th (up to 7th Avenue)
+FX,X7=-122.47024,-122.46378
+law=unary_union([LineString(x['line']['coordinates']) for x in S if x['streetname']=='LAWTON ST']).intersection(Polygon([(FX,37.755),(X7,37.755),(X7,37.761),(FX,37.761)]))
+law=linemerge(law) if law.geom_type=='MultiLineString' else law
+if law.geom_type=='MultiLineString': law=max(law.geoms,key=lambda g:g.length)
+lc=sorted(law.coords)                                   # west -> east
+lc=[(FX,lc[0][1])]+lc+[(X7,lc[-1][1])]
+north=Polygon(lc+[(X7,37.7612),(FX,37.7612)]).buffer(0)
+moved=hills.intersection(north)
+hills=clean(hills.difference(north)); sunset=clean(unary_union([sunset,moved]).difference(hills))
 A['hills']=hills; A['sunset']=sunset; del A['parkside']
 # give any leftover slivers to whoever borders them most -- check coverage
 old=unary_union([shape(v) for k,v in json.load(open('arr_v5.json')).items()])
