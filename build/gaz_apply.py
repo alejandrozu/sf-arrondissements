@@ -30,6 +30,16 @@ for r in G['splits']:
     if len(groups)<2: continue
     _spl.append({'orig':r['orig'],'sides':[{'n':nn,'names':nms,'pct':0,'sqmi':0} for nn,nms in sorted(groups.items())]})
 G['splits']=_spl
+# Parnassus Piedmont: the new neighborhood of the 9th east of 7th Avenue, between Golden Gate Park and Lawton
+import os as _os
+if _os.path.exists('v3_e7.json') and not any(o['name']=='Parnassus Piedmont' for o in G['nb']):
+    from shapely.geometry import mapping as _mp3
+    from shapely.ops import unary_union as _uu3
+    _E7=shape(json.load(open('v3_e7.json'))); _H=shape(json.load(open('arr.json'))['hills'])
+    _taken=_uu3([shape(o['g']).buffer(0) for o in G['nb'] if o['arr']=='hills' and o['name']!='Inner Sunset'])
+    _sg=_H.intersection(_E7).difference(_taken).buffer(-4e-5,join_style=2).buffer(4e-5,join_style=2).intersection(_H)   # drop thin slivers along 7th Ave
+    _sg=_uu3([q for q in getattr(_sg,'geoms',[_sg]) if q.geom_type=='Polygon' and q.area>2e-7])
+    G['nb'].append({'arr':'hills','n':9,'name':'Parnassus Piedmont','origs':['Parnassus Piedmont'],'sqmi':0,'g':_mp3(_sg)})
 # clip the 9th's and 12th's neighborhoods to the new borders (16th Avenue); leftover strips join the neighbor sharing the longest edge
 from shapely.geometry import mapping as _mp2
 from shapely.ops import unary_union as _uu
@@ -99,7 +109,7 @@ for a in d['arr']:
     if a['id']=='mission': a['blurb']='The Valencia Corridor, South Van Ness, the Food Processing District, Central Mission, Calle 24, Liberty Hill, the Mission Triangle, La Lengua, Bernal Heights, the Bernal Triangle, Peralta Heights, Holly Park and St. Mary\u2019s Park.'
     if a['id']=='missionbay': a['blurb']='Oracle Park, Mission Creek, Mission Bay, Showplace Square, Potrero Valley, Potrero Hill, Potrero Terrace, Dogpatch, Potrero Point and the Central Waterfront down to Islais Creek.'
     if a['id']=='bayview': a['blurb']='Everything east of US-101 south of Islais Creek: Inner Bayview, Bayview Hills, Bayview Valley, Bayview Heights, Hunters Point, India Basin, Amador Point, Islais Creek, Silver Terrace, the Produce Market, Bret Harte and Candlestick Point.'
-    if a['id']=='hills': a['blurb']='Twin Peaks, Midtown Terrace, Clarendon Heights, Parnassus Heights with Mount Sutro and UCSF, Golden Gate Heights, Forest Hill and the Forest Hill Extension, Forest Knolls, West Portal, the west side of Diamond Heights, Glen Canyon, Miraloma Park, Sherwood Forest, St. Francis Wood, Monterey Heights, Westwood Highlands and Sunnyside north of Monterey Boulevard.'
+    if a['id']=='hills': a['blurb']='Twin Peaks, Midtown Terrace, Clarendon Heights, Parnassus Heights with Mount Sutro and UCSF, Parnassus Piedmont east of 7th Avenue, Golden Gate Heights, Forest Hill and the Forest Hill Extension, Forest Knolls, West Portal, the west side of Diamond Heights, Glen Canyon, Miraloma Park, Sherwood Forest, St. Francis Wood, Monterey Heights, Westwood Highlands and Sunnyside north of Monterey Boulevard.'
     if a['id']=='sunset': a['blurb']='The whole Sunset and Parkside, from Golden Gate Park down to Sloat Boulevard and from the ocean to the hills: the Inner, Central and Outer Sunset, Inner and Outer Parkside, Parkside and Pine Lake Park.'
     if a['id']=='downtown': a['blurb']='North of Market: Union Square, the Financial District, the Embarcadero, Chinatown, Nob Hill, Lower Polk, the Tenderloin and Civic Center.'
 json.dump(d,open('mapdata.json','w'),separators=(',',':'))

@@ -1,5 +1,5 @@
 # v3: Golden Gate Heights, Forest Hill and West Portal join the 9th; the 12th and 13th merge; renumber 14-16 -> 13-15.
-# The 9th's western edge follows 17th Avenue down to Rivera, then 15th Avenue to Sloat; in the north the line is Lawton, 7th Avenue, then Judah. Idempotent: always starts from arr_v5.json.
+# The 9th's western edge follows 17th Avenue down to Rivera, then 15th Avenue to Sloat; in the north the line is Lawton, then 7th Avenue up to Golden Gate Park. Idempotent: always starts from arr_v5.json.
 import json, math
 from shapely.geometry import shape, mapping
 from shapely.ops import unary_union, polylabel
@@ -53,6 +53,11 @@ R1=Polygon([(-122.46391,37.76041),(-122.46404,37.76227),(-122.46297,37.76232),(-
 R3=Polygon([(-122.46177,37.7605),(-122.4619,37.76236),(-122.46084,37.76263),(-122.4603,37.76278),(-122.4603,37.7600),(-122.46177,37.7600)]).buffer(0)          # east of 5th, south of Judah -> 9th
 R2=Polygon([(-122.46378,37.75854),(-122.46391,37.76041),(-122.46284,37.76045),(-122.46177,37.7605),(-122.46177,37.7585)]).buffer(0)   # 7th-5th, Lawton-Kirkham -> 9th
 hills=clean(unary_union([hills,sunset.intersection(R3),sunset.intersection(R2),sunset.intersection(R1)])); sunset=clean(sunset.difference(hills))
+# finally: everything east of 7th Avenue joins the 9th (it becomes the neighborhood Parnassus Piedmont in gaz_apply)
+c7=sorted({(round(x,6),round(y,6)) for x_ in S if x_['streetname']=='07TH AVE' for x,y in x_['line']['coordinates'] if 37.7580<y<37.7700},key=lambda p:p[1])
+E7=Polygon([(c7[0][0],37.7570)]+c7+[(c7[-1][0],37.7720),(-122.4400,37.7720),(-122.4400,37.7570)]).buffer(0)
+json.dump(mapping(E7),open('v3_e7.json','w'))
+hills=clean(unary_union([hills,sunset.intersection(E7)])); sunset=clean(sunset.difference(hills))
 A['hills']=hills; A['sunset']=sunset; del A['parkside']
 # give any leftover slivers to whoever borders them most -- check coverage
 old=unary_union([shape(v) for k,v in json.load(open('arr_v5.json')).items()])
