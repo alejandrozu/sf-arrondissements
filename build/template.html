@@ -123,7 +123,7 @@ header.top h1 span{color:var(--muted)}
 .tx{display:flex;flex-direction:column;align-items:flex-start;flex:none}
 .plaque .nm,.card .bn .t{font:700 calc(var(--s)*.46cqw)/.92 var(--f-display);text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
 .plaque .ar,.card .bn .r{font:600 calc(var(--s)*.17cqw)/1.25 var(--f-body);letter-spacing:.18em;text-transform:uppercase;opacity:.85;white-space:nowrap;margin-top:.3em}
-:root{--s:25}
+:root{--s:22.5}
 .sub2{margin:-8px 0 0;font:600 .8rem/1.3 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .blurb{margin:0;max-width:60ch}
 .note{margin:-6px 0 0;font-size:.82rem;line-height:1.45;color:var(--muted);max-width:60ch}
@@ -192,7 +192,7 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
 .kk{box-shadow:inset 0 0 0 1px var(--sa)}
 .cscroll{overflow-x:auto;padding-bottom:4px}
 .chart{min-width:680px;position:relative;padding-left:44px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:22px 14px 10px 54px}
-.plot{position:relative;height:300px;display:grid;grid-template-columns:repeat(16,minmax(0,1fr));align-items:end;border-bottom:1px solid var(--base)}
+.plot{position:relative;height:300px;display:grid;grid-template-columns:repeat(var(--nc,15),minmax(0,1fr));align-items:end;border-bottom:1px solid var(--base)}
 .gl{position:absolute;left:0;right:0;height:0;border-top:1px solid var(--grid);pointer-events:none}
 .gl.mn{border-top:1px dotted color-mix(in srgb,var(--grid) 70%,var(--paper))}
 .gl span{position:absolute;right:calc(100% + 8px);top:-.6em;font:500 .72rem var(--f-mono);color:var(--muted);white-space:nowrap}
@@ -205,7 +205,7 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
 .col .bk{margin-bottom:2px;box-shadow:inset 0 0 0 1px var(--sa)}
 .col .bk+.ba{border-radius:0}
 .col .ba{background:var(--sa)}.col .bp{background:var(--sp)}
-.xax{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));padding-top:8px}
+.xax{display:grid;grid-template-columns:repeat(var(--nc,15),minmax(0,1fr));padding-top:8px}
 .xl{display:flex;flex-direction:column;align-items:center;gap:4px;font:400 .66rem/1.25 var(--f-mono);color:var(--muted);text-align:center}
 .xl b{display:inline-block;min-width:34px;text-align:center;font:700 .95rem/1 var(--f-display);color:var(--plaque-ink);background:var(--plaque);border:2.5px solid #fff;border-radius:3px;padding:4px 3px 3px;box-shadow:0 0 0 1px #fff,inset 0 0 0 1px #fff;margin:2px}
 .xl b sup{font-size:.55em;vertical-align:top}
@@ -235,7 +235,7 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
 <header class="top">
   <nav class="nav" aria-label="Sections">
     <span class="eyebrow">A proposal for the city · draft 14</span>
-    <ul><li><a href="#map">Map</a></li><li><a href="#rings">The 16</a></li><li><a href="#numbers">By the numbers</a></li><li><a href="#method">How it works</a></li></ul>
+    <ul><li><a href="#map">Map</a></li><li><a href="#rings">The 15</a></li><li><a href="#numbers">By the numbers</a></li><li><a href="#method">How it works</a></li></ul>
   </nav>
   <h1>Les Arrondissements <span>de San Francisco</span></h1>
   <div class="intro">
@@ -336,7 +336,7 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
 
 <section class="sec" id="rings">
   <header>
-    <h2>The 16 arrondissements</h2>
+    <h2>The 15 arrondissements</h2>
     <span class="eyebrow">Three rings</span>
   </header>
   <div class="rings">
@@ -352,17 +352,17 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
 <section class="sec" id="numbers">
   <header>
     <h2>By the numbers</h2>
-    <span class="eyebrow">Share of the city, 1st to 16th</span>
+    <span class="eyebrow">Share of the city, 1st to 15th</span>
   </header>
   <p class="secsub">Each pair compares an arrondissement’s share of the city’s land with its share of the city’s residents. When the residents bar is taller than the area bar, the arrondissement is denser than the city average.</p>
-  <ul class="clg"><li><i class="ka"></i>Area (sq mi)</li><li><i class="kk"></i>Citywide parkland in the 14th</li><li><i class="kp"></i>Residents</li></ul>
+  <ul class="clg"><li><i class="ka"></i>Area (sq mi)</li><li><i class="kp"></i>Residents</li></ul>
   <div class="cscroll"><div class="chart" id="chart">
     <div class="plot" id="plot"></div>
     <div class="xax" id="xax"></div>
   </div></div>
   <div class="ctip" id="ctip" hidden></div>
   <details class="ctab"><summary>Show as a table</summary><div class="tblwrap"><table id="ctab"></table></div></details>
-  <p class="note2">The striped part of the 14th is Lake Merced, Fort Funston, the golf courses and the Zoo: land that belongs to the whole city. Golden Gate Park is not counted.</p>
+  <p class="note2">Golden Gate Park belongs to the whole city and is not counted.</p>
 </section>
 
 <section class="sec" id="method">
@@ -370,11 +370,11 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
   <div class="notes">
     <div>
       <h3>Names and numbers</h3>
-      <p>As in Paris, the number carries the glory. Each arrondissement also has a short name, like Northside or The Valleys, but “the 7th” is the way to say it. Neighborhood names stay as they are; the arrondissement is the coarse address you give a friend.</p>
+      <p>As in Paris, the number carries the glory. Each arrondissement also has a short name, like North Port or The Valleys, but “the 7th” is the way to say it. Neighborhood names stay as they are; the arrondissement is the coarse address you give a friend.</p>
     </div>
     <div>
       <h3>The lines</h3>
-      <p>Boundaries follow big, memorable streets: Market, Van Ness, Geary, Broadway, Masonic, Fulton and Lincoln, 19th Avenue, Sunset Boulevard, Portola, Cesar Chavez, Mission Street, US-101 and I-280. Where the city ends, the water and the county line do the work.</p>
+      <p>Boundaries follow big, memorable streets: Market, Van Ness, Geary, Broadway, Masonic, Fulton and Lincoln, 19th Avenue, Sloat, Portola, Cesar Chavez, Mission Street, US-101 and I-280. Where the city ends, the water and the county line do the work.</p>
     </div>
     <div>
       <h3>Neighborhoods</h3>
@@ -386,7 +386,7 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
     </div>
     <div>
       <h3>Land for everyone</h3>
-      <p>Golden Gate Park belongs to the whole city and sits outside the numbering. Lake Merced, Fort Funston, the golf courses and the Zoo are inside the 14th to keep its borders simple, but they are left out of its area.</p>
+      <p>Golden Gate Park belongs to the whole city and sits outside the numbering. Every other piece of land, from the Presidio to Lake Merced, belongs to an arrondissement.</p>
     </div>
   </div>
 </section>
@@ -412,8 +412,8 @@ const ringById={};D.rings.forEach(r=>ringById[r.id]=r);
 const nbKey=n=>n.name+'|'+n.arr;
 const nbBy={};D.nb.forEach((n,i)=>{n.i=i;nbBy[nbKey(n)]=n});
 const ordN=a=>`${a.n}${ord(a.n)}`;
-const LONG={downtown:'North of Market',soma:'South of Market',hills:'Twin Peaks, Mount Sutro & Glen Canyon',richmond:'Inner & Outer Richmond',sunset:'The Sunset north of Ortega',parkside:'Parkside & West Portal'};
-D.arr.forEach(a=>{if(!a.long||a.long===a.name)a.long=LONG[a.id]||''});
+const LONG={downtown:'North of Market',soma:'South of Market',hills:'Twin Peaks, Mount Sutro & Golden Gate Heights',richmond:'Inner & Outer Richmond'};
+D.arr.forEach(a=>{if(!a.long||a.long===a.name||a.long===a.name.replace(/^The /,''))a.long=LONG[a.id]||''});
 
 // ---- map layers
 const world=el('g',{},svg);
@@ -588,8 +588,8 @@ function selectNb(key,zoom){const n=nbBy[key];if(!n)return;
   $('nNe').replaceChildren(...(n.nbr||[]).map(k2=>nbBy[k2]).filter(m=>m&&m.arr!=='ggp').map(m=>bchip(m.name,()=>selectNb(nbKey(m),false),m.arr!==n.arr?ordN(byId[m.arr]):'')));
   if(zoom)focusOn(n.d,7);
 }
-const RB={r1:'Northside, NoMa and SoMa: the dense core around downtown and the foot of the Bay Bridge, where the city began.',
-  r2:'Wraps the center from the Marina in the north to Mission Bay in the east, then closes with The Hills in the middle of the city: Pacific, Western, The Valleys, Mission, Sunrise and The Hills.',
+const RB={r1:'North Port, NoMa and SoMa: the dense core around downtown and the foot of the Bay Bridge, where the city began.',
+  r2:'Wraps the center from the Marina in the north to Mission Bay in the east, then closes with The Hills in the middle of the city: Pacific, Western, The Valleys, The Mission, The Sunrise and The Hills.',
   r3:'The largest arrondissements, sweeping from the Presidio and the islands through the west and south of the city to Bayview.'};
 function selectRing(id,zoom){const r=ringById[id];if(!r)return;cur.view='ring';show('vRing');
   setSel(r.d);
@@ -607,7 +607,7 @@ const opt=v=>{if(seen.has(v))return;seen.add(v);const o=document.createElement('
 const q=$('q');
 function runSearch(){const v=q.value.trim().toLowerCase();if(!v)return;
   const num=v.match(/^(\d{1,2})\s*(er|e|st|nd|rd|th)?$/);
-  const a=num?D.arr.find(x=>x.n===+num[1]):D.arr.find(x=>x.name.toLowerCase()===v||(x.long||'').toLowerCase()===v);
+  const a=num?D.arr.find(x=>x.n===+num[1]):D.arr.find(x=>x.name.toLowerCase()===v||x.name.toLowerCase().replace(/^the /,'')===v.replace(/^the /,'')||(x.long||'').toLowerCase()===v);
   if(a){if(mode==='ring'||mode==='nb')setMode('none',true);selectArr(a.id,true);return}
   const L=s=>s.toLowerCase();
   const n=D.nb.find(x=>L(x.name)===v)||D.nb.find(x=>L(x.name).startsWith(v))||D.nb.find(x=>L(x.name).includes(v))||D.nb.find(x=>(x.aka||[]).some(s=>L(s).includes(v)));
@@ -649,7 +649,7 @@ const goMap=()=>$('map').scrollIntoView({behavior:'smooth',block:'start'});
 // ---- key figures
 (function(){const area=D.arr.reduce((s,a)=>s+(a.netmi2||a.mi2),0),pop=D.arr.reduce((s,a)=>s+a.pop,0);
   const nbs=new Set(D.nb.filter(n=>n.arr!=='ggp').map(n=>n.name)).size;
-  const F=[[16,'arrondissements'],[3,'rings'],[nbs,'neighborhoods'],[(D.float||[]).length,'floating labels'],[fmt(pop),'residents'],[area.toFixed(1),'sq mi numbered']];
+  const F=[[D.arr.length,'arrondissements'],[3,'rings'],[nbs,'neighborhoods'],[(D.float||[]).length,'floating labels'],[fmt(pop),'residents'],[area.toFixed(1),'sq mi']];
   $('kfig').replaceChildren(...F.map(([v,l])=>{const li=document.createElement('li');li.innerHTML='<b></b><span></span>';li.querySelector('b').textContent=v;li.querySelector('span').textContent=l;return li}));
 })();
 
@@ -662,7 +662,8 @@ const goMap=()=>$('map').scrollIntoView({behavior:'smooth',block:'start'});
   const plot=$('plot'),xax=$('xax'),tip=$('ctip');
   for(let i=1;i<=max*2;i++){const v=i/2;const major=v%2===0;const g=document.createElement('div');g.className='gl'+(major?'':' mn');g.style.bottom=(v/max*100)+'%';if(major)g.innerHTML=`<span>${v}%</span>`;plot.appendChild(g)}
   const zero=document.createElement('div');zero.className='gl';zero.style.bottom='0';zero.style.borderTop='0';zero.innerHTML='<span>0%</span>';plot.appendChild(zero);
-  [[0,'Ring 1'],[3,'Ring 2'],[9,'Ring 3']].forEach(([i,l])=>{const p=i/16*100;if(i){const s=document.createElement('div');s.className='rsep';s.style.left=p+'%';plot.appendChild(s)}
+  const NC=A.length;$('chart').style.setProperty('--nc',NC);
+  A.map((a,i)=>[i,a.ringlab,a.ring]).filter((x,i,arr)=>i===0||arr[i-1][2]!==x[2]).forEach(([i,l])=>{const p=i/NC*100;if(i){const s=document.createElement('div');s.className='rsep';s.style.left=p+'%';plot.appendChild(s)}
     const lb=document.createElement('div');lb.className='rlab';lb.style.left=p+'%';lb.textContent=l;plot.appendChild(lb)});
   const pct=v=>v.toFixed(1)+'%';const h=v=>(v/max*100)+'%';
   rows.forEach(r=>{const c=document.createElement('div');c.className='col';c.tabIndex=0;c.setAttribute('role','button');

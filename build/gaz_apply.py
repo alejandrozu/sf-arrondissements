@@ -9,6 +9,27 @@ if not any(o['name']=='Alcatraz Island' for o in G['nb']):
     _A=shape(json.load(open('arr.json'))['presidio'])
     _alc=[p for p in _A.geoms if p.centroid.y>37.825 and p.centroid.x<-122.41][0]
     G['nb'].append({'arr':'presidio','n':10,'name':'Alcatraz Island','origs':['Alcatraz Island'],'sqmi':round(_pj(_alc).area/2589988.11,3),'g':_mp(_alc)})
+# v3: Golden Gate Heights, Forest Hill and West Portal join the 9th; the 12th and 13th merge; 14-16 renumbered 13-15
+V3_MOVE={'Golden Gate Heights','Forest Hill','West Portal'}
+V3_ARR={'parkside':'sunset'}
+V3_NUM={'presidio':10,'richmond':11,'sunset':12,'lakemerced':13,'excelsior':14,'bayview':15,'hills':9}
+_old2id={}
+for o in G['nb']:
+    _old2id[(int(o['n']),o['name'])]=o['arr']
+    if o['name'] in V3_MOVE: o['arr']='hills'
+    o['arr']=V3_ARR.get(o['arr'],o['arr'])
+    if o['arr'] in V3_NUM: o['n']=V3_NUM[o['arr']]
+_new={o['name']:(o['arr'],int(o['n'])) for o in G['nb']}
+_spl=[]
+for r in G['splits']:
+    groups={}
+    for sd in r['sides']:
+        for nm in sd['names']:
+            if nm not in _new: continue
+            ar,nn=_new[nm]; groups.setdefault(nn,[]).append(nm)
+    if len(groups)<2: continue
+    _spl.append({'orig':r['orig'],'sides':[{'n':nn,'names':nms,'pct':0,'sqmi':0} for nn,nms in sorted(groups.items())]})
+G['splits']=_spl
 LON0,LAT0=-122.5155,37.8335; K=math.cos(math.radians(37.765)); SC=1000/((-122.355-LON0)*K)
 def P(lon,lat): return ((lon-LON0)*K*SC,(LAT0-lat)*SC)
 def tp(g): return transform(lambda x,y,z=None:P(x,y),g)
@@ -61,6 +82,8 @@ for a in d['arr']:
     if a['id']=='mission': a['blurb']='The Valencia Corridor, South Van Ness, the Food Processing District, Central Mission, Calle 24, Liberty Hill, the Mission Triangle, La Lengua, Bernal Heights, the Bernal Triangle, Peralta Heights, Holly Park and St. Mary\u2019s Park.'
     if a['id']=='missionbay': a['blurb']='Oracle Park, Mission Creek, Mission Bay, Showplace Square, Potrero Valley, Potrero Hill, Potrero Terrace, Dogpatch, Potrero Point and the Central Waterfront down to Islais Creek.'
     if a['id']=='bayview': a['blurb']='Everything east of US-101 south of Islais Creek: Inner Bayview, Bayview Hills, Bayview Valley, Bayview Heights, Hunters Point, India Basin, Amador Point, Islais Creek, Silver Terrace, the Produce Market, Bret Harte and Candlestick Point.'
+    if a['id']=='hills': a['blurb']='Twin Peaks, Midtown Terrace, Clarendon Heights, Parnassus Heights with Mount Sutro and UCSF, Golden Gate Heights, Forest Hill and the Forest Hill Extension, Forest Knolls, West Portal, the west side of Diamond Heights, Glen Canyon, Miraloma Park, Sherwood Forest, St. Francis Wood, Monterey Heights, Westwood Highlands and Sunnyside north of Monterey Boulevard.'
+    if a['id']=='sunset': a['blurb']='The whole Sunset and Parkside, from Golden Gate Park down to Sloat Boulevard and from the ocean to the hills: the Inner, Central and Outer Sunset, Inner and Outer Parkside, Parkside and Pine Lake Park.'
     if a['id']=='downtown': a['blurb']='North of Market: Union Square, the Financial District, the Embarcadero, Chinatown, Nob Hill, Lower Polk, the Tenderloin and Civic Center.'
 json.dump(d,open('mapdata.json','w'),separators=(',',':'))
 print(len(nb),'neighborhoods,',len(splits),'splits')
@@ -69,11 +92,14 @@ from shapely.geometry import Point
 from shapely.ops import unary_union
 from shapely.strtree import STRtree
 from geo import proj
-SHORT={1:'Northside',2:'NoMa',3:'SoMa',4:'Pacific',5:'Western',6:'The Valleys',7:'Mission',8:'Sunrise',9:'The Hills',10:'Federal',11:'Richmond',12:'Sunset',13:'Parkside',14:'Merced',15:'Southside',16:'Bayview'}
+SHORT={'northbeach':'North Port','downtown':'NoMa','soma':'SoMa','marina':'Pacific','westernaddition':'Western','castro':'The Valleys','mission':'The Mission','missionbay':'The Sunrise','hills':'The Hills','presidio':'Federal','richmond':'The Richmond','sunset':'The Sunset','lakemerced':'Merced','excelsior':'Southside','bayview':'Bayview'}
+LONGV3={'sunset':'Sunset & Parkside'}
 def ringof(n): return 'r1' if n<=3 else 'r2' if n<=9 else 'r3'
 RLAB={'r1':'Ring 1','r2':'Ring 2','rh':'Ring –','r3':'Ring 3'}
 for a in d['arr']:
-    a.setdefault('long',a['name']); a['name']=SHORT[a['n']]; a['ring']=ringof(a['n']); a['ringlab']=RLAB[a['ring']]
+    a.setdefault('long',a['name'])
+    if a['id'] in LONGV3: a['long']=LONGV3[a['id']]
+    a['name']=SHORT[a['id']]; a['ring']=ringof(a['n']); a['ringlab']=RLAB[a['ring']]
 BLK=[(Point(float(b['attributes']['INTPTLON']),float(b['attributes']['INTPTLAT'])),b['attributes']['POP100']) for b in json.load(open('blocks.json'))['features']]
 bt=STRtree([p for p,_ in BLK])
 def pop(g):
