@@ -370,7 +370,12 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
   <div class="notes">
     <div>
       <h3>Names and numbers</h3>
-      <p>As in Paris, the number carries the glory. Each arrondissement also has a short name, like North Port or The Valleys, but “the 7th” is the way to say it. Neighborhood names stay as they are; the arrondissement is the coarse address you give a friend.</p>
+      <p>As in Paris, the number carries the glory. Each arrondissement also has a short name, like Northport or The Valleys, but “the 7th” is the way to say it. Neighborhood names stay as they are; the arrondissement is the coarse address you give a friend.</p>
+    </div>
+    <div>
+      <h3>Named for the hills</h3>
+      <p>Where an arrondissement holds a prominent hill of its own, apart from the great heights at the center of the city, it takes that hill’s name: Pacific for Pacific Heights, Ashbury for Ashbury Heights, Potrero for Potrero Hill and Bayview for Bayview Hill. The central heights themselves, Twin Peaks, Mount Sutro and their neighbors, give the 9th its name, The Hills. A name taken from the land belongs to everyone who lives on it, so no single neighborhood is favored over the others.</p>
+      <p>The 1st is the one exception. It holds two celebrated hills, Telegraph Hill and Russian Hill, and in fairness to both it bears neither name: it is Northport.</p>
     </div>
     <div>
       <h3>The lines</h3>
@@ -382,7 +387,7 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
     </div>
     <div>
       <h3>Colors</h3>
-      <p>Sixteen colors: the twelve hues of the color wheel plus brown, viridian, aubergine and black. Each is tied to something the place is known for.</p>
+      <p>Fifteen colors: eleven hues of the color wheel plus brown, viridian, aubergine and black. Each is tied to something the place is known for.</p>
     </div>
     <div>
       <h3>Land for everyone</h3>
@@ -588,8 +593,8 @@ function selectNb(key,zoom){const n=nbBy[key];if(!n)return;
   $('nNe').replaceChildren(...(n.nbr||[]).map(k2=>nbBy[k2]).filter(m=>m&&m.arr!=='ggp').map(m=>bchip(m.name,()=>selectNb(nbKey(m),false),m.arr!==n.arr?ordN(byId[m.arr]):'')));
   if(zoom)focusOn(n.d,7);
 }
-const RB={r1:'North Port, NoMa and SoMa: the dense core around downtown and the foot of the Bay Bridge, where the city began.',
-  r2:'Wraps the center from the Marina in the north to Mission Bay in the east, then closes with The Hills in the middle of the city: Pacific, Western, The Valleys, The Mission, The Sunrise and The Hills.',
+const RB={r1:'Northport, NoMa and SoMa: the dense core around downtown and the foot of the Bay Bridge, where the city began.',
+  r2:'Wraps the center from the Marina in the north to Mission Bay in the east, then closes with The Hills in the middle of the city: Pacific, Ashbury, The Valleys, The Mission, Potrero and The Hills.',
   r3:'The largest arrondissements, sweeping from the Presidio and the islands through the west and south of the city to Bayview.'};
 function selectRing(id,zoom){const r=ringById[id];if(!r)return;cur.view='ring';show('vRing');
   setSel(r.d);
