@@ -10,7 +10,7 @@ San Francisco has more than a hundred neighborhoods, many only a few blocks wide
 | Ring 2 | 4 Pacific · 5 Ashbury · 6 The Valleys · 7 The Mission · 8 Potrero · 9 The Hills |
 | Ring 3 | 10 Federal · 11 The Richmond · 12 The Sunset · 13 Oceanview · 14 Southside · 15 Bayview |
 
-Golden Gate Park belongs to the whole city and sits outside the numbering.
+Golden Gate Park is part of the 11th, The Richmond.
 
 Arrondissements with a prominent hill of their own take that hill's name: Pacific, Ashbury, Potrero and Bayview. The central heights give the 9th its name, The Hills. The 1st holds two celebrated hills, Telegraph and Russian, and in fairness to both it is called Northport.
 
@@ -24,7 +24,7 @@ build/                everything used to make it
   gaz.py,             neighborhood gazetteer: splits, renames, custom polygons
   gaz_build.py        and floating labels                                        -> gaz.json, floats.json
   gaz_apply.py        merges neighborhoods, rings and populations into mapdata.json
-  v3.py               revision: Sunset and Parkside merge; the 9th gains Golden Gate Heights, Forest Hill and West Portal, bounded on the west by 17th Ave (north of Rivera) and 15th Ave (south of Rivera), and on the north by Lawton St and 7th Ave; everything east of 7th Ave is the new neighborhood Parnassus Piedmont (reads arr_v5.json)
+  v3.py               revision: Golden Gate Park joins the 11th; Sunset and Parkside merge; the 9th gains Golden Gate Heights, Forest Hill and West Portal, bounded on the west by 17th Ave (north of Rivera) and 15th Ave (south of Rivera), and on the north by Lawton St and 7th Ave; everything east of 7th Ave is the new neighborhood Parnassus Piedmont (reads arr_v5.json)
   stickers.py         estimate of border-crossing stickers per arrondissement    -> sticker_points.json
   template.html       page template (HTML, CSS, JS)
   assemble.py         template.html + mapdata.json -> ../index.html
