@@ -643,14 +643,15 @@ const goMap=()=>$('map').scrollIntoView({behavior:'smooth',block:'start'});
   const defs=el('defs',{},m);const mk=el('marker',{id:'ah',viewBox:'0 0 10 10',refX:'5',refY:'5',markerWidth:'3.4',markerHeight:'3.4',orient:'auto'},defs);
   el('path',{d:'M0,0L10,5L0,10z',fill:'#fff',stroke:'#16202a','stroke-width':'1.2'},mk);
   const R=30;
-  // one soft L per ring: south down the western side, then east along the southern side
-  const ell=(ms)=>{const xs=ms.map(a=>a.lx),ys=ms.map(a=>a.ly);const x0=Math.min(...xs),y0=Math.min(...ys),y1=Math.max(...ys);let x1=Math.max(...xs);
-    x1+=R+40;   // run past the last arrondissement so every arrow points out toward the Bay
-    const rad=Math.min(70,(y1-y0)*0.45,(x1-x0)*0.45);
-    return `M${x0},${y0+R+6}L${x0},${(y1-rad).toFixed(1)}Q${x0},${y1} ${(x0+rad).toFixed(1)},${y1}L${x1.toFixed(1)},${y1}`};
-  D.rings.forEach(r=>{const ms=r.members.map(i=>byId[i]).filter(a=>a.id!=='hills').sort((x,y)=>x.n-y.n);
-    if(ms.length<2)return;const d=ell(ms);el('path',{d,class:'sw1'},m);el('path',{d,class:'sw2','marker-end':'url(#ah)'},m)});
-  D.arr.forEach(a=>{const g=el('g',{class:'mk',transform:`translate(${a.lx} ${a.ly})`},m);
+  // one soft L per ring, each starting on the northern waterfront and ending out toward the Bay (schematic)
+  const PATHS={r1:'M640,192L640,354Q640,389 675,389L808,389',
+               r2:'M510,226L510,555Q510,600 555,600L812,600',
+               r3:'M352,218L180,390Q150,420 150,460L150,805Q150,850 195,850L910,850'};
+  const pos={};
+  D.rings.forEach(r=>{const d=PATHS[r.id];if(!d)return;el('path',{d,class:'sw1'},m);const p=el('path',{d,class:'sw2','marker-end':'url(#ah)'},m);
+    const L=p.getTotalLength(),S=[];for(let s=0;s<=L;s+=4){const q=p.getPointAtLength(s);S.push([q.x,q.y])}
+    r.members.map(i=>byId[i]).filter(a=>a.id!=='hills').forEach(a=>{let b=S[0],bd=1e9;S.forEach(q=>{const dd=(q[0]-a.lx)**2+(q[1]-a.ly)**2;if(dd<bd){bd=dd;b=q}});pos[a.id]=b})});
+  D.arr.forEach(a=>{const [x,y]=pos[a.id]||[a.lx,a.ly];const g=el('g',{class:'mk',transform:`translate(${x.toFixed(1)} ${y.toFixed(1)})`},m);
     el('circle',{r:R+5,fill:'#fff'},g);el('circle',{r:R,fill:'var(--plaque)',stroke:a.hex,'stroke-width':6},g);
     el('text',{y:1},g).textContent=a.n});
   $('legend').replaceChildren(...D.rings.map(r=>{const li=document.createElement('li');li.innerHTML=`<i style="background:var(--${r.id})"></i>`;li.append(r.label+' · '+r.name);return li}));
