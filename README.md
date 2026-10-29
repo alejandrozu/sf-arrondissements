@@ -8,13 +8,13 @@ San Francisco has more than a hundred neighborhoods, many only a few blocks wide
 |---|---|
 | Ring 1 | 1 Downtown · 2 Northport · 3 NoMa · 4 SoMa |
 | Ring 2 | 5 Pacific · 6 Ashbury · 7 The Valleys · 8 The Mission · 9 Potrero |
-| Ring 3 | 10 Federal · 11 The Richmond · 12 The Sunset · 13 Oceanview · 14 The Hills · 15 Southside · 16 Bayview |
+| Ring 3 | 10 The Hills · 11 Federal · 12 The Richmond · 13 The Sunset · 14 Oceanview · 15 Southside · 16 Bayview |
 
-Sizes roughly double ring by ring, a loosely fractal guide: about ½ sq mi for the 1st, 1 sq mi for the rest of Ring 1, 2 for Ring 2 and 4 for Ring 3.
+Sizes roughly double ring by ring, a loosely fractal guide: Downtown is about ½ sq mi, the rest of the inner ring about 1 sq mi each, the central ring about 2 and the outer ring about 4. The Hills, at the middle of the city, open the outer ring as the 10th but sit apart from its sweep, which runs from the 11th to the 16th.
 
-Golden Gate Park is part of the 11th, The Richmond.
+Golden Gate Park is part of the 12th, The Richmond.
 
-Arrondissements with a prominent hill of their own take that hill's name: Pacific, Ashbury, Potrero and Bayview. The central heights give the 14th its name, The Hills. The 2nd holds two celebrated hills, Telegraph and Russian, and in fairness to both it is called Northport.
+Arrondissements with a prominent hill of their own take that hill's name: Pacific, Ashbury, Potrero and Bayview. The central heights give the 10th its name, The Hills. The 2nd holds two celebrated hills, Telegraph and Russian, and in fairness to both it is called Northport.
 
 ## Repository layout
 
@@ -27,7 +27,7 @@ build/                everything used to make it
   gaz_build.py        and floating labels                                        -> gaz.json, floats.json
   gaz_apply.py        merges neighborhoods, rings and populations into mapdata.json
   v3.py               revision: Golden Gate Park joins the 11th; Sunset and Parkside merge; the 9th gains Golden Gate Heights, Forest Hill and West Portal, bounded on the west by 17th Ave (north of Rivera) and 15th Ave (south of Rivera), and on the north by Lawton St and 7th Ave; everything east of 7th Ave is the new neighborhood Parnassus Piedmont (reads arr_v5.json)
-  v4.py               revision: a new 1st, Downtown (Financial District with Union Square east of Kearny, Embarcadero, New Montgomery east of 3rd St, East Cut, Rincon Hill); Jackson Square and Golden Gateway join Northport; renumbering to 16 (reads arr_v6.json)
+  v4.py               revision: a new 1st, Downtown (Financial District with Union Square east of Kearny, Embarcadero, New Montgomery east of 3rd St, East Cut, Rincon Hill), bounded on the south by I-80; Jackson Square and Golden Gateway join Northport; renumbering to 16 with The Hills as the 10th (reads arr_v6.json)
   stickers.py         estimate of border-crossing stickers per arrondissement    -> sticker_points.json
   template.html       page template (HTML, CSS, JS)
   assemble.py         template.html + mapdata.json -> ../index.html
