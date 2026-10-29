@@ -12,7 +12,23 @@ if not any(o['name']=='Alcatraz Island' for o in G['nb']):
 # v3: Golden Gate Heights, Forest Hill and West Portal join the 9th; the 12th and 13th merge; 14-16 renumbered 13-15
 V3_MOVE={'Golden Gate Heights','Forest Hill','West Portal'}
 V3_ARR={'parkside':'sunset','ggp':'richmond'}
-V3_NUM={'presidio':10,'richmond':11,'sunset':12,'lakemerced':13,'excelsior':14,'bayview':15,'hills':9}
+V3_NUM={'core':1,'northbeach':2,'downtown':3,'soma':4,'marina':5,'westernaddition':6,'castro':7,'mission':8,'missionbay':9,
+        'presidio':10,'richmond':11,'sunset':12,'lakemerced':13,'hills':14,'excelsior':15,'bayview':16}
+# v4: the new 1st, Downtown; Jackson Square and Golden Gateway join Northport; Yerba Buena east of 3rd becomes New Montgomery
+from shapely.geometry import mapping as _mp4
+from shapely.ops import unary_union as _uu4
+_L4=json.load(open('v4_lines.json')); _eK=shape(_L4['eK']); _e3=shape(_L4['e3'])
+V4_ARR={'Financial District':'core','Embarcadero':'core','East Cut':'core','Rincon Hill':'core','Jackson Square':'northbeach','Golden Gateway':'northbeach'}
+_byname={o['name']:o for o in G['nb']}
+if 'New Montgomery' not in _byname:
+    _yb=_byname['Yerba Buena']; _ybg=shape(_yb['g']).buffer(0)
+    G['nb'].append({'arr':'core','n':1,'name':'New Montgomery','origs':['New Montgomery'],'sqmi':0,'g':_mp4(_ybg.intersection(_e3))})
+    _yb['g']=_mp4(_ybg.difference(_e3))
+    _us=_byname['Union Square']; _usg=shape(_us['g']).buffer(0); _fd=_byname['Financial District']
+    _fd['g']=_mp4(_uu4([shape(_fd['g']).buffer(0),_usg.intersection(_eK)])); _us['g']=_mp4(_usg.difference(_eK))
+    G['splits'].append({'orig':'Yerba Buena','sides':[{'n':4,'names':['Yerba Buena'],'pct':0,'sqmi':0},{'n':1,'names':['New Montgomery'],'pct':0,'sqmi':0}]})
+for o in G['nb']:
+    if o['name'] in V4_ARR: o['arr']=V4_ARR[o['name']]
 _old2id={}
 for o in G['nb']:
     _old2id[(int(o['n']),o['name'])]=o['arr']
@@ -47,7 +63,7 @@ from shapely.geometry import mapping as _mp2
 from shapely.ops import unary_union as _uu
 from geo import proj as _pj2
 _AR3={k:shape(v) for k,v in json.load(open('arr.json')).items()}
-for _k in ('hills','sunset'):
+for _k in ('hills','sunset','core','downtown','soma','northbeach'):
     _its=[o for o in G['nb'] if o['arr']==_k]
     _gs={id(o):shape(o['g']).buffer(0).intersection(_AR3[_k]) for o in _its}
     _left=_AR3[_k].difference(_uu(list(_gs.values())))
@@ -99,6 +115,12 @@ for a in d['arr']:
     a['nbsplit']={o['name']:spl_for[(a['n'],o['name'])][0] for o in items if (a['n'],o['name']) in spl_for}
 d['splits']=splits
 FL=json.load(open('floats.json'))
+_ARF={k:shape(v) for k,v in json.load(open('arr.json')).items()}
+from shapely.geometry import Point as _Pt
+for f in FL:
+    _p=_Pt(f['lon'],f['lat'])
+    for _k,_g in _ARF.items():
+        if _g.contains(_p): f['arr']=_k; break
 d['float']=[]
 for f in FL:
     x,y=P(f['lon'],f['lat']); d['float'].append({'name':f['name'],'x':round(x,1),'y':round(y,1),'arr':f['arr']})
@@ -115,7 +137,10 @@ for a in d['arr']:
     if a['id']=='lakemerced': a['blurb']=a['blurb'].replace(' Oceanview,',' Inner Oceanview,').replace('Inner Inner','Inner')
     if a['id']=='hills': a['blurb']='Twin Peaks, Midtown Terrace, Clarendon Heights, Parnassus Heights with Mount Sutro and UCSF, Parnassus Piedmont east of 7th Avenue, Golden Gate Heights, Forest Hill and the Forest Hill Extension, Forest Knolls, West Portal, the west side of Diamond Heights, Glen Canyon, Miraloma Park, Sherwood Forest, St. Francis Wood, Monterey Heights, Westwood Highlands and Sunnyside north of Monterey Boulevard.'
     if a['id']=='sunset': a['blurb']='The whole Sunset and Parkside, from Golden Gate Park down to Sloat Boulevard and from the ocean to the hills: the Inner, Central and Outer Sunset, Inner and Outer Parkside, Parkside and Pine Lake Park.'
-    if a['id']=='downtown': a['blurb']='North of Market: Union Square, the Financial District, the Embarcadero, Chinatown, Nob Hill, Lower Polk, the Tenderloin and Civic Center.'
+    if a['id']=='downtown': a['blurb']='North of Market and west of Kearny: Union Square, Chinatown, Nob Hill, Lower Nob Hill, Polk Gulch, Lower Polk, the Tenderloin and Civic Center.'
+    if a['id']=='core': a['blurb']='The Financial District with Union Square east of Kearny, the Embarcadero and the Ferry Building, New Montgomery, the East Cut and the Transbay towers, and Rincon Hill.'
+    if a['id']=='soma': a['blurb']='South of Market west of 3rd Street: Yerba Buena, Central SoMa, Inner SoMa, the Leather District, South Beach, China Basin, South SoMa and the SoMa Triangle, down to Townsend and Division Streets.'
+    if a['id']=='northbeach': a['blurb']='Little Italy, North Beach, Telegraph Hill, Russian Hill, Lombard Crest Russian Hill, Fisherman\u2019s Wharf, Jackson Square and Golden Gateway: everything north of Broadway and east of Van Ness, reaching down to Washington Street east of Columbus.'
 json.dump(d,open('mapdata.json','w'),separators=(',',':'))
 print(len(nb),'neighborhoods,',len(splits),'splits')
 # ---------- site v2 extras
@@ -123,9 +148,9 @@ from shapely.geometry import Point
 from shapely.ops import unary_union
 from shapely.strtree import STRtree
 from geo import proj
-SHORT={'northbeach':'Northport','downtown':'NoMa','soma':'SoMa','marina':'Pacific','westernaddition':'Ashbury','castro':'The Valleys','mission':'The Mission','missionbay':'Potrero','hills':'The Hills','presidio':'Federal','richmond':'The Richmond','sunset':'The Sunset','lakemerced':'Oceanview','excelsior':'Southside','bayview':'Bayview'}
+SHORT={'core':'Downtown','northbeach':'Northport','downtown':'NoMa','soma':'SoMa','marina':'Pacific','westernaddition':'Ashbury','castro':'The Valleys','mission':'The Mission','missionbay':'Potrero','hills':'The Hills','presidio':'Federal','richmond':'The Richmond','sunset':'The Sunset','lakemerced':'Oceanview','excelsior':'Southside','bayview':'Bayview'}
 LONGV3={'sunset':'Sunset & Parkside'}
-def ringof(n): return 'r1' if n<=3 else 'r2' if n<=9 else 'r3'
+def ringof(n): return 'r1' if n<=4 else 'r2' if n<=9 else 'r3'
 RLAB={'r1':'Ring 1','r2':'Ring 2','rh':'Ring –','r3':'Ring 3'}
 for a in d['arr']:
     a.setdefault('long',a['name'])
