@@ -248,7 +248,7 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
     </div>
     <div>
       <h3>The rings</h3>
-      <p>The arrondissements are organized into rings, a fan that sweeps north, then south, then east. There are three rings around Downtown, and each step outward roughly doubles in size: about half a square mile for the 1st, one for the rest of the first ring, two for the second and four for the third. San Francisco is far less dense than Paris, so its arrondissements are bigger.</p>
+      <p>The arrondissements are organized into rings, a fan that sweeps north, then south, then east. There are three rings, and each step outward roughly doubles in size: Downtown is about half a square mile, the rest of the inner ring about 1 square mile per arrondissement, the central ring about 2 and the outer ring about 4. San Francisco is far less dense than Paris, so its arrondissements are bigger.</p>
     </div>
     <div>
       <h3>Your neighborhoods</h3>
@@ -349,11 +349,11 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
       <ul class="orderkey">
         <li><b>Ring 1</b>1 at the heart, then 2 → 4, north to south to east</li>
         <li><b>Ring 2</b>5 → 9 the same way</li>
-        <li><b>Ring 3</b>10 → 16 the same way</li>
+        <li><b>Ring 3</b>10 apart, then 11 → 16 the same way</li>
       </ul>
-      <p>Downtown, built over the Yerba Buena Cove where the gold-rush port began, is the 1st, and the first ring wraps around it. Every ring is then numbered in the same direction: it starts in the north, sweeps south, and ends in the east. Once one ring is learned, the other two follow.</p>
-      <p>The rings follow the city itself, which fans out southwest from the Embarcadero. The first ring is the most urban and has the smallest arrondissements; the second is still dense; the third is mostly residential and has the largest. Population density falls the same way, ring by ring. The lowest numbers therefore go to the busiest districts, much as the Paris arrondissements spiral outward from the Louvre.</p>
-      <p>The pattern is roughly fractal: each ring is a scaled-up copy of the one inside it, with arrondissements about twice as large. Downtown is about ½ square mile; the rest of Ring 1 about 1; Ring 2 about 2; Ring 3 about 4. It is a guide rather than a rule, bent wherever a better street or a neighborhood edge asks for it.</p>
+      <p>Downtown, built over the Yerba Buena Cove where the gold-rush port began, is the 1st, and the inner ring wraps around it. Every ring is then numbered in the same direction: it starts in the north, sweeps south, and ends in the east. Once one ring is learned, the other two follow. The Hills, which rise in the middle of the city, open the outer ring as the 10th but sit apart from its sweep, which runs from the 11th to the 16th.</p>
+      <p>The rings follow the city itself, which fans out southwest from the Embarcadero. The inner ring is the most urban and has the smallest arrondissements; the central ring is still dense; the outer ring is mostly residential and has the largest. Population density falls the same way, ring by ring. The lowest numbers therefore go to the busiest districts, much as the Paris arrondissements spiral outward from the Louvre.</p>
+      <p>The pattern is roughly fractal: each ring is a scaled-up copy of the one inside it, with arrondissements about twice as large. Downtown is about ½ square mile; the rest of the inner ring about 1 square mile each; the central ring about 2; the outer ring about 4. It is a guide rather than a rule, bent wherever a better street or a neighborhood edge asks for it.</p>
     </div>
     <div id="groups"></div>
   </div>
@@ -372,7 +372,7 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
   </div></div>
   <div class="ctip" id="ctip" hidden></div>
   <details class="ctab"><summary>Show as a table</summary><div class="tblwrap"><table id="ctab"></table></div></details>
-  <p class="note2">Golden Gate Park is counted in the 11th, The Richmond.</p>
+  <p class="note2">Golden Gate Park is counted in the 12th, The Richmond.</p>
 </section>
 
 <section class="sec" id="method">
@@ -402,7 +402,7 @@ section.sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem);text-transform:uppercase;lin
     </div>
     <div>
       <h3>Land for everyone</h3>
-      <p>Every piece of land in the city, from the Presidio to Lake Merced, belongs to an arrondissement. Golden Gate Park, the city’s great common, is part of the 11th, The Richmond, which it borders along its whole length.</p>
+      <p>Every piece of land in the city, from the Presidio to Lake Merced, belongs to an arrondissement. Golden Gate Park, the city’s great common, is part of the 12th, The Richmond, which it borders along its whole length.</p>
     </div>
   </div>
 </section>
@@ -606,7 +606,7 @@ function selectNb(key,zoom){const n=nbBy[key];if(!n)return;
 }
 const RB={r1:'Downtown, Northport, NoMa and SoMa: the dense core where the city began, with Downtown at its heart and the foot of the Bay Bridge at its edge.',
   r2:'Wraps the center from the Marina in the north to Mission Bay in the east: Pacific, Ashbury, The Valleys, The Mission and Potrero.',
-  r3:'The largest arrondissements, sweeping from the Presidio and the islands down the west side, across The Hills and the south of the city to Bayview.'};
+  r3:'The Hills at the middle of the city, then the largest arrondissements, sweeping from the Presidio and the islands down the west side and across the south of the city to Bayview.'};
 function selectRing(id,zoom){const r=ringById[id];if(!r)return;cur.view='ring';show('vRing');
   setSel(r.d);
   $('rNo').textContent=r.label.replace('Ring ','');$('rNm').textContent=r.name.replace(/^The /,'').replace(/ ring$/,'');$('rBl').textContent=RB[id];
@@ -641,21 +641,21 @@ const goMap=()=>$('map').scrollIntoView({behavior:'smooth',block:'start'});
   D.rings.forEach(r=>{const p=el('path',{d:r.d,class:'rt '+r.id},m);el('title',{},p).textContent=r.label;
     p.addEventListener('click',()=>{setMode('ring',true);selectRing(r.id,false);goMap()})});
   D.arr.forEach(a=>el('path',{d:a.d,class:'ab'},m));
-  // order diagram: one swoop per ring, north -> south -> east; the 1st sits at the heart, inside Ring 1's bend
+  // order diagram: one swoop per ring, north -> south -> east; the 1st sits at the heart, inside Ring 1's bend; the 10th sits apart, off Ring 3's line
   const defs=el('defs',{},m);const mk=el('marker',{id:'ah',viewBox:'0 0 10 10',refX:'5',refY:'5',markerWidth:'3.4',markerHeight:'3.4',orient:'auto'},defs);
   el('path',{d:'M0,0L10,5L0,10z',fill:'#fff',stroke:'#16202a','stroke-width':'1.2'},mk);
   const R=30;
   // one soft L per ring, each starting on the northern waterfront and ending out toward the Bay (schematic)
   const PATHS={r1:'M640,192L640,400Q640,440 680,440L808,440',
                r2:'M510,226L510,555Q510,600 555,600L812,600',
-               r3:'M352,218L180,390Q150,420 150,460L150,755Q150,800 195,800L910,800'};
+               r3:'M352,218L180,390Q150,420 150,460L150,805Q150,850 195,850L910,850'};
   const pos={};
   D.rings.forEach(r=>{const d=PATHS[r.id];if(!d)return;el('path',{d,class:'sw1'},m);const p=el('path',{d,class:'sw2','marker-end':'url(#ah)'},m);
     const L=p.getTotalLength(),S=[];for(let s=0;s<=L;s+=4){const q=p.getPointAtLength(s);S.push([q.x,q.y])}
-    r.members.map(i=>byId[i]).filter(a=>a.id!=='core').forEach(a=>{let b=S[0],bd=1e9;S.forEach(q=>{const dd=(q[0]-a.lx)**2+(q[1]-a.ly)**2;if(dd<bd){bd=dd;b=q}});pos[a.id]=b})});
+    r.members.map(i=>byId[i]).filter(a=>a.id!=='core'&&a.id!=='hills').forEach(a=>{let b=S[0],bd=1e9;S.forEach(q=>{const dd=(q[0]-a.lx)**2+(q[1]-a.ly)**2;if(dd<bd){bd=dd;b=q}});pos[a.id]=b})});
   // schematic alignment: the 7th sits at Ring 2's bend, as far west as the 5th and 6th; the 15th lines up under the 8th
   if(pos.castro&&pos.westernaddition)pos.castro=[pos.westernaddition[0],600];
-  if(pos.excelsior&&pos.mission)pos.excelsior=[pos.mission[0],800];
+  if(pos.excelsior&&pos.mission)pos.excelsior=[pos.mission[0],850];
   D.arr.forEach(a=>{const [x,y]=pos[a.id]||[a.lx,a.ly];const g=el('g',{class:'mk',transform:`translate(${x.toFixed(1)} ${y.toFixed(1)})`},m);
     el('circle',{r:R+5,fill:'#fff'},g);el('circle',{r:R,fill:'var(--plaque)',stroke:a.hex,'stroke-width':6},g);
     el('text',{y:1},g).textContent=a.n});

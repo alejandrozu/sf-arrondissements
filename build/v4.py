@@ -1,6 +1,6 @@
 # v4: a new 1st arrondissement, Downtown: the Financial District (with Union Square east of Kearny), the Embarcadero,
-# New Montgomery (Yerba Buena east of 3rd Street), the East Cut and Rincon Hill. Jackson Square and Golden Gateway join Northport.
-# Renumber: 1 Downtown, 2 Northport, 3 NoMa, 4 SoMa, 5-9 Ring 2, and The Hills move to Ring 3 as the 14th.
+# New Montgomery (Yerba Buena east of 3rd Street), the East Cut and Rincon Hill north of the freeway. Jackson Square and Golden Gateway join Northport.
+# Renumber: 1 Downtown, 2 Northport, 3 NoMa, 4 SoMa, 5-9 the central ring; the outer ring opens with The Hills as the 10th (off the sweep), then 11-16.
 # Idempotent: always starts from arr_v6.json (the v3 output).
 import json, math
 from shapely.geometry import shape, mapping, Point, LineString, box
@@ -24,8 +24,16 @@ eK=side(street('KEARNY ST',(-122.41,37.787,-122.40,37.80)),(-122.398,37.793))   
 e3=side(street('03RD ST',(-122.41,37.775,-122.39,37.788)),(-122.395,37.787))      # east of 3rd
 north=unary_union([GZ['Financial District'],GZ['Embarcadero'],GZ['Union Square'].intersection(eK)])
 south=unary_union([GZ['East Cut'],GZ['Rincon Hill'],GZ['Yerba Buena'].intersection(e3)])
-json.dump({'eK':mapping(eK),'e3':mapping(e3)},open('v4_lines.json','w'))
 core=clean(unary_union([north.intersection(A['downtown']),south.intersection(A['soma'])]))
+# the freeway (I-80 and the Bay Bridge approach) is Downtown's southern edge: anything south of it stays in SoMa (Pier 26 included)
+i80=linemerge(unary_union([shape(x['line']) for x in S if x['streetname']=='I-80 EASTBOUND']).intersection(box(-122.406,37.775,-122.383,37.793)))
+if i80.geom_type=='MultiLineString': i80=max(i80.geoms,key=lambda g:g.length)
+c80=sorted(i80.coords)
+def _ext(p,q,k=0.1): dx,dy=q[0]-p[0],q[1]-p[1]; L=math.hypot(dx,dy); return (q[0]+dx/L*k,q[1]+dy/L*k)
+i80=LineString([_ext(c80[1],c80[0])]+c80+[_ext(c80[-2],c80[-1])])
+nI80=side(i80,(-122.395,37.790))
+core=clean(core.intersection(nI80))
+json.dump({'eK':mapping(eK),'e3':mapping(e3),'nI80':mapping(nI80)},open('v4_lines.json','w'))
 toNP=clean(unary_union([GZ['Jackson Square'],GZ['Golden Gateway']]).intersection(A['downtown']).difference(core))
 A['downtown']=clean(A['downtown'].difference(core).difference(toNP))
 A['soma']=clean(A['soma'].difference(core))
@@ -44,7 +52,7 @@ for k in ('core','downtown','soma','northbeach'): print(k,round(proj(A[k]).area/
 json.dump({k:mapping(v) for k,v in A.items()},open('arr.json','w'))
 d=json.load(open('mapdata_v12.json'))
 NUM={'core':1,'northbeach':2,'downtown':3,'soma':4,'marina':5,'westernaddition':6,'castro':7,'mission':8,'missionbay':9,
-     'presidio':10,'richmond':11,'sunset':12,'lakemerced':13,'hills':14,'excelsior':15,'bayview':16}
+     'hills':10,'presidio':11,'richmond':12,'sunset':13,'lakemerced':14,'excelsior':15,'bayview':16}
 tmpl=next(a for a in d['arr'] if a['id']=='soma')
 core_rec={k:v for k,v in tmpl.items()}; core_rec.update(id='core',name='Downtown',long='Financial District & Rincon Hill',cn='Brown',hex='#974e06',why='The brown hulls of the gold-rush ships abandoned in Yerba Buena Cove, now buried beneath the Financial District.')
 d['arr'].append(core_rec)

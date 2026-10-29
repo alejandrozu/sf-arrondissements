@@ -13,7 +13,7 @@ if not any(o['name']=='Alcatraz Island' for o in G['nb']):
 V3_MOVE={'Golden Gate Heights','Forest Hill','West Portal'}
 V3_ARR={'parkside':'sunset','ggp':'richmond'}
 V3_NUM={'core':1,'northbeach':2,'downtown':3,'soma':4,'marina':5,'westernaddition':6,'castro':7,'mission':8,'missionbay':9,
-        'presidio':10,'richmond':11,'sunset':12,'lakemerced':13,'hills':14,'excelsior':15,'bayview':16}
+        'hills':10,'presidio':11,'richmond':12,'sunset':13,'lakemerced':14,'excelsior':15,'bayview':16}
 # v4: the new 1st, Downtown; Jackson Square and Golden Gateway join Northport; Yerba Buena east of 3rd becomes New Montgomery
 from shapely.geometry import mapping as _mp4
 from shapely.ops import unary_union as _uu4
@@ -138,7 +138,7 @@ for a in d['arr']:
     if a['id']=='hills': a['blurb']='Twin Peaks, Midtown Terrace, Clarendon Heights, Parnassus Heights with Mount Sutro and UCSF, Parnassus Piedmont east of 7th Avenue, Golden Gate Heights, Forest Hill and the Forest Hill Extension, Forest Knolls, West Portal, the west side of Diamond Heights, Glen Canyon, Miraloma Park, Sherwood Forest, St. Francis Wood, Monterey Heights, Westwood Highlands and Sunnyside north of Monterey Boulevard.'
     if a['id']=='sunset': a['blurb']='The whole Sunset and Parkside, from Golden Gate Park down to Sloat Boulevard and from the ocean to the hills: the Inner, Central and Outer Sunset, Inner and Outer Parkside, Parkside and Pine Lake Park.'
     if a['id']=='downtown': a['blurb']='North of Market and west of Kearny: Union Square, Chinatown, Nob Hill, Lower Nob Hill, Polk Gulch, Lower Polk, the Tenderloin and Civic Center.'
-    if a['id']=='core': a['blurb']='The Financial District with Union Square east of Kearny, the Embarcadero and the Ferry Building, New Montgomery, the East Cut and the Transbay towers, and Rincon Hill.'
+    if a['id']=='core': a['blurb']='The Financial District with Union Square east of Kearny, the Embarcadero and the Ferry Building, New Montgomery, the East Cut and the Transbay towers, and Rincon Hill down to the freeway.'
     if a['id']=='soma': a['blurb']='South of Market west of 3rd Street: Yerba Buena, Central SoMa, Inner SoMa, the Leather District, South Beach, China Basin, South SoMa and the SoMa Triangle, down to Townsend and Division Streets.'
     if a['id']=='northbeach': a['blurb']='Little Italy, North Beach, Telegraph Hill, Russian Hill, Lombard Crest Russian Hill, Fisherman\u2019s Wharf, Jackson Square and Golden Gateway: everything north of Broadway and east of Van Ness, reaching down to Washington Street east of Columbus.'
 json.dump(d,open('mapdata.json','w'),separators=(',',':'))
@@ -178,7 +178,7 @@ for item in d['nb']:
 # rings
 AR={k:shape(v) for k,v in json.load(open('arr.json')).items()}
 rings=[]
-for rid,lab,nm in [('r1','Ring 1','The center'),('r2','Ring 2','The inner ring'),('r3','Ring 3','The outer ring')]:
+for rid,lab,nm in [('r1','Ring 1','The inner ring'),('r2','Ring 2','The central ring'),('r3','Ring 3','The outer ring')]:
     mem=[a for a in d['arr'] if a['ring']==rid]
     g=unary_union([AR[a['id']].buffer(3e-5,join_style=2) for a in mem]).buffer(-3e-5,join_style=2)
     big=max(getattr(g,'geoms',[g]),key=lambda p:p.area); c=polylabel(tp(big),tolerance=0.5)
