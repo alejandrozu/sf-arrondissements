@@ -1,18 +1,20 @@
 # Les Arrondissements de San Francisco
 
-San Francisco has more than a hundred neighborhoods, many only a few blocks wide. This project adds one layer above them: **15 numbered arrondissements**, inspired by those of Paris, bounded by the big avenues everyone already knows and organized into three rings that fan out from the center.
+San Francisco has more than a hundred neighborhoods, many only a few blocks wide. This project adds one layer above them: **16 numbered arrondissements**, inspired by those of Paris, bounded by the big avenues everyone already knows and organized around Downtown into three rings that fan out from the center.
 
 **Open `index.html`** for the interactive map. It is a single self-contained page: pan and zoom the city, switch between neighborhoods, boundary streets and rings, search any neighborhood, and compare the arrondissements by area and population.
 
 | Ring | Arrondissements |
 |---|---|
-| Ring 1 | 1 Northport · 2 NoMa · 3 SoMa |
-| Ring 2 | 4 Pacific · 5 Ashbury · 6 The Valleys · 7 The Mission · 8 Potrero · 9 The Hills |
-| Ring 3 | 10 Federal · 11 The Richmond · 12 The Sunset · 13 Oceanview · 14 Southside · 15 Bayview |
+| Ring 1 | 1 Downtown · 2 Northport · 3 NoMa · 4 SoMa |
+| Ring 2 | 5 Pacific · 6 Ashbury · 7 The Valleys · 8 The Mission · 9 Potrero |
+| Ring 3 | 10 Federal · 11 The Richmond · 12 The Sunset · 13 Oceanview · 14 The Hills · 15 Southside · 16 Bayview |
+
+Sizes roughly double ring by ring, a loosely fractal guide: about ½ sq mi for the 1st, 1 sq mi for the rest of Ring 1, 2 for Ring 2 and 4 for Ring 3.
 
 Golden Gate Park is part of the 11th, The Richmond.
 
-Arrondissements with a prominent hill of their own take that hill's name: Pacific, Ashbury, Potrero and Bayview. The central heights give the 9th its name, The Hills. The 1st holds two celebrated hills, Telegraph and Russian, and in fairness to both it is called Northport.
+Arrondissements with a prominent hill of their own take that hill's name: Pacific, Ashbury, Potrero and Bayview. The central heights give the 14th its name, The Hills. The 2nd holds two celebrated hills, Telegraph and Russian, and in fairness to both it is called Northport.
 
 ## Repository layout
 
@@ -25,6 +27,7 @@ build/                everything used to make it
   gaz_build.py        and floating labels                                        -> gaz.json, floats.json
   gaz_apply.py        merges neighborhoods, rings and populations into mapdata.json
   v3.py               revision: Golden Gate Park joins the 11th; Sunset and Parkside merge; the 9th gains Golden Gate Heights, Forest Hill and West Portal, bounded on the west by 17th Ave (north of Rivera) and 15th Ave (south of Rivera), and on the north by Lawton St and 7th Ave; everything east of 7th Ave is the new neighborhood Parnassus Piedmont (reads arr_v5.json)
+  v4.py               revision: a new 1st, Downtown (Financial District with Union Square east of Kearny, Embarcadero, New Montgomery east of 3rd St, East Cut, Rincon Hill); Jackson Square and Golden Gateway join Northport; renumbering to 16 (reads arr_v6.json)
   stickers.py         estimate of border-crossing stickers per arrondissement    -> sticker_points.json
   template.html       page template (HTML, CSS, JS)
   assemble.py         template.html + mapdata.json -> ../index.html
